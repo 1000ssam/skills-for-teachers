@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "default_profile": "work",
+  "profiles": {
+    "work": {
+      "name": "기본 공문 폴더",
+      "path": "(사용자가 지정한 경로)",
+      "last_used": null
+    }
+  }
+}
