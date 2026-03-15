@@ -40,7 +40,7 @@ Expand-Archive -Path $zipPath -DestinationPath $extPath -Force
 
 # 4. 스킬 복사
 $sourceSkills = "$extPath\skiils-for-teachers-$branch\skills"
-$skills = @("document-organizer", "handover-generator", "student-record-writer", "learn-claude-code")
+$skills = @("document-organizer", "exam-analyzer", "handover-generator", "student-record-writer", "learn-claude-code")
 
 Write-Host ""
 foreach ($skill in $skills) {
@@ -64,6 +64,7 @@ Write-Host ""
 Write-Host "사용 예시:" -ForegroundColor Cyan
 Write-Host '  "공문서 정리해줘"          → document-organizer' -ForegroundColor Gray
 Write-Host '  "인수인계서 작성해줘"       → handover-generator' -ForegroundColor Gray
+Write-Host '  "기출 분석해줘"            → exam-analyzer' -ForegroundColor Gray
 Write-Host '  "생기부 써줘"              → student-record-writer' -ForegroundColor Gray
 Write-Host '  "Claude Code 배우고 싶어"  → learn-claude-code' -ForegroundColor Gray
 Write-Host ""
