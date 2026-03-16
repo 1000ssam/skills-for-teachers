@@ -14,7 +14,7 @@
 PowerShell에서 실행:
 
 ```powershell
-irm https://raw.githubusercontent.com/1000ssam/skiils-for-teachers/main/skills/exam-analyzer/install.ps1 | iex
+irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/exam-analyzer/install.ps1 | iex
 ```
 
 ### 필요 환경

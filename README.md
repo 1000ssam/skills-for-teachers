@@ -1,4 +1,4 @@
-# skiils-for-teachers
+# skills-for-teachers
 
 한국 학교 교사를 위한 **Claude Code 스킬** 모음입니다.
 
@@ -23,7 +23,7 @@
 > **PowerShell**을 열고 아래 명령어를 그대로 붙여넣은 뒤 Enter를 누르세요.
 
 ```powershell
-irm https://raw.githubusercontent.com/1000ssam/skiils-for-teachers/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.ps1 | iex
 ```
 
 > **PowerShell 여는 방법:** `Win + R` → `powershell` 입력 → Enter

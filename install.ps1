@@ -1,14 +1,14 @@
-# skiils-for-teachers 전체 설치 스크립트
+# skills-for-teachers 전체 설치 스크립트
 # 사용법: PowerShell에서 아래 명령어 실행
-#   irm https://raw.githubusercontent.com/1000ssam/skiils-for-teachers/main/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.ps1 | iex
 
 $ErrorActionPreference = 'Stop'
 
-$repo     = "1000ssam/skiils-for-teachers"
+$repo     = "1000ssam/skills-for-teachers"
 $branch   = "main"
 $zipUrl   = "https://github.com/$repo/archive/refs/heads/$branch.zip"
-$zipPath  = "$env:TEMP\skiils-for-teachers.zip"
-$extPath  = "$env:TEMP\skiils-for-teachers-extract"
+$zipPath  = "$env:TEMP\skills-for-teachers.zip"
+$extPath  = "$env:TEMP\skills-for-teachers-extract"
 $skillsDir = "$env:USERPROFILE\.claude\skills"
 
 Write-Host ""
@@ -39,7 +39,7 @@ if (Test-Path $extPath) { Remove-Item -Recurse -Force $extPath }
 Expand-Archive -Path $zipPath -DestinationPath $extPath -Force
 
 # 4. 스킬 복사
-$sourceSkills = "$extPath\skiils-for-teachers-$branch\skills"
+$sourceSkills = "$extPath\skills-for-teachers-$branch\skills"
 $skills = @("document-organizer", "exam-analyzer", "handover-generator", "student-record-writer", "learn-claude-code")
 
 Write-Host ""

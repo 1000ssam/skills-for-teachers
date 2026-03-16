@@ -11,7 +11,7 @@
 PowerShell을 열고 아래 명령어를 붙여넣은 뒤 Enter를 누르세요.
 
 ```powershell
-irm https://raw.githubusercontent.com/1000ssam/skiils-for-teachers/main/skills/student-record-writer/install.ps1 | iex
+irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/student-record-writer/install.ps1 | iex
 ```
 
 > **PowerShell 여는 방법:** `Win + R` → `powershell` 입력 → Enter
@@ -22,7 +22,7 @@ irm https://raw.githubusercontent.com/1000ssam/skiils-for-teachers/main/skills/s
 
 ### 방법 2. 파일 직접 다운로드
 
-1. **[메인 리포](https://github.com/1000ssam/skiils-for-teachers)** 로 이동합니다.
+1. **[메인 리포](https://github.com/1000ssam/skills-for-teachers)** 로 이동합니다.
    > ⚠️ 이 페이지(개별 스킬 폴더)가 아닌, **메인 리포 첫 화면**으로 가야 합니다.
 
 2. 초록색 **`<> Code`** 버튼 → **`Download ZIP`** 클릭

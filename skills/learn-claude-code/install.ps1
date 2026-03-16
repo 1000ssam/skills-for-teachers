@@ -1,15 +1,15 @@
 # learn-claude-code 설치 스크립트
 # 사용법: PowerShell에서 아래 명령어 실행
-#   irm https://raw.githubusercontent.com/1000ssam/skiils-for-teachers/main/skills/learn-claude-code/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/learn-claude-code/install.ps1 | iex
 
 $ErrorActionPreference = 'Stop'
 
-$repo      = "1000ssam/skiils-for-teachers"
+$repo      = "1000ssam/skills-for-teachers"
 $branch    = "main"
 $skillName = "learn-claude-code"
 $zipUrl    = "https://github.com/$repo/archive/refs/heads/$branch.zip"
-$zipPath   = "$env:TEMP\skiils-for-teachers.zip"
-$extPath   = "$env:TEMP\skiils-for-teachers-extract"
+$zipPath   = "$env:TEMP\skills-for-teachers.zip"
+$extPath   = "$env:TEMP\skills-for-teachers-extract"
 $skillsDir = "$env:USERPROFILE\.claude\skills"
 
 Write-Host ""
@@ -31,7 +31,7 @@ try {
 if (Test-Path $extPath) { Remove-Item -Recurse -Force $extPath }
 Expand-Archive -Path $zipPath -DestinationPath $extPath -Force
 
-$src = "$extPath\skiils-for-teachers-$branch\skills\$skillName"
+$src = "$extPath\skills-for-teachers-$branch\skills\$skillName"
 $dst = "$skillsDir\$skillName"
 Copy-Item -Recurse -Force $src $dst
 
