@@ -1,6 +1,6 @@
 ---
 name: notion-workspace
-description: "Notion API 통합 스킬. DB/페이지/블록 CRUD, 파일 업로드, 이미지 커버 설정, upsert 등 모든 Notion 작업을 notion-api.mjs 모듈로 처리합니다. Use when: (1) 노션에 추가/수정/조회, (2) 노션 DB 생성, (3) 노션 이미지 업로드, (4) 노션 커버 설정, (5) 노션 파일 업로드, (6) Notion API 작업. 트리거: '노션', 'Notion', '노션에', '노션 DB', '노션 페이지', '노션 업로드'."
+description: "Notion API 통합 스킬. DB/페이지/블록 CRUD, 마크다운 읽기/쓰기, 파일 업로드, 이미지 커버 설정, upsert, 코멘트, 페이지 이동 등 모든 Notion 작업을 notion-api.mjs 모듈로 처리합니다. Use when: (1) 노션에 추가/수정/조회, (2) 노션 DB 생성, (3) 노션 이미지 업로드, (4) 노션 커버 설정, (5) 노션 파일 업로드, (6) Notion API 작업. 트리거: '노션', 'Notion', '노션에', '노션 DB', '노션 페이지', '노션 업로드'."
 allowed-tools: Bash(node *), Read, Write, Glob, Grep
 ---
 
@@ -64,15 +64,35 @@ const page = await notion.createPage(dbId, {
   '점수': notion.prop.number(95),
 });
 
+// ── 페이지 본문 읽기/쓰기 (마크다운 우선) ──
+// 읽기: 특수 블록도 <callout>, <database> 등 확장 태그로 반환됨 (누락 없음)
+const content = await notion.getPageMarkdown(pageId);
+
+// 쓰기: 마크다운 문자열로 본문 전체 교체 (블록 API 대비 토큰 6배 절약)
+await notion.updatePageMarkdown(pageId, '## 섹션 제목\n\n본문 내용\n\n- 항목 1\n- 항목 2');
+
+// 블록 API는 마크다운으로 불가능한 세밀한 조작이 필요할 때만 사용
+await notion.appendBlocks(pageId, [notion.block.callout('안내', '📝', 'blue_background')]);
+
+// ── 마크다운 쓰기 시 특수 블록 레퍼런스 ──
+// ✅ 읽기/쓰기 모두 지원:
+//   <callout icon="📌">내용 **볼드** 가능</callout>
+//   <details><summary>토글 제목</summary>토글 내부 내용</details>
+//   > 인용문 (quote)
+//   --- (divider)
+//   - [ ] 미완료 / - [x] 완료 (to_do)
+//   | 헤더 | ... | (table)
+//   ```lang ... ``` (code)
+//   $`E=mc^2`$ (인라인 수식)
+//   $$\nE=mc^2\n$$ (수식 블록)
+//
+// ⚠️ 읽기전용 (쓰기 불가, 블록 API로 대체):
+//   bookmark → 읽으면 <unknown alt="bookmark"/> 로 표시
+//   embed → 읽으면 <unknown alt="embed"/> 로 표시
+//   synced_block → 블록 API 필수
+
 // DB 전체 조회 (자동 페이지네이션)
 const allPages = await notion.queryAll(dbId);
-
-// 블록 추가 - block 헬퍼 사용
-await notion.appendBlocks(pageId, [
-  notion.block.heading2('섹션 제목'),
-  notion.block.paragraph('본문 내용'),
-  notion.block.callout('안내 메시지', '📝', 'blue_background'),
-]);
 
 // 배치 처리 (동시성 15)
 await notion.batch(items, async (item) => {
@@ -85,7 +105,7 @@ const result = await notion.upsertPage(dbId, '이름', 'title', '홍길동', {
   '점수': notion.prop.number(95),
 });
 
-// Bulk Upsert (대량)
+// Bulk Upsert (대량, queryAll 캐시 + 동시성 15)
 const stats = await notion.bulkUpsert(dbId, '이름', [
   { matchValue: '홍길동', properties: { '이름': notion.prop.title('홍길동'), '점수': notion.prop.number(100) } },
 ]);
@@ -94,6 +114,13 @@ const stats = await notion.bulkUpsert(dbId, '이름', [
 await notion.setCover(pageId, 'C:/path/to/cover.webp');
 await notion.addImageBlock(pageId, 'C:/path/to/photo.png');
 const uploadId = await notion.uploadFromUrl('https://example.com/img.jpg');
+
+// 코멘트
+await notion.createComment(pageId, '코멘트 내용');
+const comments = await notion.listComments(pageId);
+
+// 페이지 이동
+await notion.movePage(pageId, { page_id: targetPageId });
 ```
 
 **주의사항**:
@@ -110,6 +137,8 @@ const uploadId = await notion.uploadFromUrl('https://example.com/img.jpg');
 
 ## 토큰 절약 규칙
 
-1. **여러 페이지 작업 시** `notion.batch()`로 동시성 15 병렬 처리.
-2. **전체 조회 시** `notion.queryAll()`로 자동 페이지네이션.
-3. **Upsert 전략 선택**: 10건 미만 → `upsertPage()`, 10건 이상 → `bulkUpsert()`.
+1. **페이지 본문은 마크다운 API 우선**: 읽기 `getPageMarkdown()`, 쓰기 `updatePageMarkdown()`. 특수 블록도 확장 태그로 보존됨. 블록 API 대비 읽기 20배, 쓰기 6배 토큰 절약.
+2. **블록 API는 세밀한 조작이 필요할 때만**: 특정 블록 하나만 수정/삭제 등.
+3. **여러 페이지 작업 시** `notion.batch()`로 동시성 15 병렬 처리.
+4. **전체 조회 시** `notion.queryAll()`로 자동 페이지네이션.
+5. **Upsert 전략 선택**: 10건 미만 → `upsertPage()`, 10건 이상 → `bulkUpsert()`.

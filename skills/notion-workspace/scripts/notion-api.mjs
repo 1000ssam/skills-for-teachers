@@ -35,7 +35,6 @@ const TOKEN = loadToken();
 
 // ── API 버전 ─────────────────────────────────────────────
 const API_VERSION = '2026-03-11';
-
 // ── Base fetch ───────────────────────────────────────────
 const BASE = 'https://api.notion.com/v1';
 
@@ -189,6 +188,35 @@ async function updatePageMarkdown(pageId, markdown) {
     type: 'replace_content',
     replace_content: { new_str: markdown },
   });
+}
+
+/** 페이지를 다른 부모로 이동 */
+async function movePage(pageId, newParent) {
+  // newParent: { page_id: '...' } | { database_id: '...' } | { type: 'workspace' }
+  return call('POST', `/pages/${pageId}/move`, { parent: newParent });
+}
+
+// ── 코멘트 ───────────────────────────────────────────────
+/** 페이지 또는 블록에 코멘트 생성 */
+async function createComment(pageId, text, { blockId } = {}) {
+  const body = {
+    parent: { page_id: pageId },
+    rich_text: [{ type: 'text', text: { content: text } }],
+  };
+  if (blockId) body.discussion_id = blockId;
+  return call('POST', '/comments', body);
+}
+
+/** 페이지의 코멘트 목록 조회 */
+async function listComments(pageId, { pageSize = 100, startCursor } = {}) {
+  let url = `/comments?block_id=${pageId}&page_size=${pageSize}`;
+  if (startCursor) url += `&start_cursor=${startCursor}`;
+  return call('GET', url);
+}
+
+/** 코멘트 단건 조회 */
+async function getComment(commentId) {
+  return call('GET', `/comments/${commentId}`);
 }
 
 // ── 블록 ─────────────────────────────────────────────────
@@ -552,6 +580,12 @@ export const notion = {
   updatePage,
   getPageMarkdown,
   updatePageMarkdown,
+  movePage,
+
+  // comment
+  createComment,
+  listComments,
+  getComment,
 
   // block
   getBlocks,
