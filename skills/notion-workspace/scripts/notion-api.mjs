@@ -141,16 +141,27 @@ async function queryAll(dbId, opts = {}) {
 
 // ── 페이지 ───────────────────────────────────────────────
 async function createPage(parentDbOrPageId, properties, { children, icon, cover, isDb = true } = {}) {
-  const body = {
-    parent: isDb
-      ? { database_id: parentDbOrPageId }
-      : { type: 'page_id', page_id: parentDbOrPageId },
-    properties,
-  };
+  if (!isDb) {
+    const body = { parent: { type: 'page_id', page_id: parentDbOrPageId }, properties };
+    if (children) body.children = children;
+    if (icon) body.icon = icon;
+    if (cover) body.cover = cover;
+    return call('POST', '/pages', body);
+  }
+  // DB ID 또는 DS ID 모두 허용: database_id로 시도 → 실패 시 data_source_id로 재시도
+  const body = { parent: { database_id: parentDbOrPageId }, properties };
   if (children) body.children = children;
   if (icon) body.icon = icon;
   if (cover) body.cover = cover;
-  return call('POST', '/pages', body);
+  try {
+    return await call('POST', '/pages', body);
+  } catch (err) {
+    if (err.status === 404) {
+      body.parent = { data_source_id: parentDbOrPageId };
+      return call('POST', '/pages', body);
+    }
+    throw err;
+  }
 }
 
 async function getPage(pageId) {
