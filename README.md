@@ -15,6 +15,7 @@
 | **handover-generator** | 공문 파일명 분석 → 업무 인수인계서 자동 생성 | [README](skills/handover-generator/README.md) |
 | **student-record-writer** | 학생 산출물·관찰 메모 → 교과세특 초안 작성 | [README](skills/student-record-writer/README.md) |
 | **learn-claude-code** | Claude Code 사용법 단계별 학습 튜터 | [README](skills/learn-claude-code/README.md) |
+| **notion-workspace** | Notion API 통합 (DB/페이지/블록 CRUD, 파일 업로드, Upsert) | [README](skills/notion-workspace/README.md) |
 
 ---
 
