@@ -166,6 +166,20 @@ async function updatePage(pageId, patch) {
   return call('PATCH', `/pages/${pageId}`, patch);
 }
 
+/** 페이지 본문을 마크다운 문자열로 조회 */
+async function getPageMarkdown(pageId) {
+  const res = await call('GET', `/pages/${pageId}/markdown`);
+  return res.markdown ?? res;
+}
+
+/** 페이지 본문을 마크다운으로 전체 교체 */
+async function updatePageMarkdown(pageId, markdown) {
+  return call('PATCH', `/pages/${pageId}/markdown`, {
+    type: 'replace_content',
+    replace_content: { new_str: markdown },
+  });
+}
+
 // ── 블록 ─────────────────────────────────────────────────
 async function getBlocks(blockId, { pageSize = 100 } = {}) {
   return call('GET', `/blocks/${blockId}/children?page_size=${pageSize}`);
@@ -525,6 +539,8 @@ export const notion = {
   createPage,
   getPage,
   updatePage,
+  getPageMarkdown,
+  updatePageMarkdown,
 
   // block
   getBlocks,
