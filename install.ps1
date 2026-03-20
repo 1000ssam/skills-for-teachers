@@ -1,5 +1,5 @@
-# skills-for-teachers 전체 설치 스크립트
-# 사용법: PowerShell에서 아래 명령어 실행
+# skills-for-teachers 전체 설치 스크립트 (Windows)
+# 사용법: 터미널에서 아래 명령어 실행
 #   irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.ps1 | iex
 
 $ErrorActionPreference = 'Stop'
@@ -40,7 +40,7 @@ Expand-Archive -Path $zipPath -DestinationPath $extPath -Force
 
 # 4. 스킬 복사
 $sourceSkills = "$extPath\skills-for-teachers-$branch\skills"
-$skills = @("document-organizer", "exam-analyzer", "handover-generator", "student-record-writer", "learn-claude-code")
+$skills = @("document-organizer", "exam-analyzer", "handover-generator", "student-record-writer", "learn-claude-code", "notion-pilot")
 
 Write-Host ""
 foreach ($skill in $skills) {
