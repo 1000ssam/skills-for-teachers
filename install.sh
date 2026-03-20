@@ -58,4 +58,5 @@ echo '  "인수인계서 작성해줘"       → handover-generator'
 echo '  "기출 분석해줘"            → exam-analyzer'
 echo '  "생기부 써줘"              → student-record-writer'
 echo '  "Claude Code 배우고 싶어"  → learn-claude-code'
+echo '  "노션에 페이지 만들어줘"  → notion-pilot'
 echo ""
