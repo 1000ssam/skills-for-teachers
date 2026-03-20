@@ -1,10 +1,10 @@
 ---
-name: notion-workspace
+name: notion-pilot
 description: "Notion API 통합 스킬. DB/페이지/블록 CRUD, 마크다운 읽기/쓰기, 파일 업로드, 이미지 커버 설정, upsert, 코멘트, 페이지 이동 등 모든 Notion 작업을 notion-api.mjs 모듈로 처리합니다. Use when: (1) 노션에 추가/수정/조회, (2) 노션 DB 생성, (3) 노션 이미지 업로드, (4) 노션 커버 설정, (5) 노션 파일 업로드, (6) Notion API 작업. 트리거: '노션', 'Notion', '노션에', '노션 DB', '노션 페이지', '노션 업로드'."
 allowed-tools: Bash(node *), Read, Write, Glob, Grep
 ---
 
-# Notion Workspace 스킬
+# Notion Pilot 스킬
 
 Notion API를 `notion-api.mjs` 모듈로 직접 호출하여 DB, 페이지, 블록, 파일 업로드 등 모든 작업을 처리하는 스킬.
 

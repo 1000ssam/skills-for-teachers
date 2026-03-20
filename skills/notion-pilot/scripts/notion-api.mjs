@@ -23,7 +23,7 @@ function loadToken() {
   } catch (e) {
     if (e.code === 'ENOENT') {
       throw new Error(
-        'config.json이 없습니다. notion-workspace 스킬 폴더에 config.json을 생성하고 ' +
+        'config.json이 없습니다. notion-pilot 스킬 폴더에 config.json을 생성하고 ' +
         '{ "token": "ntn_..." } 형식으로 Notion Integration Token을 설정하세요.'
       );
     }
