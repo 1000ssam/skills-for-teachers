@@ -31,13 +31,13 @@ curl -fsSL https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/i
 
 ### Windows
 
-터미널을 열고 아래 명령어를 붙여넣은 뒤 Enter를 누르세요.
+PowerShell을 열고 아래 명령어를 붙여넣은 뒤 Enter를 누르세요.
 
 ```powershell
 irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.ps1 | iex
 ```
 
-> **터미널 여는 방법:** `Win + R` → `powershell` 입력 → Enter
+> **PowerShell 여는 방법:** `Win + R` → `powershell` 입력 → Enter
 
 설치가 완료되면 **Claude Code를 재시작**하면 됩니다.
 
