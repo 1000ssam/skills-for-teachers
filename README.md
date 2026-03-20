@@ -29,6 +29,8 @@
 curl -fsSL https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.sh | bash
 ```
 
+> **터미널 여는 방법 (Mac):** `Cmd + Space` → `터미널` 입력 → Enter
+
 ### Windows
 
 PowerShell을 열고 아래 명령어를 붙여넣은 뒤 Enter를 누르세요.
