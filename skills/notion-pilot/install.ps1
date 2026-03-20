@@ -1,19 +1,19 @@
-# notion-workspace 설치 스크립트
+# notion-pilot 설치 스크립트
 # 사용법: PowerShell에서 아래 명령어 실행
-#   irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/notion-workspace/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/notion-pilot/install.ps1 | iex
 
 $ErrorActionPreference = 'Stop'
 
 $repo      = "1000ssam/skills-for-teachers"
 $branch    = "main"
-$skillName = "notion-workspace"
+$skillName = "notion-pilot"
 $zipUrl    = "https://github.com/$repo/archive/refs/heads/$branch.zip"
 $zipPath   = "$env:TEMP\skills-for-teachers.zip"
 $extPath   = "$env:TEMP\skills-for-teachers-extract"
 $skillsDir = "$env:USERPROFILE\.claude\skills"
 
 Write-Host ""
-Write-Host "📂 notion-workspace 설치 중..." -ForegroundColor Cyan
+Write-Host "📂 notion-pilot 설치 중..." -ForegroundColor Cyan
 Write-Host ""
 
 if (-not (Test-Path $skillsDir)) {
