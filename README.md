@@ -21,13 +21,23 @@
 
 ## 전체 설치 (모든 스킬 한 번에)
 
-> **PowerShell**을 열고 아래 명령어를 그대로 붙여넣은 뒤 Enter를 누르세요.
+### macOS / Linux
+
+터미널을 열고 아래 명령어를 붙여넣은 뒤 Enter를 누르세요.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.sh | bash
+```
+
+### Windows
+
+터미널을 열고 아래 명령어를 붙여넣은 뒤 Enter를 누르세요.
 
 ```powershell
 irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.ps1 | iex
 ```
 
-> **PowerShell 여는 방법:** `Win + R` → `powershell` 입력 → Enter
+> **터미널 여는 방법:** `Win + R` → `powershell` 입력 → Enter
 
 설치가 완료되면 **Claude Code를 재시작**하면 됩니다.
 
