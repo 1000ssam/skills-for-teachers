@@ -98,7 +98,16 @@ irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/n
 5. Integration에 사용할 **노션 페이지/DB를 공유** (페이지 우측 상단 `···` → `연결` → 만든 Integration 선택)
 6. 코멘트 기능을 사용하려면: Integration 설정 → **"Read comments"** + **"Insert comments"** 권한 활성화
 
-> 처음 실행하면 Claude Code가 토큰을 물어봅니다. 한 번 설정하면 이후엔 자동으로 기억합니다.
+처음 실행하면 Claude Code가 토큰을 물어봅니다. 한 번 설정하면 이후엔 자동으로 기억합니다.
+
+직접 설정하려면 스킬 폴더에 `config.json`을 만드세요:
+
+```json
+// ~/.claude/skills/notion-pilot/config.json
+{
+  "token": "ntn_여기에_토큰_붙여넣기"
+}
+```
 
 ---
 
