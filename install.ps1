@@ -67,4 +67,5 @@ Write-Host '  "인수인계서 작성해줘"       → handover-generator' -Fore
 Write-Host '  "기출 분석해줘"            → exam-analyzer' -ForegroundColor Gray
 Write-Host '  "생기부 써줘"              → student-record-writer' -ForegroundColor Gray
 Write-Host '  "Claude Code 배우고 싶어"  → learn-claude-code' -ForegroundColor Gray
+Write-Host '  "노션에 페이지 만들어줘"  → notion-pilot' -ForegroundColor Gray
 Write-Host ""

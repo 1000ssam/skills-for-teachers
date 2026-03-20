@@ -69,11 +69,14 @@ irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/n
 
 3. 다운로드된 ZIP 파일 압축 해제
 
-4. 압축 해제한 폴더 안의 `skills\notion-pilot` 폴더를 아래 경로에 복사합니다:
-   ```
-   C:\Users\{내 사용자 이름}\.claude\skills\
-   ```
-   > `.claude` 폴더가 안 보이면: 파일 탐색기 → **보기** → **숨긴 항목** 체크
+4. 압축 해제한 폴더 안의 `skills/notion-pilot` 폴더를 아래 경로에 복사합니다:
+
+   | OS | 경로 |
+   |----|------|
+   | **Windows** | `C:\Users\{내 사용자 이름}\.claude\skills\` |
+   | **macOS / Linux** | `~/.claude/skills/` |
+
+   > `.claude` 폴더가 안 보이면: Windows 파일 탐색기 → **보기** → **숨긴 항목** 체크 / macOS Finder → `Cmd + Shift + .`
 
 5. Claude Code 재시작
 
