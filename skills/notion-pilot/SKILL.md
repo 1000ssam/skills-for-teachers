@@ -54,7 +54,7 @@ Notion 토큰 설정이 필요합니다. 두 가지 방법 중 선택하세요:
 
 ### `notion-api.mjs` 모듈 (유일한 방법)
 
-모든 Notion API 작업에 이 모듈을 사용한다. MCP는 사용하지 않는다.
+모든 Notion API 작업에 이 모듈을 사용한다. **`mcp__notion-mcp__*` 도구는 절대 사용하지 않는다.** OAuth MCP 토큰 만료 등의 문제가 발생해도 notion-api.mjs로만 작업한다.
 
 ```javascript
 import { notion } from 'file:///<이 스킬의 scripts 디렉토리>/notion-api.mjs';
@@ -87,7 +87,8 @@ await notion.appendBlocks(pageId, [notion.block.callout('안내', '📝', 'blue_
 
 // ── 마크다운 쓰기 시 특수 블록 레퍼런스 ──
 // ✅ 읽기/쓰기 모두 지원:
-//   <callout icon="📌">내용 **볼드** 가능</callout>
+//   <callout icon="📌">기본 콜아웃 (color 없음)</callout>
+//   <callout icon="📌" color="blue_bg">컬러 콜아웃 (blue_bg, green_bg, orange_bg 등)</callout>
 //   <details><summary>토글 제목</summary>토글 내부 내용</details>
 //   > 인용문 (quote)
 //   --- (divider)
@@ -104,6 +105,17 @@ await notion.appendBlocks(pageId, [notion.block.callout('안내', '📝', 'blue_
 
 // DB 전체 조회 (자동 페이지네이션)
 const allPages = await notion.queryAll(dbId);
+
+// ── 저수준 API 호출 (call) ──
+// 시그니처: notion.call(method, path, body?)
+// - method: 'GET' | 'POST' | 'PATCH' | 'DELETE'
+// - path: 슬래시(/)로 시작하는 API 경로 (예: '/pages/PAGE_ID')
+// - body: POST/PATCH 시 요청 본문 (선택)
+// ⚠️ queryAll/createPage 등 고수준 함수는 DB ID → DS ID 자동 변환을 하지만,
+//    call()은 자동 변환하지 않으므로 DS ID가 필요한 엔드포인트에서는 직접 DS ID를 사용해야 한다.
+const page = await notion.call('GET', '/pages/PAGE_ID');
+const children = await notion.call('GET', '/blocks/BLOCK_ID/children?page_size=100');
+await notion.call('PATCH', '/pages/PAGE_ID', { in_trash: true });
 
 // 배치 처리 (동시성 15)
 await notion.batch(items, async (item) => {
