@@ -270,6 +270,32 @@ const block = {
   divider() {
     return { object: 'block', type: 'divider', divider: {} };
   },
+  toDo(text, checked = false) {
+    return { object: 'block', type: 'to_do', to_do: { rich_text: [{ type: 'text', text: { content: text } }], checked } };
+  },
+  numbered(text) {
+    return { object: 'block', type: 'numbered_list_item', numbered_list_item: { rich_text: [{ type: 'text', text: { content: text } }] } };
+  },
+  quote(text, color = 'default') {
+    return { object: 'block', type: 'quote', quote: { rich_text: [{ type: 'text', text: { content: text } }], color } };
+  },
+  toggle(text, children = []) {
+    return { object: 'block', type: 'toggle', toggle: { rich_text: [{ type: 'text', text: { content: text } }], children } };
+  },
+  code(text, language = 'plain text') {
+    return { object: 'block', type: 'code', code: { rich_text: [{ type: 'text', text: { content: text } }], language } };
+  },
+  bookmark(url, caption = '') {
+    const b = { url };
+    if (caption) b.caption = [{ type: 'text', text: { content: caption } }];
+    return { object: 'block', type: 'bookmark', bookmark: b };
+  },
+  equation(expression) {
+    return { object: 'block', type: 'equation', equation: { expression } };
+  },
+  tableOfContents(color = 'default') {
+    return { object: 'block', type: 'table_of_contents', table_of_contents: { color } };
+  },
 };
 
 // ── 속성 빌더 (헬퍼) ────────────────────────────────────
@@ -302,6 +328,18 @@ const prop = {
   },
   relation(ids) {
     return { relation: (Array.isArray(ids) ? ids : [ids]).map(id => ({ id })) };
+  },
+  status(name) {
+    return { status: { name } };
+  },
+  email(email) {
+    return { email };
+  },
+  phone(phone) {
+    return { phone_number: phone };
+  },
+  people(ids) {
+    return { people: (Array.isArray(ids) ? ids : [ids]).map(id => ({ object: 'user', id })) };
   },
 };
 
