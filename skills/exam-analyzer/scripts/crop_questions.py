@@ -20,30 +20,33 @@ questions_json 형식:
 page: 0-based PDF 페이지 인덱스. -1이면 전 페이지 순회하여 자동 탐지.
 
 == 분할 모드 (전체 문항 자동 분할) ==
-    python crop_questions.py --split <pdf_or_dir> <out_dir>
+    python crop_questions.py --split <pdf_or_dir>
 
 PDF 파일 또는 폴더를 지정하면 모든 문항을 자동 감지하여 개별 크롭한다.
+폴더 지정 시 각 PDF를 병렬로 처리한다.
 시험명은 PDF 내부 텍스트에서 자동 식별한다.
 """
 import fitz
 import sys
 import os
+import re
 import json
 import numpy as np
 from PIL import Image
+from concurrent.futures import ProcessPoolExecutor, as_completed
 
 sys.stdout.reconfigure(encoding="utf-8")
 
 DPI = 200
 SCALE = DPI / 72
 SAFE_PAD = 8  # 트리밍 후 사방 균일 안전 패딩 (px)
+COL_TOLERANCE = 20  # 컬럼 기준점으로부터 허용 오차 (pt)
 
 
 def detect_right_label_x(page):
     """세로 과목 라벨(동아시아사, 물리학Ⅰ 등)의 x 시작점을 동적 감지."""
     pw = page.rect.width
     blocks = page.get_text("dict")
-    # 수능 시험지 우측 세로 라벨에 등장하는 글자들
     label_chars = set(
         "동아시사사회탐구영역과학국어수영물리화생지윤한정법경제세계"
         "ⅠⅡ문법언매체작독서확률통계미적분기하"
@@ -62,20 +65,83 @@ def detect_right_label_x(page):
     return min_x - 5 if min_x < pw else pw - 55
 
 
-def find_q_on_page(page, q_num):
-    """페이지에서 문항 번호 N.의 위치를 찾는다. 없으면 None."""
-    mid_x = page.rect.width / 2
+def _raw_search_q(page, q_num):
+    """x 필터 없이 페이지에서 문항 번호 N.의 모든 후보를 반환."""
+    results = []
     hits = page.search_for(f"{q_num}.")
     for r in hits:
         check = fitz.Rect(r.x0 - 3, r.y0 - 2, r.x0 + 60, r.y1 + 2)
         text = page.get_text("text", clip=check).strip()
         if text.startswith(f"{q_num}.") and len(text) > 3:
+            results.append(r)
+    return results
+
+
+def detect_column_baselines(doc):
+    """PDF에서 실제 문항 번호의 x좌표를 수집하여 좌/우 컬럼 기준점을 결정."""
+    mid_x = doc[0].rect.width / 2
+    left_xs = []
+    right_xs = []
+
+    # Q1~Q10까지 탐색하여 x좌표 수집
+    for pg_idx in range(doc.page_count):
+        page = doc[pg_idx]
+        for q_num in range(1, 11):
+            candidates = _raw_search_q(page, q_num)
+            for r in candidates:
+                if r.x0 < mid_x:
+                    left_xs.append(r.x0)
+                else:
+                    right_xs.append(r.x0)
+
+    # 각 컬럼에서 가장 빈번한 x좌표 근처를 기준점으로 사용
+    left_base = _find_cluster_center(left_xs) if left_xs else None
+    right_base = _find_cluster_center(right_xs) if right_xs else mid_x + 10
+
+    return left_base, right_base
+
+
+def _find_cluster_center(xs):
+    """x좌표 리스트에서 가장 많이 모인 클러스터의 중심을 반환."""
+    if not xs:
+        return None
+    # 가장 작은 값 근처에 클러스터가 있을 가능성이 높음 (컬럼 시작점)
+    xs_sorted = sorted(xs)
+    best_center = xs_sorted[0]
+    best_count = 0
+    for x in xs_sorted:
+        count = sum(1 for v in xs if abs(v - x) < COL_TOLERANCE)
+        if count > best_count:
+            best_count = count
+            best_center = x
+    return best_center
+
+
+def find_q_on_page(page, q_num, baselines=None):
+    """페이지에서 문항 번호 N.의 위치를 찾는다. 없으면 None."""
+    candidates = _raw_search_q(page, q_num)
+    if not candidates:
+        return None
+
+    if baselines is None:
+        # 폴백: 첫 번째 후보 반환 (분석 모드)
+        return candidates[0]
+
+    left_base, right_base = baselines
+
+    # 기준점에 가까운 후보만 통과
+    for r in candidates:
+        if left_base is not None and abs(r.x0 - left_base) < COL_TOLERANCE:
             return r
+        if right_base is not None and abs(r.x0 - right_base) < COL_TOLERANCE:
+            return r
+
     return None
 
 
 def find_last_choice_y(page, is_right, mid_x, y_start):
-    """⑤~① 역순으로 마지막 선지의 하단 y를 찾는다."""
+    """⑤~① 역순으로 마지막 선지의 하단 y를 찾는다.
+    선지 텍스트(여러 줄) 및 이미지(그래프/지도) 모두 고려."""
     for sym in ["\u2464", "\u2463", "\u2462", "\u2461", "\u2460"]:
         hits = page.search_for(sym)
         candidates = [
@@ -90,17 +156,34 @@ def find_last_choice_y(page, is_right, mid_x, y_start):
         if not candidates:
             continue
         best = max(candidates, key=lambda r: r.y0)
-        return best.y1 + 2
+        col_x0 = mid_x - 5 if is_right else 0
+        col_x1 = page.rect.width if is_right else mid_x + 5
+        # 텍스트 + 이미지 블록 모두 스캔하여 실제 콘텐츠 하단을 찾음
+        scan_rect = fitz.Rect(col_x0, best.y0, col_x1, best.y0 + 120)
+        blocks = page.get_text("dict", clip=scan_rect)
+        last_y1 = best.y1
+        for b in blocks.get("blocks", []):
+            # 이미지 블록 (type=1)
+            if b.get("type") == 1:
+                if b["bbox"][3] > last_y1:
+                    last_y1 = b["bbox"][3]
+            # 텍스트 블록 (type=0)
+            else:
+                for ln in b.get("lines", []):
+                    for s in ln.get("spans", []):
+                        if s["bbox"][3] > last_y1:
+                            last_y1 = s["bbox"][3]
+        return last_y1 + 4
     return None
 
 
-def find_q_clip(page, q_num, label_x):
+def find_q_clip(page, q_num, label_x, baselines=None):
     """문항의 PDF 클리핑 영역을 계산한다."""
     pw = page.rect.width
     ph = page.rect.height
     mid_x = pw / 2
 
-    q_rect = find_q_on_page(page, q_num)
+    q_rect = find_q_on_page(page, q_num, baselines)
     if q_rect is None:
         return None
 
@@ -116,6 +199,13 @@ def find_q_clip(page, q_num, label_x):
             not is_right and r.x0 < mid_x - 10
         )
         if same_col and r.y0 > y_start + 20:
+            # 다음 문항 후보도 컬럼 기준점 필터 적용
+            if baselines:
+                left_base, right_base = baselines
+                near_left = left_base is not None and abs(r.x0 - left_base) < COL_TOLERANCE
+                near_right = right_base is not None and abs(r.x0 - right_base) < COL_TOLERANCE
+                if not (near_left or near_right):
+                    continue
             check = fitz.Rect(r.x0 - 3, r.y0 - 2, r.x0 + 60, r.y1 + 2)
             text = page.get_text("text", clip=check).strip()
             if text.startswith(f"{q_num + 1}.") and len(text) > 3:
@@ -153,18 +243,16 @@ def trim_and_pad(img, pad=SAFE_PAD):
     return padded
 
 
-def find_page_for_question(doc, q_num):
+def find_page_for_question(doc, q_num, baselines=None):
     """전 페이지를 순회하여 문항이 있는 페이지 인덱스를 반환."""
     for i in range(doc.page_count):
-        if find_q_on_page(doc[i], q_num) is not None:
+        if find_q_on_page(doc[i], q_num, baselines) is not None:
             return i
     return None
 
 
 def identify_exam_name(doc, filepath=""):
     """PDF 텍스트 또는 파일명에서 시험명을 자동 식별한다."""
-    import re
-
     # 전체 페이지 텍스트를 모아서 탐색
     all_text = ""
     for i in range(min(doc.page_count, 4)):
@@ -175,6 +263,14 @@ def identify_exam_name(doc, filepath=""):
     year_match = re.search(r"(20\d{2})학년도", text)
     year = year_match.group(1) if year_match else ""
 
+    # 과목명 추출 (파일명에서)
+    subject = ""
+    if filepath:
+        fname = os.path.basename(filepath)
+        subj_match = re.search(r"[((]([^)）]+)[)）]", fname)
+        if subj_match:
+            subject = subj_match.group(1)
+
     # 시험 유형 판별
     exam_type = ""
     if "6월" in text and ("모의평가" in text or "모평" in text):
@@ -184,12 +280,30 @@ def identify_exam_name(doc, filepath=""):
     elif "대학수학능력시험" in text and "6월" not in text and "9월" not in text:
         exam_type = "수능"
     elif "전국연합학력평가" in text or ("학력평가" in text and "사회탐구" not in text[:30]):
-        month_match = re.search(r"(\d{1,2})월", text[:500])
-        month = month_match.group(1) if month_match else ""
+        month = ""
+        kw = "전국연합학력평가"
+        if kw in text:
+            kw_idx = text.index(kw)
+            nearby = text[max(0, kw_idx - 200) : kw_idx + 200]
+            month_match = re.search(r"(\d{1,2})월", nearby)
+            month = month_match.group(1) if month_match else ""
+        if not month and filepath:
+            fname = os.path.basename(filepath)
+            month_match = re.search(r"(\d{1,2})월", fname)
+            month = month_match.group(1) if month_match else ""
+        if not month:
+            month_match = re.search(r"(\d{1,2})월", text[:2000])
+            month = month_match.group(1) if month_match else ""
         exam_type = f"{month}월학평" if month else "학평"
     elif "고3" in text:
-        month_match = re.search(r"(\d{1,2})월", text[:500])
-        month = month_match.group(1) if month_match else ""
+        month = ""
+        if filepath:
+            fname = os.path.basename(filepath)
+            month_match = re.search(r"(\d{1,2})월", fname)
+            month = month_match.group(1) if month_match else ""
+        if not month:
+            month_match = re.search(r"(\d{1,2})월", text[:2000])
+            month = month_match.group(1) if month_match else ""
         exam_type = f"{month}월학평" if month else "교육청"
 
     # 텍스트에서 식별 실패 시 파일명 폴백
@@ -212,10 +326,17 @@ def identify_exam_name(doc, filepath=""):
     if not exam_type:
         exam_type = "시험"
 
-    return f"{year}_{exam_type}" if year else exam_type
+    # 과목명이 있으면 포함
+    parts = []
+    if year:
+        parts.append(year)
+    parts.append(exam_type)
+    if subject:
+        parts.append(subject)
+    return "_".join(parts)
 
 
-def detect_all_questions(doc):
+def detect_all_questions(doc, baselines=None):
     """PDF 전체에서 존재하는 모든 문항 번호와 페이지를 탐지한다."""
     found = {}
     for pg_idx in range(doc.page_count):
@@ -223,16 +344,16 @@ def detect_all_questions(doc):
         for q_num in range(1, 51):  # 최대 50번까지 탐색
             if q_num in found:
                 continue
-            if find_q_on_page(page, q_num) is not None:
+            if find_q_on_page(page, q_num, baselines) is not None:
                 found[q_num] = pg_idx
     return found
 
 
-def crop_and_save(doc, pg_idx, q_num, exam_name, out_dir):
+def crop_and_save(doc, pg_idx, q_num, exam_name, out_dir, baselines=None):
     """단일 문항을 크롭하여 저장한다. 성공 시 파일명 반환, 실패 시 None."""
     page = doc[pg_idx]
     label_x = detect_right_label_x(page)
-    clip = find_q_clip(page, q_num, label_x)
+    clip = find_q_clip(page, q_num, label_x, baselines)
 
     label = exam_name or os.path.basename(out_dir)
     if clip is None:
@@ -256,6 +377,41 @@ def crop_and_save(doc, pg_idx, q_num, exam_name, out_dir):
     return out_name
 
 
+def process_single_pdf(path, base_dir):
+    """단일 PDF를 처리한다. 병렬 실행용 워커 함수."""
+    doc = fitz.open(path)
+    exam_name = identify_exam_name(doc, path)
+
+    out_dir = os.path.join(base_dir, exam_name)
+    os.makedirs(out_dir, exist_ok=True)
+
+    # 동적 컬럼 기준점 감지
+    baselines = detect_column_baselines(doc)
+    left_base, right_base = baselines
+    baseline_info = f"L={left_base:.1f}" if left_base else "L=none"
+    baseline_info += f", R={right_base:.1f}" if right_base else ", R=none"
+
+    print(f"\n=== {os.path.basename(path)} → {exam_name}/ ({baseline_info}) ===")
+
+    questions = detect_all_questions(doc, baselines)
+    if not questions:
+        print(f"  문항을 찾을 수 없습니다.")
+        doc.close()
+        return []
+
+    print(f"  {len(questions)}개 문항 감지: Q{min(questions)}~Q{max(questions)}")
+
+    saved = []
+    for q_num in sorted(questions.keys()):
+        pg_idx = questions[q_num]
+        result = crop_and_save(doc, pg_idx, q_num, "", out_dir, baselines)
+        if result:
+            saved.append(os.path.join(exam_name, result))
+
+    doc.close()
+    return saved
+
+
 def run_analysis_mode(exam_dir, out_dir, questions_json):
     """분석 모드: JSON으로 지정된 특정 문항만 크롭."""
     with open(questions_json, "r", encoding="utf-8") as f:
@@ -274,18 +430,19 @@ def run_analysis_mode(exam_dir, out_dir, questions_json):
             continue
 
         doc = fitz.open(path)
+        baselines = detect_column_baselines(doc)
 
         for item in exam["questions"]:
             q_num = item["q"]
             pg_idx = item["page"]
 
             if pg_idx < 0:
-                pg_idx = find_page_for_question(doc, q_num)
+                pg_idx = find_page_for_question(doc, q_num, baselines)
                 if pg_idx is None:
                     print(f"SKIP: {exam_name} Q{q_num} - 문항 못 찾음")
                     continue
 
-            result = crop_and_save(doc, pg_idx, q_num, exam_name, out_dir)
+            result = crop_and_save(doc, pg_idx, q_num, exam_name, out_dir, baselines)
             if result:
                 saved.append(result)
 
@@ -296,7 +453,6 @@ def run_analysis_mode(exam_dir, out_dir, questions_json):
 
 def run_split_mode(pdf_or_dir):
     """분할 모드: PDF의 모든 문항을 자동 감지하여 개별 크롭."""
-    # 입력이 파일인지 폴더인지 판별
     pdf_paths = []
     if os.path.isfile(pdf_or_dir) and pdf_or_dir.lower().endswith(".pdf"):
         pdf_paths.append(pdf_or_dir)
@@ -321,31 +477,26 @@ def run_split_mode(pdf_or_dir):
         sys.exit(1)
 
     total_saved = []
-    for path in pdf_paths:
-        doc = fitz.open(path)
-        exam_name = identify_exam_name(doc, path)
 
-        # 출력 폴더: 입력의 부모 디렉토리에 시험명 폴더 생성
-        out_dir = os.path.join(base_dir, exam_name)
-        os.makedirs(out_dir, exist_ok=True)
-
-        print(f"\n=== {os.path.basename(path)} → {exam_name}/ ===")
-
-        questions = detect_all_questions(doc)
-        if not questions:
-            print(f"  문항을 찾을 수 없습니다.")
-            doc.close()
-            continue
-
-        print(f"  {len(questions)}개 문항 감지: Q{min(questions)}~Q{max(questions)}")
-
-        for q_num in sorted(questions.keys()):
-            pg_idx = questions[q_num]
-            result = crop_and_save(doc, pg_idx, q_num, "", out_dir)
-            if result:
-                total_saved.append(os.path.join(exam_name, result))
-
-        doc.close()
+    if len(pdf_paths) == 1:
+        # 단일 파일: 직접 처리
+        total_saved = process_single_pdf(pdf_paths[0], base_dir)
+    else:
+        # 복수 파일: 병렬 처리
+        max_workers = min(len(pdf_paths), os.cpu_count() or 4)
+        print(f"PDF {len(pdf_paths)}개를 {max_workers} 워커로 병렬 처리합니다.")
+        with ProcessPoolExecutor(max_workers=max_workers) as executor:
+            futures = {
+                executor.submit(process_single_pdf, path, base_dir): path
+                for path in pdf_paths
+            }
+            for future in as_completed(futures):
+                path = futures[future]
+                try:
+                    saved = future.result()
+                    total_saved.extend(saved)
+                except Exception as e:
+                    print(f"ERROR: {os.path.basename(path)} - {e}")
 
     print(f"\n총 {len(total_saved)}개 저장: {os.path.abspath(base_dir)}")
 
