@@ -58,6 +58,18 @@ irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.
 
 ---
 
+## 변경 로그
+
+### 2026-03-26 — notion-pilot `notion-api.mjs` 주요 수정
+
+**Notion API 2026-03-11 대응 + 사일런트 에러 검증 추가**
+
+- `createDatabase`: `POST /databases`가 properties를 무시하는 문제 수정. DB 생성 후 `PATCH /data_sources/{dsId}`로 properties를 별도 추가하는 방식으로 변경.
+- `updateDatabase`: properties 변경 시 `/data_sources/` 경로로 라우팅하도록 수정.
+- `createPage`, `updatePage`: 쓰기 후 반환값에서 요청한 속성 존재 여부를 검증, 누락 시 에러를 throw하여 사일런트 실패 방지.
+
+---
+
 ## 라이선스
 
 MIT License
