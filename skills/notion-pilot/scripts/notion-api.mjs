@@ -73,12 +73,45 @@ async function search(query, { filter, pageSize = 10 } = {}) {
 
 // ── 데이터베이스 ─────────────────────────────────────────
 async function createDatabase(parentPageId, title, emoji, properties) {
-  return call('POST', '/databases', {
+  // API 2026-03-11: POST /databases는 properties를 무시함.
+  // 올바른 플로우: DB 생성 → data_source ID 추출 → PATCH /data_sources/{dsId}로 properties 추가
+  const db = await call('POST', '/databases', {
     parent: { type: 'page_id', page_id: parentPageId },
     icon: emoji ? { type: 'emoji', emoji } : undefined,
     title: [{ type: 'text', text: { content: title } }],
-    properties,
   });
+
+  // data_source ID 추출
+  const dsId = db.data_sources?.[0]?.id;
+  if (!dsId) {
+    throw new Error('[notion-api] createDatabase: data_source ID를 추출할 수 없음');
+  }
+
+  // properties가 있으면 data_source에 PATCH
+  if (properties && Object.keys(properties).length > 0) {
+    const patchProps = {};
+    for (const [name, schema] of Object.entries(properties)) {
+      if (schema.title !== undefined) {
+        patchProps['Name'] = { name };
+      } else {
+        patchProps[name] = schema;
+      }
+    }
+
+    const ds = await call('PATCH', `/data_sources/${dsId}`, { properties: patchProps });
+
+    // 사일런트 에러 검증
+    const expectedNames = Object.keys(properties);
+    const actualNames = Object.keys(ds.properties || {});
+    const missing = expectedNames.filter(p => !actualNames.includes(p));
+    if (missing.length > 0) {
+      throw new Error(`[notion-api] createDatabase 사일런트 실패: 속성 누락 — ${missing.join(', ')}`);
+    }
+
+    return { ...db, properties: ds.properties, data_source_id: dsId };
+  }
+
+  return db;
 }
 
 /**
@@ -101,7 +134,28 @@ async function getDatabase(dbId) {
 }
 
 async function updateDatabase(dbId, patch) {
-  // patch = { properties: {...}, title: [...], icon: {...} }
+  // 2026-03-11: properties 변경은 data_source를 PATCH해야 함
+  if (patch.properties) {
+    const dsId = await resolveDataSourceId(dbId);
+    const ds = await call('PATCH', `/data_sources/${dsId}`, { properties: patch.properties });
+
+    // 사일런트 에러 검증
+    if (ds?.properties) {
+      const requested = Object.keys(patch.properties);
+      const returned = Object.keys(ds.properties);
+      const missing = requested.filter(p => !returned.includes(p));
+      if (missing.length > 0) {
+        throw new Error(`[notion-api] updateDatabase 사일런트 실패: 속성 누락 — ${missing.join(', ')}`);
+      }
+    }
+
+    const { properties: _, ...rest } = patch;
+    if (Object.keys(rest).length > 0) {
+      await call('PATCH', `/databases/${dbId}`, rest);
+    }
+    return ds;
+  }
+
   return call('PATCH', `/databases/${dbId}`, patch);
 }
 
@@ -140,27 +194,41 @@ async function queryAll(dbId, opts = {}) {
 
 // ── 페이지 ───────────────────────────────────────────────
 async function createPage(parentDbOrPageId, properties, { children, icon, cover, isDb = true } = {}) {
+  let page;
   if (!isDb) {
     const body = { parent: { type: 'page_id', page_id: parentDbOrPageId }, properties };
     if (children) body.children = children;
     if (icon) body.icon = icon;
     if (cover) body.cover = cover;
-    return call('POST', '/pages', body);
-  }
-  // DB ID 또는 DS ID 모두 허용: database_id로 시도 → 실패 시 data_source_id로 재시도
-  const body = { parent: { database_id: parentDbOrPageId }, properties };
-  if (children) body.children = children;
-  if (icon) body.icon = icon;
-  if (cover) body.cover = cover;
-  try {
-    return await call('POST', '/pages', body);
-  } catch (err) {
-    if (err.status === 404) {
-      body.parent = { data_source_id: parentDbOrPageId };
-      return call('POST', '/pages', body);
+    page = await call('POST', '/pages', body);
+  } else {
+    const body = { parent: { database_id: parentDbOrPageId }, properties };
+    if (children) body.children = children;
+    if (icon) body.icon = icon;
+    if (cover) body.cover = cover;
+    try {
+      page = await call('POST', '/pages', body);
+    } catch (err) {
+      if (err.status === 404) {
+        body.parent = { data_source_id: parentDbOrPageId };
+        page = await call('POST', '/pages', body);
+      } else {
+        throw err;
+      }
     }
-    throw err;
   }
+
+  // 사일런트 에러 검증: 요청한 속성이 반환값에 존재하는지 확인
+  if (properties && page?.properties) {
+    const requested = Object.keys(properties);
+    const returned = Object.keys(page.properties);
+    const missing = requested.filter(p => !returned.includes(p));
+    if (missing.length > 0) {
+      throw new Error(`[notion-api] createPage 사일런트 실패: 속성 누락 — ${missing.join(', ')}`);
+    }
+  }
+
+  return page;
 }
 
 async function getPage(pageId) {
@@ -173,7 +241,19 @@ async function updatePage(pageId, patch) {
     patch.in_trash = patch.archived;
     delete patch.archived;
   }
-  return call('PATCH', `/pages/${pageId}`, patch);
+  const result = await call('PATCH', `/pages/${pageId}`, patch);
+
+  // 사일런트 에러 검증: properties 업데이트 시 반영 확인
+  if (patch.properties && result?.properties) {
+    const requested = Object.keys(patch.properties);
+    const returned = Object.keys(result.properties);
+    const missing = requested.filter(p => !returned.includes(p));
+    if (missing.length > 0) {
+      throw new Error(`[notion-api] updatePage 사일런트 실패: 속성 누락 — ${missing.join(', ')}`);
+    }
+  }
+
+  return result;
 }
 
 /** 페이지 본문을 마크다운 문자열로 조회 */
