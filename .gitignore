@@ -10,3 +10,4 @@ Thumbs.db
 .vscode/
 *.swp
 *~
+**/google-client.json
