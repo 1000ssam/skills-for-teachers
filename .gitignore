@@ -1,5 +1,6 @@
 # 사용자별 설정 파일 (개인 경로 포함)
 **/config.json
+**/token.json
 
 # OS
 Thumbs.db
