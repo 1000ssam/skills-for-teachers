@@ -209,13 +209,22 @@ python "<스킬경로>/scripts/crop_questions.py" --split "<pdf_or_dir>"
    - **첫 페이지 상단**에서 시험명(학년도, 월, 시험 유형)을 식별한다.
    - 텍스트가 부실한 경우(이미지 기반 PDF), 페이지를 이미지로 변환하여 Read 도구로 분석한다.
 3. 각 시험지의 문항을 번호 기준으로 분리한다.
+4. **문항별 제시문 이미지 감지**: 문항을 분리한 뒤 각 문항의 텍스트 길이를 확인한다.
+   - 문항 텍스트(발문+제시문 추정 영역)가 **50자 미만**이면 제시문이 이미지로 렌더링된 것으로 간주한다.
+   - 해당 문항이 속한 페이지를 `page.get_pixmap(dpi=200)`으로 이미지로 변환하여 임시 파일로 저장한다.
+   - Read 도구(Vision)로 이미지를 읽어 제시문 내용을 텍스트로 파악한다.
+   - 파악한 내용을 해당 문항의 보완 텍스트로 저장하여 Step 3 매칭에 활용한다.
 
 ### Step 3: 관련 문항 매칭
 
 1. Step 1의 키워드 목록과 Step 2의 문항 텍스트를 대조한다.
-2. 키워드가 2개 이상 포함된 문항을 "관련 문항"으로 판정한다.
-3. 텍스트 매칭이 안 되는 문항(이미지 기반)은 이미지 분석으로 보완한다.
-4. 매칭 결과를 시험별로 정리한다.
+2. **키워드 매칭 범위**: **발문(question stem) + 제시문(stimulus) 텍스트만** 사용한다.
+   - 선지(①②③④⑤) 텍스트는 키워드 매칭에서 **반드시 제외**한다.
+   - 오답 선지에 등장한 키워드는 해당 단원과 무관할 수 있으며, 포함 시 false positive 급증 원인이 된다.
+3. 키워드가 2개 이상 포함된 문항을 "관련 문항"으로 판정한다.
+4. Step 2에서 이미지로 확보한 보완 텍스트가 있는 문항은 해당 텍스트도 매칭에 포함한다.
+   - 이미지 Vision으로만 판별된 문항에는 `(이미지 제시문)` 표시를 붙인다.
+5. 매칭 결과를 시험별로 정리한다.
 
 ### Step 4: 분석표 생성
 
@@ -422,9 +431,52 @@ text = doc[page_num].get_text()
 - PyMuPDF(`fitz`)가 설치되어 있지 않으면 `pip install pymupdf`로 설치한다.
 - 텍스트 추출 시 반드시 `sys.stdout.reconfigure(encoding='utf-8')`을 사용한다.
 
-### 이미지 기반 PDF 처리
+### 이미지 기반 제시문 처리 (Vision 보완)
 
-텍스트 추출이 부실한 페이지는 이미지로 변환하여 Read 도구로 분석한다:
+문항 텍스트가 50자 미만인 경우 제시문이 이미지로 렌더링된 것으로 판단하고, 해당 페이지를 Vision으로 분석한다:
+
+```python
+import fitz, tempfile, os
+
+def get_question_text_with_vision(page, q_num, read_tool_func):
+    """문항 텍스트 추출 후 부실하면 Vision으로 보완"""
+    text = page.get_text()
+    # 선지(①~⑤) 이전 텍스트만 추출 (제시문+발문 범위)
+    for marker in ['①', '②', '③', '④', '⑤', '1)', '2)', '3)', '4)', '5)']:
+        idx = text.find(marker)
+        if idx > 0:
+            text = text[:idx]
+            break
+
+    if len(text.strip()) < 50:  # 임계값: 50자
+        # 페이지 이미지로 변환 후 Vision 분석
+        pix = page.get_pixmap(dpi=200)
+        tmp = tempfile.NamedTemporaryFile(suffix='.png', delete=False)
+        pix.save(tmp.name)
+        vision_text = read_tool_func(tmp.name)  # Claude Read 도구로 이미지 읽기
+        os.unlink(tmp.name)
+        return vision_text, True  # (텍스트, 이미지_기반_여부)
+
+    return text, False
+```
+
+**선지 제외 매칭 규칙**: 키워드 매칭 전 반드시 선지 마커(①②③④⑤) 이전 텍스트만 사용한다.
+
+```python
+CHOICE_MARKERS = ['①', '②', '③', '④', '⑤']
+
+def strip_choices(text):
+    """선지 이전 텍스트(발문+제시문)만 반환"""
+    for m in CHOICE_MARKERS:
+        idx = text.find(m)
+        if idx > 0:
+            return text[:idx]
+    return text
+```
+
+**이미지 기반 PDF 처리 (페이지 전체 부실한 경우)**
+
+페이지 전체 텍스트가 부실한 경우(스캔본 등):
 
 ```python
 pix = page.get_pixmap(dpi=200)
