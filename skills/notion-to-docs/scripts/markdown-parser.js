@@ -341,3 +341,16 @@ function convertSupplementBlock(block, depth) {
     default: return null;
   }
 }
+
+/**
+ * 페이지 타이틀용 H1 블록 생성
+ */
+export function makeTitleBlock(title) {
+  return {
+    type: 'heading_1',
+    content: title,
+    segments: parseInlineMarkdown(title),
+    depth: 0,
+    meta: {},
+  };
+}

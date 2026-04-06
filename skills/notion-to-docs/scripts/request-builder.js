@@ -179,14 +179,22 @@ export function buildRequests(blocks) {
 
       case 'image': {
         if (block.meta.url) {
-          requests.push({
-            insertInlineImage: {
-              uri: block.meta.url,
-              location: { index: insertIndex },
-              objectSize: { width: { magnitude: 400, unit: 'PT' } },
-            },
-          });
-          insertIndex++; // 이미지는 1 인덱스 차지
+          const imgAccessible = block.meta._accessible;
+          if (imgAccessible !== false) {
+            requests.push({
+              insertInlineImage: {
+                uri: block.meta.url,
+                location: { index: insertIndex },
+                objectSize: { width: { magnitude: 400, unit: 'PT' } },
+              },
+            });
+            insertIndex++; // 이미지는 1 인덱스 차지
+          } else {
+            const caption = block.meta.caption || '이미지';
+            const placeholder = `[📷 ${caption}]`;
+            requests.push({ insertText: { location: { index: insertIndex }, text: placeholder } });
+            insertIndex += placeholder.length;
+          }
           // 이미지 후 줄바꿈
           const nlText = '\n';
           requests.push({ insertText: { location: { index: insertIndex }, text: nlText } });

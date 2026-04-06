@@ -115,8 +115,24 @@ node <이 스킬의 scripts 디렉토리>/batch-convert.js <db-id>
 | 콜아웃 | Notion 색상별 배경색 |
 | 코드 | JetBrains Mono 9pt, 회색 배경 |
 
+## 타이틀 처리
+
+- Notion 페이지의 title 속성을 자동 탐색 (속성명에 무관하게 `type === 'title'` 기준)
+- Google Docs 문서명으로 설정 + 본문 최상단에 H1으로 삽입
+
+## 이미지 처리
+
+변환 시 이미지 블록은 자동으로 전처리된다 (`image-utils.js`):
+
+1. **접근 체크**: GET+Range 요청으로 확인 (S3 signed URL은 HEAD 차단하므로 GET 사용)
+2. **지원 포맷**: png, jpeg, gif, bmp, svg → 그대로 삽입
+3. **비지원 포맷**: webp, tiff, avif, heic → `sharp`로 jpg 변환 → Google Drive 임시 업로드 → Drive URL로 삽입
+4. **접근 불가**: 플레이스홀더 텍스트 `[📷 이미지]`로 대체
+5. **정리**: 변환 완료 후 임시 Drive 파일 자동 삭제
+
 ## 주의사항
 
 - Notion 이미지 URL은 1시간 만료 — 변환 즉시 실행해야 함
 - Google OAuth 토큰은 자동 갱신됨 (refresh_token)
 - `<unknown>` 블록(bookmark, embed 등)은 블록 API로 자동 보충
+- `sharp` 패키지 필요: 최초 설치 시 `cd scripts && npm install`

@@ -7,10 +7,11 @@
  */
 
 import { readPage } from './notion-reader.js';
-import { parseNotionMarkdown } from './markdown-parser.js';
+import { parseNotionMarkdown, makeTitleBlock } from './markdown-parser.js';
 import { buildRequests, buildTableRequests, buildTableCellRequests } from './request-builder.js';
 import { createDocument, executeRequests } from './docs-executor.js';
 import { getAccessToken } from './google-auth.js';
+import { preprocessImages, cleanupConvertedImages } from './image-utils.js';
 
 const DOCS_API = 'https://docs.googleapis.com/v1/documents';
 
@@ -42,6 +43,10 @@ async function main() {
 
   console.log('2. 마크다운 파싱...');
   const blocks = parseNotionMarkdown(markdown, supplementBlocks);
+  // 문서 최상단에 페이지 타이틀을 H1으로 삽입
+  if (title) {
+    blocks.unshift(makeTitleBlock(title));
+  }
   console.log(`   파싱 결과: ${blocks.length}개 블록`);
   if (verbose) {
     for (const b of blocks) {
@@ -56,6 +61,12 @@ async function main() {
     documentId = await createDocument(title);
   } else {
     console.log(`3. 기존 문서 사용: ${documentId}`);
+  }
+
+  // 이미지 접근 체크 + 비지원 포맷(webp 등) 자동 변환
+  const imageBlocks = blocks.filter(b => b.type === 'image' && b.meta?.url);
+  if (imageBlocks.length > 0) {
+    await preprocessImages(imageBlocks);
   }
 
   console.log('4. batchUpdate 요청 생성...');
@@ -82,6 +93,12 @@ async function main() {
         await executeRequests(documentId, cellRequests);
       }
     }
+  }
+
+  // 변환된 임시 이미지 정리
+  if (imageBlocks.some(b => b.meta._converted)) {
+    console.log('   임시 Drive 이미지 정리...');
+    await cleanupConvertedImages(imageBlocks);
   }
 
   const docsUrl = `https://docs.google.com/document/d/${documentId}/edit`;

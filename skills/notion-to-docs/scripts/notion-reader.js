@@ -14,7 +14,9 @@ export async function readPage(pageId) {
     notion.getPageMarkdown(pageId),
   ]);
 
-  const titleProp = pageMeta.properties?.['제목'] || pageMeta.properties?.['title'] || pageMeta.properties?.['Name'];
+  // title 타입 속성을 자동 탐색 (DB마다 속성명이 다를 수 있음)
+  const props = pageMeta.properties || {};
+  const titleProp = Object.values(props).find(p => p.type === 'title');
   const title = titleProp?.title?.[0]?.plain_text || 'Untitled';
   console.log(`마크다운 읽기 완료 (${markdown.length} chars)`);
 
