@@ -11,3 +11,6 @@ Thumbs.db
 *.swp
 *~
 **/google-client.json
+
+# 비공개 스킬
+skills/learn-claude-code/
