@@ -116,6 +116,11 @@ const allPages = await notion.queryAll(dbId);
 const page = await notion.call('GET', '/pages/PAGE_ID');
 const children = await notion.call('GET', '/blocks/BLOCK_ID/children?page_size=100');
 await notion.call('PATCH', '/pages/PAGE_ID', { in_trash: true });
+// 블록을 특정 위치에 삽입: `after` 파라미터는 폐기됨(2026-03-11) → `position` 객체 사용
+await notion.call('PATCH', '/blocks/PARENT_ID/children', {
+  position: { type: 'after_block', after_block: { id: 'BLOCK_ID' } }, // 시작/끝: { type:'start' } / { type:'end' }(기본)
+  children: [ /* 블록 배열 */ ],
+});
 
 // 배치 처리 (동시성 15)
 await notion.batch(items, async (item) => {
