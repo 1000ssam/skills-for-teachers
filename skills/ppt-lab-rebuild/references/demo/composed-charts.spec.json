@@ -1,0 +1,105 @@
+{
+  "title": "ppt-lab Rebuild — 합성 차트 데모",
+  "_note": "Data archetype(bars)의 chart type 을 합성 차트로 오버라이드해 렌더 검증한다. 23 아키타입 데모와 별개.",
+  "slides": [
+    {
+      "archetype": "bars",
+      "data": {
+        "kicker": "WATERFALL",
+        "title": "워터폴 — 증감 누적",
+        "type": "waterfall",
+        "categories": ["기초", "신규", "이탈", "확장", "기말"],
+        "values": [100, 40, -25, 30, 145],
+        "totals": [0, 4]
+      }
+    },
+    {
+      "archetype": "bars",
+      "data": {
+        "kicker": "FUNNEL",
+        "title": "퍼널 — 전환 단계",
+        "type": "funnel",
+        "categories": ["방문", "가입", "활성", "결제"],
+        "values": [1000, 620, 310, 95]
+      }
+    },
+    {
+      "archetype": "bars",
+      "data": {
+        "kicker": "GAUGE",
+        "title": "게이지 — 목표 달성률",
+        "type": "gauge",
+        "percent": 72,
+        "caption": "분기 목표 대비"
+      }
+    },
+    {
+      "archetype": "bars",
+      "data": {
+        "kicker": "GANTT",
+        "title": "간트 — 일정",
+        "type": "gantt",
+        "tasks": [
+          { "label": "기획", "start": 0, "end": 3 },
+          { "label": "설계", "start": 2, "end": 6 },
+          { "label": "구현", "start": 5, "end": 11 },
+          { "label": "QA", "start": 10, "end": 13 }
+        ]
+      }
+    },
+    {
+      "archetype": "bars",
+      "data": {
+        "kicker": "TAM-SAM-SOM",
+        "title": "시장 규모 — 동심원",
+        "type": "tam_sam_som",
+        "bubbles": [
+          { "label": "TAM", "value": "12조" },
+          { "label": "SAM", "value": "3.4조" },
+          { "label": "SOM", "value": "820억" }
+        ]
+      }
+    },
+    {
+      "archetype": "bars",
+      "data": {
+        "kicker": "BULLET",
+        "title": "불릿 — 실측 vs 목표",
+        "type": "bullet",
+        "rows": [
+          { "label": "매출", "value": 78, "target": 90, "max": 120 },
+          { "label": "신규", "value": 45, "target": 50, "max": 80 },
+          { "label": "리텐션", "value": 64, "target": 60, "max": 100 }
+        ]
+      }
+    },
+    {
+      "archetype": "bars",
+      "data": {
+        "kicker": "SLOPE",
+        "title": "슬로프 — 전후 비교",
+        "type": "slope",
+        "categories": ["도입 전", "도입 후"],
+        "series": [
+          { "name": "A팀", "values": [32, 58] },
+          { "name": "B팀", "values": [40, 47] },
+          { "name": "C팀", "values": [25, 51] }
+        ]
+      }
+    },
+    {
+      "archetype": "bars",
+      "data": {
+        "kicker": "KPI CARDS",
+        "title": "KPI 카드 — 빅넘버",
+        "type": "kpi_cards",
+        "kpis": [
+          { "label": "MAU", "value": "12K", "note": "+24%" },
+          { "label": "전환율", "value": "3.8%", "note": "+0.6%p" },
+          { "label": "NPS", "value": "62", "note": "베타" },
+          { "label": "제작시간", "value": "-78%", "note": "건당" }
+        ]
+      }
+    }
+  ]
+}

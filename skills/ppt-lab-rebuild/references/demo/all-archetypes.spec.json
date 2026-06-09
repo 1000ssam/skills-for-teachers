@@ -1,0 +1,513 @@
+{
+  "title": "ppt-lab Rebuild — 전 아키타입 데모",
+  "slides": [
+    {
+      "archetype": "cover",
+      "data": {
+        "kicker": "REBUILD",
+        "bg": "navy",
+        "title": "클린룸 PPT 엔진\n그리드 SSOT 데모",
+        "subtitle": "grid.json → layouts.json → 23 아키타입",
+        "meta": "2026 · ppt-lab-rebuild"
+      }
+    },
+    {
+      "archetype": "agenda",
+      "data": {
+        "kicker": "AGENDA",
+        "title": "목차",
+        "items": [
+          "프레임",
+          "포커스",
+          "세트",
+          "대비",
+          "필드",
+          "구조",
+          "데이터"
+        ]
+      }
+    },
+    {
+      "archetype": "section",
+      "data": {
+        "index": "01",
+        "title": "데이터 패밀리",
+        "caption": "Zelazny 5비교유형 + KPI"
+      }
+    },
+    {
+      "archetype": "statement",
+      "data": {
+        "kicker": "주장",
+        "title": "한 슬라이드, 한 메시지",
+        "lead": "핵심 주장을 먼저 단언한다",
+        "support": [
+          "근거 1",
+          "근거 2",
+          "근거 3"
+        ]
+      }
+    },
+    {
+      "archetype": "feature",
+      "data": {
+        "kicker": "FEATURE",
+        "title": "히어로 + 인사이트",
+        "bullets": [
+          "좌측 본문",
+          "우측 미디어"
+        ],
+        "media": {
+          "caption": "제품 스크린샷"
+        }
+      }
+    },
+    {
+      "archetype": "duo",
+      "data": {
+        "kicker": "비교 아님",
+        "title": "두 동등 항목",
+        "items": [
+          {
+            "label": "A",
+            "heading": "항목 A",
+            "bullets": [
+              "요점 1",
+              "요점 2"
+            ]
+          },
+          {
+            "label": "B",
+            "heading": "항목 B",
+            "image": { "src": null },
+            "body": "이미지 카드 변종 (사진+설명)"
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "trio",
+      "data": {
+        "kicker": "세 가지",
+        "title": "세 동등 항목",
+        "items": [
+          {
+            "label": "S",
+            "heading": "속도",
+            "image": { "src": null },
+            "body": "빠름 (사진 카드)"
+          },
+          {
+            "label": "C",
+            "heading": "일관성",
+            "body": "한 톤"
+          },
+          {
+            "label": "Q",
+            "heading": "품질",
+            "body": "정제"
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "grid",
+      "data": {
+        "kicker": "카드",
+        "title": "4업 그리드",
+        "items": [
+          {
+            "heading": "카드 1",
+            "image": { "src": null },
+            "body": "이미지 카드"
+          },
+          {
+            "heading": "카드 2",
+            "body": "설명"
+          },
+          {
+            "heading": "카드 3",
+            "body": "설명"
+          },
+          {
+            "heading": "카드 4",
+            "body": "설명"
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "list",
+      "data": {
+        "kicker": "리스트",
+        "title": "순차 항목",
+        "items": [
+          {
+            "title": "단계 1",
+            "body": "설명"
+          },
+          {
+            "title": "단계 2",
+            "body": "설명"
+          },
+          {
+            "title": "단계 3",
+            "body": "설명"
+          },
+          {
+            "title": "단계 4",
+            "body": "설명"
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "versus",
+      "data": {
+        "kicker": "대비",
+        "title": "Before vs After",
+        "left": {
+          "label": "BEFORE",
+          "heading": "수작업",
+          "points": [
+            "느림",
+            "불일치"
+          ]
+        },
+        "right": {
+          "label": "AFTER",
+          "heading": "자동화",
+          "points": [
+            "빠름",
+            "일관"
+          ]
+        }
+      }
+    },
+    {
+      "archetype": "matrix",
+      "data": {
+        "kicker": "표",
+        "title": "기준 × 옵션",
+        "headers": [
+          "기준",
+          "옵션 A",
+          "옵션 B"
+        ],
+        "rows": [
+          [
+            "속도",
+            "높음",
+            "중간"
+          ],
+          [
+            "비용",
+            "낮음",
+            "높음"
+          ]
+        ]
+      }
+    },
+    {
+      "archetype": "rank",
+      "data": {
+        "kicker": "서열",
+        "title": "순위 변동",
+        "rows": [
+          {
+            "rank": 1,
+            "label": "1위",
+            "delta": "▲2",
+            "highlight": true
+          },
+          {
+            "rank": 2,
+            "label": "2위",
+            "delta": "▼1"
+          },
+          {
+            "rank": 3,
+            "label": "3위",
+            "delta": "—"
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "quadrant",
+      "data": {
+        "kicker": "2×2",
+        "title": "사분면",
+        "x_axis": "x축",
+        "y_axis": "y축",
+        "cells": [
+          {
+            "label": "강점",
+            "heading": "강점",
+            "bullets": [
+              "내용"
+            ]
+          },
+          {
+            "label": "약점",
+            "heading": "약점",
+            "bullets": [
+              "내용"
+            ]
+          },
+          {
+            "label": "기회",
+            "heading": "기회",
+            "bullets": [
+              "내용"
+            ]
+          },
+          {
+            "label": "위협",
+            "heading": "위협",
+            "bullets": [
+              "내용"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "map",
+      "data": {
+        "kicker": "포지셔닝",
+        "title": "연속 2축 맵",
+        "x_axis": "가격",
+        "y_axis": "품질",
+        "points": [
+          {
+            "x": 0.7,
+            "y": 0.8,
+            "label": "우리",
+            "highlight": true
+          },
+          {
+            "x": 0.3,
+            "y": 0.4,
+            "label": "경쟁사"
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "flow",
+      "data": {
+        "kicker": "과정",
+        "title": "3단계 흐름",
+        "steps": [
+          {
+            "heading": "단계 1",
+            "body": "설명"
+          },
+          {
+            "heading": "단계 2",
+            "body": "설명"
+          },
+          {
+            "heading": "단계 3",
+            "body": "설명"
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "system",
+      "data": {
+        "kicker": "구조",
+        "title": "아키텍처",
+        "core": "코어",
+        "nodes": [
+          "노드 A",
+          "노드 B",
+          "노드 C",
+          "노드 D"
+        ]
+      }
+    },
+    {
+      "archetype": "share",
+      "data": {
+        "kicker": "구성",
+        "title": "점유율",
+        "categories": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "values": [
+          40,
+          30,
+          20,
+          10
+        ]
+      }
+    },
+    {
+      "archetype": "bars",
+      "data": {
+        "kicker": "항목",
+        "title": "항목 비교",
+        "categories": [
+          "Q1",
+          "Q2",
+          "Q3",
+          "Q4"
+        ],
+        "series": [
+          {
+            "name": "건수",
+            "values": [
+              120,
+              240,
+              410,
+              690
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "trend",
+      "data": {
+        "kicker": "시계열",
+        "title": "추이",
+        "categories": [
+          "1월",
+          "2월",
+          "3월",
+          "4월",
+          "5월"
+        ],
+        "series": [
+          {
+            "name": "Organic",
+            "values": [
+              10,
+              18,
+              27,
+              35,
+              52
+            ]
+          },
+          {
+            "name": "Referral",
+            "values": [
+              5,
+              9,
+              14,
+              20,
+              28
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "spread",
+      "data": {
+        "kicker": "빈도",
+        "title": "분포",
+        "categories": [
+          "0-10",
+          "10-20",
+          "20-30",
+          "30-40",
+          "40+"
+        ],
+        "values": [
+          3,
+          12,
+          25,
+          18,
+          7
+        ]
+      }
+    },
+    {
+      "archetype": "correlate",
+      "data": {
+        "kicker": "상관",
+        "title": "산점도",
+        "points": [
+          {
+            "x": 0,
+            "y": 0.0
+          },
+          {
+            "x": 1,
+            "y": 2.4
+          },
+          {
+            "x": 2,
+            "y": 4.8
+          },
+          {
+            "x": 3,
+            "y": 4.199999999999999
+          },
+          {
+            "x": 4,
+            "y": 6.6
+          },
+          {
+            "x": 5,
+            "y": 9.0
+          },
+          {
+            "x": 6,
+            "y": 8.399999999999999
+          },
+          {
+            "x": 7,
+            "y": 10.799999999999999
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "kpi",
+      "data": {
+        "kicker": "지표",
+        "title": "핵심 지표",
+        "items": [
+          {
+            "label": "제작시간",
+            "value": "-78%",
+            "note": "건당"
+          },
+          {
+            "label": "MAU",
+            "value": "12K",
+            "note": "+24%"
+          },
+          {
+            "label": "재사용",
+            "value": "23",
+            "note": "아키타입"
+          },
+          {
+            "label": "NPS",
+            "value": "62",
+            "note": "베타"
+          }
+        ]
+      }
+    },
+    {
+      "archetype": "closing",
+      "data": {
+        "kicker": "NEXT",
+        "bg": "navy",
+        "title": "지금, 한 번의 요청으로",
+        "subtitle": "자료 첨부 → 빌드",
+        "cta": "데모 빌드 →"
+      }
+    }
+  ]
+}
