@@ -1,0 +1,1614 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ppt-lab-rebuild · 룩 갤러리 (110)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo&family=Archivo+Black&family=Arial&family=Caveat&family=Clash+Display&family=Cormorant&family=Cormorant+Garamond&family=Fraunces&family=Fredoka&family=Futura&family=Geist&family=Helvetica+Neue&family=Hyundai+Sans+Head&family=IBM+Plex+Mono&family=IBM+Plex+Sans&family=Inter&family=Inter+Tight&family=JetBrains+Mono&family=Jost&family=Manrope&family=Newsreader&family=Nunito&family=Orbitron&family=PT+Serif&family=Playfair+Display&family=Plus+Jakarta+Sans&family=Poppins&family=Poppins+ExtraBold&family=Quicksand&family=Roboto+Flex&family=SF+Pro+Display&family=Saira+Condensed&family=Source+Serif+4&family=Space+Grotesk&family=Spectral&family=Work+Sans&family=Song+Myung&display=swap" rel="stylesheet">
+<style>
+  :root{--bd:#E2E8F0;--mut:#64748B}
+  *{box-sizing:border-box}
+  body{font-family:'Inter','Pretendard','Malgun Gothic',sans-serif;background:#F1F5F9;margin:0;color:#0F172A}
+  header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--bd);padding:18px 28px}
+  h1{font-size:18px;margin:0 0 4px} .sub{color:var(--mut);font-size:12.5px;margin-bottom:12px}
+  .ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .seg{display:inline-flex;border:1px solid var(--bd);border-radius:8px;overflow:hidden}
+  .seg button{border:0;background:#fff;padding:6px 12px;font-size:12.5px;cursor:pointer;color:#334155}
+  .seg button.on{background:#0F172A;color:#fff}
+  input.search{border:1px solid var(--bd);border-radius:8px;padding:7px 12px;font-size:13px;min-width:200px;flex:1}
+  .count{color:var(--mut);font-size:12px;margin-left:auto}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;padding:24px 28px}
+  .card{background:#fff;border:1px solid var(--bd);border-radius:14px;overflow:hidden;
+    box-shadow:0 1px 2px rgba(15,23,42,.04);transition:.12s}
+  .card:hover{box-shadow:0 8px 24px rgba(15,23,42,.10);transform:translateY(-2px)}
+  .slide{aspect-ratio:16/9;padding:18px 20px;position:relative;display:flex;flex-direction:column;gap:7px;overflow:hidden}
+  .eyebrow{font-size:9px;font-weight:700;letter-spacing:.12em}
+  .title{font-size:19px;font-weight:700;line-height:1.12;letter-spacing:-.01em}
+  .accentbar{width:42px;height:4px;border-radius:2px;margin:2px 0}
+  .slide .sub{font-size:9.5px;margin:0}
+  .bars{display:flex;align-items:flex-end;gap:6px;height:30px;margin-top:auto}
+  .bar{width:16px;border-radius:2px 2px 0 0;display:inline-block}
+  .meta{padding:12px 14px 14px;border-top:1px solid #F1F5F9}
+  .name{font-size:13px;font-weight:650;word-break:break-all}
+  .font{font-size:11.5px;color:var(--mut);margin:2px 0 9px}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .sws{display:flex;gap:5px}
+  .sw{width:15px;height:15px;border-radius:4px;border:1px solid rgba(15,23,42,.12)}
+  .badges{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+  .bg{font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;letter-spacing:.03em}
+  .bg.t-ppt{background:#EFF6FF;color:#2563EB} .bg.t-web{background:#F0FDF4;color:#16A34A}
+  .bg.tone{background:#F1F5F9;color:#475569} .bg.prem{background:#FEF3C7;color:#B45309}
+  .empty{padding:60px;text-align:center;color:#94A3B8;grid-column:1/-1}
+</style></head><body >
+<header>
+  <h1>ppt-lab-rebuild · 룩 갤러리</h1>
+  <div class="sub">design-tokens.json 에서 자동 생성 (render-look-gallery.py) · 110 룩 (PPT 60 · WEB 50 · 다크 4) · 토큰 목업(실제 PPTX 렌더 아님, 색·폰트·톤 미리보기용)</div>
+  <div class="ctrl">
+    <span class="seg" id="seg-track">
+      <button data-v="all" class="on">전체</button><button data-v="ppt">PPT</button><button data-v="web">WEB</button></span>
+    <span class="seg" id="seg-tone">
+      <button data-v="all" class="on">라이트+다크</button><button data-v="light">라이트</button><button data-v="dark">다크</button></span>
+    <input class="search" id="q" placeholder="룩 이름·폰트 검색 (예: dark, editorial, Archivo)">
+    <span class="count" id="count"></span>
+  </div>
+</header>
+<div class="grid" id="grid">
+<div class="card" data-track="ppt" data-tone="dark" data-q="ppt-dark-luxury-keynote cormorant garamond song myung maruburi">
+  <div class="slide" style="background:#17130C">
+    <div class="eyebrow" style="color:#C9A36A">DESIGN · PPT</div>
+    <div class="title" style="color:#FFFFFF;font-family:'Cormorant Garamond','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C9A36A"></div>
+    <div class="sub" style="color:#C9CDD2;font-family:'MaruBuri','Cormorant Garamond',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C9A36A;height:62%"></span><span class="bar" style="background:#E7D6BC;height:92%"></span><span class="bar" style="background:#D5B78B;height:44%"></span><span class="bar" style="background:#F4EDE1;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-dark-luxury-keynote</div>
+    <div class="font">Cormorant Garamond · 표지 Song Myung / 본문 MaruBuri</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C9A36A" title="accent"></span><span class="sw" style="background:#E7D6BC" title="accent2"></span><span class="sw" style="background:#382E1E" title="navy"></span><span class="sw" style="background:#17130C" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">다크</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="dark" data-q="ppt-dark-tech space grotesk">
+  <div class="slide" style="background:#0C1A17">
+    <div class="eyebrow" style="color:#3DF5E0">DESIGN · PPT</div>
+    <div class="title" style="color:#FFFFFF;font-family:'Space Grotesk',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#3DF5E0"></div>
+    <div class="sub" style="color:#C9CDD2;font-family:'Pretendard','Space Grotesk',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#3DF5E0;height:62%"></span><span class="bar" style="background:#9D7BFF;height:92%"></span><span class="bar" style="background:#A8FAF1;height:44%"></span><span class="bar" style="background:#68F7E7;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-dark-tech</div>
+    <div class="font">Space Grotesk</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#3DF5E0" title="accent"></span><span class="sw" style="background:#9D7BFF" title="accent2"></span><span class="sw" style="background:#11453F" title="navy"></span><span class="sw" style="background:#0C1A17" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">다크</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="dark" data-q="ppt-engineered-dark-deck inter">
+  <div class="slide" style="background:#131121">
+    <div class="eyebrow" style="color:#8B7BF0">DESIGN · PPT</div>
+    <div class="title" style="color:#FFFFFF;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#8B7BF0"></div>
+    <div class="sub" style="color:#C9CDD2;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#8B7BF0;height:62%"></span><span class="bar" style="background:#CBC4F8;height:92%"></span><span class="bar" style="background:#A598F3;height:44%"></span><span class="bar" style="background:#E8E5FC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-engineered-dark-deck</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#8B7BF0" title="accent"></span><span class="sw" style="background:#CBC4F8" title="accent2"></span><span class="sw" style="background:#272243" title="navy"></span><span class="sw" style="background:#131121" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">다크</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="dark" data-q="ppt-prismatic-dark-deck inter">
+  <div class="slide" style="background:#041A1E">
+    <div class="eyebrow" style="color:#22D3EE">DESIGN · PPT</div>
+    <div class="title" style="color:#FFFFFF;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#22D3EE"></div>
+    <div class="sub" style="color:#C9CDD2;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#22D3EE;height:62%"></span><span class="bar" style="background:#D946EF;height:92%"></span><span class="bar" style="background:#FBBF24;height:44%"></span><span class="bar" style="background:#9CEBF7;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-prismatic-dark-deck</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#22D3EE" title="accent"></span><span class="sw" style="background:#D946EF" title="accent2"></span><span class="sw" style="background:#0A3B43" title="navy"></span><span class="sw" style="background:#041A1E" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">다크</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-altezza-ultramodern-keynote archivo">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#2EE6A6">DESIGN · PPT</div>
+    <div class="title" style="color:#0D402E;font-family:'Archivo',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#2EE6A6"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Archivo',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#2EE6A6;height:62%"></span><span class="bar" style="background:#A1F4D7;height:92%"></span><span class="bar" style="background:#5CECBA;height:44%"></span><span class="bar" style="background:#D5FAED;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-altezza-ultramodern-keynote</div>
+    <div class="font">Archivo</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#2EE6A6" title="accent"></span><span class="sw" style="background:#A1F4D7" title="accent2"></span><span class="sw" style="background:#0D402E" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-archival-index-deck source serif 4 song myung maruburi">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#33302A">DESIGN · PPT</div>
+    <div class="title" style="color:#33302A;font-family:'Source Serif 4','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#33302A"></div>
+    <div class="sub" style="color:#64748B;font-family:'MaruBuri','Source Serif 4',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#33302A;height:62%"></span><span class="bar" style="background:#A3A29F;height:92%"></span><span class="bar" style="background:#605E59;height:44%"></span><span class="bar" style="background:#D6D6D4;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-archival-index-deck</div>
+    <div class="font">Source Serif 4 · 표지 Song Myung / 본문 MaruBuri</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#33302A" title="accent"></span><span class="sw" style="background:#A3A29F" title="accent2"></span><span class="sw" style="background:#33302A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-bain-results-deck inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#CC0000">DESIGN · PPT</div>
+    <div class="title" style="color:#111827;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#CC0000"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#CC0000;height:62%"></span><span class="bar" style="background:#E88C8C;height:92%"></span><span class="bar" style="background:#D73838;height:44%"></span><span class="bar" style="background:#F5CCCC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-bain-results-deck</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#CC0000" title="accent"></span><span class="sw" style="background:#E88C8C" title="accent2"></span><span class="sw" style="background:#111827" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-bauhaus-geometric futura">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#D62828">DESIGN · PPT</div>
+    <div class="title" style="color:#1A1A1A;font-family:'Futura',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#D62828"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Futura',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#D62828;height:62%"></span><span class="bar" style="background:#F4C20D;height:92%"></span><span class="bar" style="background:#1D4ED8;height:44%"></span><span class="bar" style="background:#ED9E9E;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-bauhaus-geometric</div>
+    <div class="font">Futura</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#D62828" title="accent"></span><span class="sw" style="background:#F4C20D" title="accent2"></span><span class="sw" style="background:#1A1A1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-bcg-exhibit-deck ibm plex mono">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#177B57">DESIGN · PPT</div>
+    <div class="title" style="color:#1A1A1A;font-family:'IBM Plex Mono',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#177B57"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','IBM Plex Mono',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#177B57;height:62%"></span><span class="bar" style="background:#97C4B3;height:92%"></span><span class="bar" style="background:#4A987C;height:44%"></span><span class="bar" style="background:#D1E5DD;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-bcg-exhibit-deck</div>
+    <div class="font">IBM Plex Mono</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#177B57" title="accent"></span><span class="sw" style="background:#97C4B3" title="accent2"></span><span class="sw" style="background:#1A1A1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-blueprint-schematic-deck inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#4FC8E8">DESIGN · PPT</div>
+    <div class="title" style="color:#163841;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#4FC8E8"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#4FC8E8;height:62%"></span><span class="bar" style="background:#B0E6F5;height:92%"></span><span class="bar" style="background:#76D4ED;height:44%"></span><span class="bar" style="background:#DCF4FA;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-blueprint-schematic-deck</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#4FC8E8" title="accent"></span><span class="sw" style="background:#B0E6F5" title="accent2"></span><span class="sw" style="background:#163841" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-bold-block-infographic-deck archivo">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#2A2D34">DESIGN · PPT</div>
+    <div class="title" style="color:#2A2D34;font-family:'Archivo',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#2A2D34"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Archivo',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#2A2D34;height:62%"></span><span class="bar" style="background:#E8A317;height:92%"></span><span class="bar" style="background:#1F8A82;height:44%"></span><span class="bar" style="background:#9FA0A4;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-bold-block-infographic-deck</div>
+    <div class="font">Archivo</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#2A2D34" title="accent"></span><span class="sw" style="background:#E8A317" title="accent2"></span><span class="sw" style="background:#2A2D34" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-botanical-organic cormorant garamond song myung maruburi">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#B5654A">DESIGN · PPT</div>
+    <div class="title" style="color:#3A352C;font-family:'Cormorant Garamond','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#B5654A"></div>
+    <div class="sub" style="color:#64748B;font-family:'MaruBuri','Cormorant Garamond',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#B5654A;height:62%"></span><span class="bar" style="background:#7C8B5A;height:92%"></span><span class="bar" style="background:#C99A5B;height:44%"></span><span class="bar" style="background:#DEBAAE;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-botanical-organic</div>
+    <div class="font">Cormorant Garamond · 표지 Song Myung / 본문 MaruBuri</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#B5654A" title="accent"></span><span class="sw" style="background:#7C8B5A" title="accent2"></span><span class="sw" style="background:#3A352C" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-cinematic-keynote-deck inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#E8B341">DESIGN · PPT</div>
+    <div class="title" style="color:#413212;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#E8B341"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#E8B341;height:62%"></span><span class="bar" style="background:#F5DDAA;height:92%"></span><span class="bar" style="background:#EDC46B;height:44%"></span><span class="bar" style="background:#FAF0D9;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-cinematic-keynote-deck</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#E8B341" title="accent"></span><span class="sw" style="background:#F5DDAA" title="accent2"></span><span class="sw" style="background:#413212" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-confident-color-block-deck archivo">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#F0531C">DESIGN · PPT</div>
+    <div class="title" style="color:#141414;font-family:'Archivo',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#F0531C"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Archivo',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#F0531C;height:62%"></span><span class="bar" style="background:#1D4ED8;height:92%"></span><span class="bar" style="background:#1B6E4A;height:44%"></span><span class="bar" style="background:#F8B299;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-confident-color-block-deck</div>
+    <div class="font">Archivo</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#F0531C" title="accent"></span><span class="sw" style="background:#1D4ED8" title="accent2"></span><span class="sw" style="background:#141414" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-consulting-precision-grid arial">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#0B5FFF">DESIGN · PPT</div>
+    <div class="title" style="color:#1A1A1A;font-family:'Arial',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#0B5FFF"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Arial',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#0B5FFF;height:62%"></span><span class="bar" style="background:#91B7FF;height:92%"></span><span class="bar" style="background:#4182FF;height:44%"></span><span class="bar" style="background:#CEDFFF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-consulting-precision-grid</div>
+    <div class="font">Arial</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#0B5FFF" title="accent"></span><span class="sw" style="background:#91B7FF" title="accent2"></span><span class="sw" style="background:#1A1A1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-data-infographic-heavy inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#2563EB">DESIGN · PPT</div>
+    <div class="title" style="color:#1E2229;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#2563EB"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#2563EB;height:62%"></span><span class="bar" style="background:#0EA5A4;height:92%"></span><span class="bar" style="background:#F59E0B;height:44%"></span><span class="bar" style="background:#EF4444;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-data-infographic-heavy</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#2563EB" title="accent"></span><span class="sw" style="background:#0EA5A4" title="accent2"></span><span class="sw" style="background:#1E2229" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-editorial-infographic-deck source serif 4 song myung pretendard">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#B22B1F">DESIGN · PPT</div>
+    <div class="title" style="color:#1C1A17;font-family:'Source Serif 4','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#B22B1F"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Source Serif 4',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#B22B1F;height:62%"></span><span class="bar" style="background:#DCA09A;height:92%"></span><span class="bar" style="background:#C35A50;height:44%"></span><span class="bar" style="background:#F0D5D2;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-editorial-infographic-deck</div>
+    <div class="font">Source Serif 4 · 표지 Song Myung / 본문 Pretendard</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#B22B1F" title="accent"></span><span class="sw" style="background:#DCA09A" title="accent2"></span><span class="sw" style="background:#1C1A17" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-editorial-magazine playfair display song myung maruburi">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#A8312A">DESIGN · PPT</div>
+    <div class="title" style="color:#1C1B19;font-family:'Playfair Display','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#A8312A"></div>
+    <div class="sub" style="color:#64748B;font-family:'MaruBuri','Playfair Display',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#A8312A;height:62%"></span><span class="bar" style="background:#D8A29F;height:92%"></span><span class="bar" style="background:#BB5E59;height:44%"></span><span class="bar" style="background:#EED6D4;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-editorial-magazine</div>
+    <div class="font">Playfair Display · 표지 Song Myung / 본문 MaruBuri</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#A8312A" title="accent"></span><span class="sw" style="background:#D8A29F" title="accent2"></span><span class="sw" style="background:#1C1B19" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-editorial-product-deck source serif 4 song myung pretendard">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#B5503A">DESIGN · PPT</div>
+    <div class="title" style="color:#1F1B16;font-family:'Source Serif 4','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#B5503A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Source Serif 4',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#B5503A;height:62%"></span><span class="bar" style="background:#DEB0A6;height:92%"></span><span class="bar" style="background:#C57665;height:44%"></span><span class="bar" style="background:#F0DCD8;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-editorial-product-deck</div>
+    <div class="font">Source Serif 4 · 표지 Song Myung / 본문 Pretendard</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#B5503A" title="accent"></span><span class="sw" style="background:#DEB0A6" title="accent2"></span><span class="sw" style="background:#1F1B16" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-epoch-premium-keynote newsreader song myung maruburi">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#7FA9C9">DESIGN · PPT</div>
+    <div class="title" style="color:#242F38;font-family:'Newsreader','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#7FA9C9"></div>
+    <div class="sub" style="color:#64748B;font-family:'MaruBuri','Newsreader',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#7FA9C9;height:62%"></span><span class="bar" style="background:#C5D8E7;height:92%"></span><span class="bar" style="background:#9BBCD5;height:44%"></span><span class="bar" style="background:#E5EEF4;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-epoch-premium-keynote</div>
+    <div class="font">Newsreader · 표지 Song Myung / 본문 MaruBuri</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#7FA9C9" title="accent"></span><span class="sw" style="background:#C5D8E7" title="accent2"></span><span class="sw" style="background:#242F38" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-every-golden-grid-keynote inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#B5A642">DESIGN · PPT</div>
+    <div class="title" style="color:#161616;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#B5A642"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#B5A642;height:62%"></span><span class="bar" style="background:#DED7AA;height:92%"></span><span class="bar" style="background:#C5BA6C;height:44%"></span><span class="bar" style="background:#F0EDD9;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-every-golden-grid-keynote</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#B5A642" title="accent"></span><span class="sw" style="background:#DED7AA" title="accent2"></span><span class="sw" style="background:#161616" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-expressive-material roboto flex">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#6750A4">DESIGN · PPT</div>
+    <div class="title" style="color:#1D1B20;font-family:'Roboto Flex',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#6750A4"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Roboto Flex',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#6750A4;height:62%"></span><span class="bar" style="background:#7D5260;height:92%"></span><span class="bar" style="background:#386A20;height:44%"></span><span class="bar" style="background:#B3261E;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-expressive-material</div>
+    <div class="font">Roboto Flex</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#6750A4" title="accent"></span><span class="sw" style="background:#7D5260" title="accent2"></span><span class="sw" style="background:#1D1B20" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-expressive-soundwave-deck archivo">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FF6B4A">DESIGN · PPT</div>
+    <div class="title" style="color:#471E15;font-family:'Archivo',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FF6B4A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Archivo',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FF6B4A;height:62%"></span><span class="bar" style="background:#7B3FF2;height:92%"></span><span class="bar" style="background:#FFBCAE;height:44%"></span><span class="bar" style="background:#FF8C72;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-expressive-soundwave-deck</div>
+    <div class="font">Archivo</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FF6B4A" title="accent"></span><span class="sw" style="background:#7B3FF2" title="accent2"></span><span class="sw" style="background:#471E15" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-folio-portfolio-keynote space grotesk">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FF5C35">DESIGN · PPT</div>
+    <div class="title" style="color:#141414;font-family:'Space Grotesk',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FF5C35"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Space Grotesk',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FF5C35;height:62%"></span><span class="bar" style="background:#FFB6A4;height:92%"></span><span class="bar" style="background:#FF8061;height:44%"></span><span class="bar" style="background:#FFDED7;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-folio-portfolio-keynote</div>
+    <div class="font">Space Grotesk</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FF5C35" title="accent"></span><span class="sw" style="background:#FFB6A4" title="accent2"></span><span class="sw" style="background:#141414" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-glassmorphism sf pro display">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#7C6FF0">DESIGN · PPT</div>
+    <div class="title" style="color:#1A1A2E;font-family:'SF Pro Display',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#7C6FF0"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','SF Pro Display',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#7C6FF0;height:62%"></span><span class="bar" style="background:#C3BCF8;height:92%"></span><span class="bar" style="background:#9B90F4;height:44%"></span><span class="bar" style="background:#E8E5FC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-glassmorphism</div>
+    <div class="font">SF Pro Display</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#7C6FF0" title="accent"></span><span class="sw" style="background:#C3BCF8" title="accent2"></span><span class="sw" style="background:#1A1A2E" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-goldman-ir-deck source serif 4 song myung pretendard">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C8A24B">DESIGN · PPT</div>
+    <div class="title" style="color:#382D15;font-family:'Source Serif 4','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C8A24B"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Source Serif 4',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C8A24B;height:62%"></span><span class="bar" style="background:#E6D5AE;height:92%"></span><span class="bar" style="background:#D4B673;height:44%"></span><span class="bar" style="background:#F4ECDB;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-goldman-ir-deck</div>
+    <div class="font">Source Serif 4 · 표지 Song Myung / 본문 Pretendard</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C8A24B" title="accent"></span><span class="sw" style="background:#E6D5AE" title="accent2"></span><span class="sw" style="background:#382D15" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-hand-drawn-sketch caveat">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#E8654A">DESIGN · PPT</div>
+    <div class="title" style="color:#2B2724;font-family:'Caveat',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#E8654A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Caveat',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#E8654A;height:62%"></span><span class="bar" style="background:#E0A92E;height:92%"></span><span class="bar" style="background:#F5BAAE;height:44%"></span><span class="bar" style="background:#ED8772;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-hand-drawn-sketch</div>
+    <div class="font">Caveat</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#E8654A" title="accent"></span><span class="sw" style="background:#E0A92E" title="accent2"></span><span class="sw" style="background:#2B2724" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-heritage-luxury-deck playfair display song myung maruburi">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#A8893E">DESIGN · PPT</div>
+    <div class="title" style="color:#3A2E1F;font-family:'Playfair Display','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#A8893E"></div>
+    <div class="sub" style="color:#64748B;font-family:'MaruBuri','Playfair Display',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#A8893E;height:62%"></span><span class="bar" style="background:#D8CAA8;height:92%"></span><span class="bar" style="background:#BBA368;height:44%"></span><span class="bar" style="background:#EEE7D8;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-heritage-luxury-deck</div>
+    <div class="font">Playfair Display · 표지 Song Myung / 본문 MaruBuri</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#A8893E" title="accent"></span><span class="sw" style="background:#D8CAA8" title="accent2"></span><span class="sw" style="background:#3A2E1F" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-hyundai-cinematic-investor-day hyundai sans head">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#66FFFF">DESIGN · PPT</div>
+    <div class="title" style="color:#1D4747;font-family:'Hyundai Sans Head',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#66FFFF"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Hyundai Sans Head',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#66FFFF;height:62%"></span><span class="bar" style="background:#00D3FD;height:92%"></span><span class="bar" style="background:#00B0F0;height:44%"></span><span class="bar" style="background:#0060A8;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-hyundai-cinematic-investor-day</div>
+    <div class="font">Hyundai Sans Head</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#66FFFF" title="accent"></span><span class="sw" style="background:#00D3FD" title="accent2"></span><span class="sw" style="background:#1D4747" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-isometric-platform-deck inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#3B6FE0">DESIGN · PPT</div>
+    <div class="title" style="color:#1B2330;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#3B6FE0"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#3B6FE0;height:62%"></span><span class="bar" style="background:#A7BEF1;height:92%"></span><span class="bar" style="background:#668FE7;height:44%"></span><span class="bar" style="background:#D8E2F9;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-isometric-platform-deck</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#3B6FE0" title="accent"></span><span class="sw" style="background:#A7BEF1" title="accent2"></span><span class="sw" style="background:#1B2330" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-kakao-friendly-card-news inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FBE100">DESIGN · PPT</div>
+    <div class="title" style="color:#000000;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FBE100"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FBE100;height:62%"></span><span class="bar" style="background:#FDF28C;height:92%"></span><span class="bar" style="background:#FCE838;height:44%"></span><span class="bar" style="background:#FEF9CC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-kakao-friendly-card-news</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FBE100" title="accent"></span><span class="sw" style="background:#FDF28C" title="accent2"></span><span class="sw" style="background:#000000" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-keynote-minimal-fullbleed helvetica neue">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#0071E3">DESIGN · PPT</div>
+    <div class="title" style="color:#1D1D1F;font-family:'Helvetica Neue',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#0071E3"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Helvetica Neue',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#0071E3;height:62%"></span><span class="bar" style="background:#8CBFF2;height:92%"></span><span class="bar" style="background:#3890E9;height:44%"></span><span class="bar" style="background:#CCE3F9;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-keynote-minimal-fullbleed</div>
+    <div class="font">Helvetica Neue</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#0071E3" title="accent"></span><span class="sw" style="background:#8CBFF2" title="accent2"></span><span class="sw" style="background:#1D1D1F" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-korea-policy-navy inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#1B66C9">DESIGN · PPT</div>
+    <div class="title" style="color:#1A1A1A;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#1B66C9"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#1B66C9;height:62%"></span><span class="bar" style="background:#E03B3B;height:92%"></span><span class="bar" style="background:#1F9D57;height:44%"></span><span class="bar" style="background:#98BAE7;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-korea-policy-navy</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#1B66C9" title="accent"></span><span class="sw" style="background:#E03B3B" title="accent2"></span><span class="sw" style="background:#1A1A1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-kula-minimalist-keynote plus jakarta sans">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#B79B86">DESIGN · PPT</div>
+    <div class="title" style="color:#4A4540;font-family:'Plus Jakarta Sans',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#B79B86"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Plus Jakarta Sans',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#B79B86;height:62%"></span><span class="bar" style="background:#DFD2C9;height:92%"></span><span class="bar" style="background:#C7B1A1;height:44%"></span><span class="bar" style="background:#F1EBE7;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-kula-minimalist-keynote</div>
+    <div class="font">Plus Jakarta Sans</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#B79B86" title="accent"></span><span class="sw" style="background:#DFD2C9" title="accent2"></span><span class="sw" style="background:#4A4540" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-luxury-editorial-serif playfair display song myung maruburi">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#A8884E">DESIGN · PPT</div>
+    <div class="title" style="color:#1A1814;font-family:'Playfair Display','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#A8884E"></div>
+    <div class="sub" style="color:#64748B;font-family:'MaruBuri','Playfair Display',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#A8884E;height:62%"></span><span class="bar" style="background:#D8C9AF;height:92%"></span><span class="bar" style="background:#BBA275;height:44%"></span><span class="bar" style="background:#EEE7DC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-luxury-editorial-serif</div>
+    <div class="font">Playfair Display · 표지 Song Myung / 본문 MaruBuri</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#A8884E" title="accent"></span><span class="sw" style="background:#D8C9AF" title="accent2"></span><span class="sw" style="background:#1A1814" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-mckinsey-ghost-deck inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#1F3A5F">DESIGN · PPT</div>
+    <div class="title" style="color:#1A1A1A;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#1F3A5F"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#1F3A5F;height:62%"></span><span class="bar" style="background:#9AA6B7;height:92%"></span><span class="bar" style="background:#506582;height:44%"></span><span class="bar" style="background:#D2D8DF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-mckinsey-ghost-deck</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#1F3A5F" title="accent"></span><span class="sw" style="background:#9AA6B7" title="accent2"></span><span class="sw" style="background:#1A1A1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-mcst-k-culture inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#7285E4">DESIGN · PPT</div>
+    <div class="title" style="color:#202540;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#7285E4"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#7285E4;height:62%"></span><span class="bar" style="background:#8F6F56;height:92%"></span><span class="bar" style="background:#BCC4F2;height:44%"></span><span class="bar" style="background:#32355D;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-mcst-k-culture</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#7285E4" title="accent"></span><span class="sw" style="background:#8F6F56" title="accent2"></span><span class="sw" style="background:#202540" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-memphis-retro-90s archivo black">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FF3B7F">DESIGN · PPT</div>
+    <div class="title" style="color:#1A1A1A;font-family:'Archivo Black',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FF3B7F"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Archivo Black',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FF3B7F;height:62%"></span><span class="bar" style="background:#00B5C9;height:92%"></span><span class="bar" style="background:#FFC400;height:44%"></span><span class="bar" style="background:#7C4DFF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-memphis-retro-90s</div>
+    <div class="font">Archivo Black</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FF3B7F" title="accent"></span><span class="sw" style="background:#00B5C9" title="accent2"></span><span class="sw" style="background:#1A1A1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-minimal-mono-note jetbrains mono">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#111111">DESIGN · PPT</div>
+    <div class="title" style="color:#111111;font-family:'JetBrains Mono',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#111111"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','JetBrains Mono',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#111111;height:62%"></span><span class="bar" style="background:#949494;height:92%"></span><span class="bar" style="background:#454545;height:44%"></span><span class="bar" style="background:#CFCFCF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-minimal-mono-note</div>
+    <div class="font">JetBrains Mono</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#111111" title="accent"></span><span class="sw" style="background:#949494" title="accent2"></span><span class="sw" style="background:#111111" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-moef-fiscal-blue inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#1F91DF">DESIGN · PPT</div>
+    <div class="title" style="color:#0D1627;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#1F91DF"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#1F91DF;height:62%"></span><span class="bar" style="background:#20988F;height:92%"></span><span class="bar" style="background:#4472C4;height:44%"></span><span class="bar" style="background:#5464A6;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-moef-fiscal-blue</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#1F91DF" title="accent"></span><span class="sw" style="background:#20988F" title="accent2"></span><span class="sw" style="background:#0D1627" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-monochrome-infrastructure-deck geist">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#000000">DESIGN · PPT</div>
+    <div class="title" style="color:#000000;font-family:'Geist',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#000000"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Geist',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#000000;height:62%"></span><span class="bar" style="background:#8C8C8C;height:92%"></span><span class="bar" style="background:#383838;height:44%"></span><span class="bar" style="background:#CCCCCC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-monochrome-infrastructure-deck</div>
+    <div class="font">Geist</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#000000" title="accent"></span><span class="sw" style="background:#8C8C8C" title="accent2"></span><span class="sw" style="background:#000000" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-monochrome-risk helvetica neue">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#0A0A0A">DESIGN · PPT</div>
+    <div class="title" style="color:#0A0A0A;font-family:'Helvetica Neue',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#0A0A0A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Helvetica Neue',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#0A0A0A;height:62%"></span><span class="bar" style="background:#919191;height:92%"></span><span class="bar" style="background:#404040;height:44%"></span><span class="bar" style="background:#CECECE;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-monochrome-risk</div>
+    <div class="font">Helvetica Neue</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#0A0A0A" title="accent"></span><span class="sw" style="background:#919191" title="accent2"></span><span class="sw" style="background:#0A0A0A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-motie-slogan-infographic inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#1050B0">DESIGN · PPT</div>
+    <div class="title" style="color:#041631;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#1050B0"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#1050B0;height:62%"></span><span class="bar" style="background:#93B0DB;height:92%"></span><span class="bar" style="background:#4576C1;height:44%"></span><span class="bar" style="background:#CFDCEF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-motie-slogan-infographic</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#1050B0" title="accent"></span><span class="sw" style="background:#93B0DB" title="accent2"></span><span class="sw" style="background:#041631" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-msit-ai-three-powers inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#002060">DESIGN · PPT</div>
+    <div class="title" style="color:#1C2848;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#002060"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#002060;height:62%"></span><span class="bar" style="background:#0F41BD;height:92%"></span><span class="bar" style="background:#1A4BC6;height:44%"></span><span class="bar" style="background:#8C9BB7;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-msit-ai-three-powers</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#002060" title="accent"></span><span class="sw" style="background:#0F41BD" title="accent2"></span><span class="sw" style="background:#1C2848" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-naver-integrated-report-award inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#03C75A">DESIGN · PPT</div>
+    <div class="title" style="color:#0A0A0A;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#03C75A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#03C75A;height:62%"></span><span class="bar" style="background:#8EE6B5;height:92%"></span><span class="bar" style="background:#3AD37E;height:44%"></span><span class="bar" style="background:#CDF4DE;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-naver-integrated-report-award</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#03C75A" title="accent"></span><span class="sw" style="background:#8EE6B5" title="accent2"></span><span class="sw" style="background:#0A0A0A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-neo-brutalism archivo black">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FF5A36">DESIGN · PPT</div>
+    <div class="title" style="color:#0A0A0A;font-family:'Archivo Black',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FF5A36"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Archivo Black',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FF5A36;height:62%"></span><span class="bar" style="background:#FFE14D;height:92%"></span><span class="bar" style="background:#2D5BFF;height:44%"></span><span class="bar" style="background:#FFB5A5;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-neo-brutalism</div>
+    <div class="font">Archivo Black</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FF5A36" title="accent"></span><span class="sw" style="background:#FFE14D" title="accent2"></span><span class="sw" style="background:#0A0A0A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-pattern-bold-poster-keynote anton">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FF4D2E">DESIGN · PPT</div>
+    <div class="title" style="color:#47160D;font-family:'Anton',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FF4D2E"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Anton',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FF4D2E;height:62%"></span><span class="bar" style="background:#FFAFA1;height:92%"></span><span class="bar" style="background:#FF745C;height:44%"></span><span class="bar" style="background:#FFDBD5;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-pattern-bold-poster-keynote</div>
+    <div class="font">Anton</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FF4D2E" title="accent"></span><span class="sw" style="background:#FFAFA1" title="accent2"></span><span class="sw" style="background:#47160D" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-precision-fintech-deck inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#5A55E0">DESIGN · PPT</div>
+    <div class="title" style="color:#0A2540;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#5A55E0"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#5A55E0;height:62%"></span><span class="bar" style="background:#B5B2F1;height:92%"></span><span class="bar" style="background:#7E7AE7;height:44%"></span><span class="bar" style="background:#DEDDF9;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-precision-fintech-deck</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#5A55E0" title="accent"></span><span class="sw" style="background:#B5B2F1" title="accent2"></span><span class="sw" style="background:#0A2540" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-print-first-newspaper playfair display song myung maruburi">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#A8231B">DESIGN · PPT</div>
+    <div class="title" style="color:#1C1B17;font-family:'Playfair Display','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#A8231B"></div>
+    <div class="sub" style="color:#64748B;font-family:'MaruBuri','Playfair Display',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#A8231B;height:62%"></span><span class="bar" style="background:#D89C98;height:92%"></span><span class="bar" style="background:#BB534D;height:44%"></span><span class="bar" style="background:#EED3D1;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-print-first-newspaper</div>
+    <div class="font">Playfair Display · 표지 Song Myung / 본문 MaruBuri</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#A8231B" title="accent"></span><span class="sw" style="background:#D89C98" title="accent2"></span><span class="sw" style="background:#1C1B17" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-samsung-ir-restrained manrope">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#0028A8">DESIGN · PPT</div>
+    <div class="title" style="color:#030414;font-family:'Manrope',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#0028A8"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Manrope',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#0028A8;height:62%"></span><span class="bar" style="background:#8C9ED8;height:92%"></span><span class="bar" style="background:#3857BB;height:44%"></span><span class="bar" style="background:#CCD4EE;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-samsung-ir-restrained</div>
+    <div class="font">Manrope</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#0028A8" title="accent"></span><span class="sw" style="background:#8C9ED8" title="accent2"></span><span class="sw" style="background:#030414" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-skt-interactive-ai-pyramid inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#0023C3">DESIGN · PPT</div>
+    <div class="title" style="color:#000000;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#0023C3"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#0023C3;height:62%"></span><span class="bar" style="background:#8C9CE4;height:92%"></span><span class="bar" style="background:#3853D0;height:44%"></span><span class="bar" style="background:#CCD3F3;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-skt-interactive-ai-pyramid</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#0023C3" title="accent"></span><span class="sw" style="background:#8C9CE4" title="accent2"></span><span class="sw" style="background:#000000" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-soft-pastel-system-deck quicksand">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C9BEEB">DESIGN · PPT</div>
+    <div class="title" style="color:#3A3640;font-family:'Quicksand',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C9BEEB"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Quicksand',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C9BEEB;height:62%"></span><span class="bar" style="background:#A6DAC9;height:92%"></span><span class="bar" style="background:#F2C9AE;height:44%"></span><span class="bar" style="background:#8B72D9;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-soft-pastel-system-deck</div>
+    <div class="font">Quicksand</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C9BEEB" title="accent"></span><span class="sw" style="background:#A6DAC9" title="accent2"></span><span class="sw" style="background:#3A3640" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-startup-pitch-colorful poppins extrabold">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#5B5BFF">DESIGN · PPT</div>
+    <div class="title" style="color:#15161B;font-family:'Poppins ExtraBold',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#5B5BFF"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Poppins ExtraBold',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#5B5BFF;height:62%"></span><span class="bar" style="background:#FF5C8A;height:92%"></span><span class="bar" style="background:#FFB020;height:44%"></span><span class="bar" style="background:#15C39A;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-startup-pitch-colorful</div>
+    <div class="font">Poppins ExtraBold</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#5B5BFF" title="accent"></span><span class="sw" style="background:#FF5C8A" title="accent2"></span><span class="sw" style="background:#15161B" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-strategy-navy-deck pt serif song myung pretendard">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#2563EB">DESIGN · PPT</div>
+    <div class="title" style="color:#14213D;font-family:'PT Serif','Song Myung',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#2563EB"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','PT Serif',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#2563EB;height:62%"></span><span class="bar" style="background:#9DB9F6;height:92%"></span><span class="bar" style="background:#5585EF;height:44%"></span><span class="bar" style="background:#D3E0FB;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-strategy-navy-deck</div>
+    <div class="font">PT Serif · 표지 Song Myung / 본문 Pretendard</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#2563EB" title="accent"></span><span class="sw" style="background:#9DB9F6" title="accent2"></span><span class="sw" style="background:#14213D" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-swiss-editorial-bold archivo black">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FF4A1C">DESIGN · PPT</div>
+    <div class="title" style="color:#111111;font-family:'Archivo Black',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FF4A1C"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Archivo Black',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FF4A1C;height:62%"></span><span class="bar" style="background:#0047FF;height:92%"></span><span class="bar" style="background:#FFAE99;height:44%"></span><span class="bar" style="background:#FF724E;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-swiss-editorial-bold</div>
+    <div class="font">Archivo Black</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FF4A1C" title="accent"></span><span class="sw" style="background:#0047FF" title="accent2"></span><span class="sw" style="background:#111111" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-unikorea-peace-coexistence inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#105FD2">DESIGN · PPT</div>
+    <div class="title" style="color:#041B3B;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#105FD2"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#105FD2;height:62%"></span><span class="bar" style="background:#F59751;height:92%"></span><span class="bar" style="background:#A41729;height:44%"></span><span class="bar" style="background:#5794C3;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-unikorea-peace-coexistence</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#105FD2" title="accent"></span><span class="sw" style="background:#F59751" title="accent2"></span><span class="sw" style="background:#041B3B" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-vivid-gradient-future space grotesk">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#D11D8E">DESIGN · PPT</div>
+    <div class="title" style="color:#3B0828;font-family:'Space Grotesk',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#D11D8E"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Space Grotesk',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#D11D8E;height:62%"></span><span class="bar" style="background:#2563EB;height:92%"></span><span class="bar" style="background:#06B6D4;height:44%"></span><span class="bar" style="background:#EA99CC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-vivid-gradient-future</div>
+    <div class="font">Space Grotesk</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#D11D8E" title="accent"></span><span class="sw" style="background:#2563EB" title="accent2"></span><span class="sw" style="background:#3B0828" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-vivid-gradient-infographic-deck poppins">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#7C3AED">DESIGN · PPT</div>
+    <div class="title" style="color:#211B33;font-family:'Poppins',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#7C3AED"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Poppins',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#7C3AED;height:62%"></span><span class="bar" style="background:#FB6F5C;height:92%"></span><span class="bar" style="background:#C4A6F7;height:44%"></span><span class="bar" style="background:#9965F1;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-vivid-gradient-infographic-deck</div>
+    <div class="font">Poppins</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#7C3AED" title="accent"></span><span class="sw" style="background:#FB6F5C" title="accent2"></span><span class="sw" style="background:#211B33" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-warm-hospitality-deck poppins">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#F4625F">DESIGN · PPT</div>
+    <div class="title" style="color:#2B2B2E;font-family:'Poppins',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#F4625F"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Poppins',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#F4625F;height:62%"></span><span class="bar" style="background:#FAB8B7;height:92%"></span><span class="bar" style="background:#F68582;height:44%"></span><span class="bar" style="background:#FDE0DF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-warm-hospitality-deck</div>
+    <div class="font">Poppins</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#F4625F" title="accent"></span><span class="sw" style="background:#FAB8B7" title="accent2"></span><span class="sw" style="background:#2B2B2E" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="ppt" data-tone="light" data-q="ppt-warm-minimal-diagram-deck work sans">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C2693F">DESIGN · PPT</div>
+    <div class="title" style="color:#3D3528;font-family:'Work Sans',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C2693F"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Work Sans',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C2693F;height:62%"></span><span class="bar" style="background:#E4BCA9;height:92%"></span><span class="bar" style="background:#CF8A69;height:44%"></span><span class="bar" style="background:#F3E1D9;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">ppt-warm-minimal-diagram-deck</div>
+    <div class="font">Work Sans</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C2693F" title="accent"></span><span class="sw" style="background:#E4BCA9" title="accent2"></span><span class="sw" style="background:#3D3528" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-ppt">PPT</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-acid-display-tech-zine clash display">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#4FFFB0">DESIGN · WEB</div>
+    <div class="title" style="color:#164731;font-family:'Clash Display',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#4FFFB0"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Clash Display',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#4FFFB0;height:62%"></span><span class="bar" style="background:#7C4DFF;height:92%"></span><span class="bar" style="background:#B0FFDB;height:44%"></span><span class="bar" style="background:#76FFC1;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-acid-display-tech-zine</div>
+    <div class="font">Clash Display</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#4FFFB0" title="accent"></span><span class="sw" style="background:#7C4DFF" title="accent2"></span><span class="sw" style="background:#164731" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-ai-gradient-mesh geist">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#0E7C86">DESIGN · WEB</div>
+    <div class="title" style="color:#1D2321;font-family:'Geist',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#0E7C86"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Geist',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#0E7C86;height:62%"></span><span class="bar" style="background:#93C4C9;height:92%"></span><span class="bar" style="background:#4399A1;height:44%"></span><span class="bar" style="background:#CFE5E7;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-ai-gradient-mesh</div>
+    <div class="font">Geist</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#0E7C86" title="accent"></span><span class="sw" style="background:#93C4C9" title="accent2"></span><span class="sw" style="background:#1D2321" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-angular-true-black-prestige saira condensed">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C9A24A">DESIGN · WEB</div>
+    <div class="title" style="color:#382D15;font-family:'Saira Condensed',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C9A24A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Saira Condensed',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C9A24A;height:62%"></span><span class="bar" style="background:#E7D5AE;height:92%"></span><span class="bar" style="background:#D5B672;height:44%"></span><span class="bar" style="background:#F4ECDB;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-angular-true-black-prestige</div>
+    <div class="font">Saira Condensed</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C9A24A" title="accent"></span><span class="sw" style="background:#E7D5AE" title="accent2"></span><span class="sw" style="background:#382D15" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-archive-library spectral">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#7A3B2E">DESIGN · WEB</div>
+    <div class="title" style="color:#1F1D18;font-family:'Spectral',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#7A3B2E"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Spectral',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#7A3B2E;height:62%"></span><span class="bar" style="background:#C3A7A1;height:92%"></span><span class="bar" style="background:#97665C;height:44%"></span><span class="bar" style="background:#E4D8D5;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-archive-library</div>
+    <div class="font">Spectral</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#7A3B2E" title="accent"></span><span class="sw" style="background:#C3A7A1" title="accent2"></span><span class="sw" style="background:#1F1D18" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-art-nouveau-florido cormorant garamond">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C9A227">DESIGN · WEB</div>
+    <div class="title" style="color:#2E2A22;font-family:'Cormorant Garamond',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C9A227"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Cormorant Garamond',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C9A227;height:62%"></span><span class="bar" style="background:#6E7E5B;height:92%"></span><span class="bar" style="background:#6B4869;height:44%"></span><span class="bar" style="background:#E7D59E;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-art-nouveau-florido</div>
+    <div class="font">Cormorant Garamond</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C9A227" title="accent"></span><span class="sw" style="background:#6E7E5B" title="accent2"></span><span class="sw" style="background:#2E2A22" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-atelier-archive-serif source serif 4">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#211F1A">DESIGN · WEB</div>
+    <div class="title" style="color:#211F1A;font-family:'Source Serif 4',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#211F1A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Source Serif 4',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#211F1A;height:62%"></span><span class="bar" style="background:#9B9A98;height:92%"></span><span class="bar" style="background:#52504C;height:44%"></span><span class="bar" style="background:#D3D2D1;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-atelier-archive-serif</div>
+    <div class="font">Source Serif 4</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#211F1A" title="accent"></span><span class="sw" style="background:#9B9A98" title="accent2"></span><span class="sw" style="background:#211F1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-aurora-french-modernism clash display">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FFE14D">DESIGN · WEB</div>
+    <div class="title" style="color:#0E0E12;font-family:'Clash Display',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FFE14D"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Clash Display',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FFE14D;height:62%"></span><span class="bar" style="background:#2BC4FF;height:92%"></span><span class="bar" style="background:#FF5BA8;height:44%"></span><span class="bar" style="background:#FFF2AF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-aurora-french-modernism</div>
+    <div class="font">Clash Display</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FFE14D" title="accent"></span><span class="sw" style="background:#2BC4FF" title="accent2"></span><span class="sw" style="background:#0E0E12" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-bauhaus-geometric archivo">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#D62828">DESIGN · WEB</div>
+    <div class="title" style="color:#141414;font-family:'Archivo',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#D62828"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Archivo',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#D62828;height:62%"></span><span class="bar" style="background:#F2B705;height:92%"></span><span class="bar" style="background:#1D4E9C;height:44%"></span><span class="bar" style="background:#ED9E9E;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-bauhaus-geometric</div>
+    <div class="font">Archivo</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#D62828" title="accent"></span><span class="sw" style="background:#F2B705" title="accent2"></span><span class="sw" style="background:#141414" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-big-type-statement anton">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FF3B00">DESIGN · WEB</div>
+    <div class="title" style="color:#0E0E0E;font-family:'Anton',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FF3B00"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Anton',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FF3B00;height:62%"></span><span class="bar" style="background:#FFA78C;height:92%"></span><span class="bar" style="background:#FF6638;height:44%"></span><span class="bar" style="background:#FFD8CC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-big-type-statement</div>
+    <div class="font">Anton</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FF3B00" title="accent"></span><span class="sw" style="background:#FFA78C" title="accent2"></span><span class="sw" style="background:#0E0E0E" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-blueprint-grid ibm plex sans">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#E5484D">DESIGN · WEB</div>
+    <div class="title" style="color:#0A0A0A;font-family:'IBM Plex Sans',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#E5484D"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','IBM Plex Sans',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#E5484D;height:62%"></span><span class="bar" style="background:#F3ADAF;height:92%"></span><span class="bar" style="background:#EB7074;height:44%"></span><span class="bar" style="background:#FADADB;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-blueprint-grid</div>
+    <div class="font">IBM Plex Sans</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#E5484D" title="accent"></span><span class="sw" style="background:#F3ADAF" title="accent2"></span><span class="sw" style="background:#0A0A0A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-botanical-organic fraunces">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#6B7F5A">DESIGN · WEB</div>
+    <div class="title" style="color:#34301F;font-family:'Fraunces',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#6B7F5A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Fraunces',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#6B7F5A;height:62%"></span><span class="bar" style="background:#C06A3E;height:92%"></span><span class="bar" style="background:#BCC5B5;height:44%"></span><span class="bar" style="background:#8C9B7E;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-botanical-organic</div>
+    <div class="font">Fraunces</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#6B7F5A" title="accent"></span><span class="sw" style="background:#C06A3E" title="accent2"></span><span class="sw" style="background:#34301F" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-chiaroscuro-motorsport-editorial newsreader">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#D40000">DESIGN · WEB</div>
+    <div class="title" style="color:#1A1A1A;font-family:'Newsreader',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#D40000"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Newsreader',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#D40000;height:62%"></span><span class="bar" style="background:#EC8C8C;height:92%"></span><span class="bar" style="background:#DD3838;height:44%"></span><span class="bar" style="background:#F6CCCC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-chiaroscuro-motorsport-editorial</div>
+    <div class="font">Newsreader</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#D40000" title="accent"></span><span class="sw" style="background:#EC8C8C" title="accent2"></span><span class="sw" style="background:#1A1A1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-cinematic-marque-reveal anton">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FF4D2E">DESIGN · WEB</div>
+    <div class="title" style="color:#47160D;font-family:'Anton',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FF4D2E"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Anton',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FF4D2E;height:62%"></span><span class="bar" style="background:#FFAFA1;height:92%"></span><span class="bar" style="background:#FF745C;height:44%"></span><span class="bar" style="background:#FFDBD5;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-cinematic-marque-reveal</div>
+    <div class="font">Anton</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FF4D2E" title="accent"></span><span class="sw" style="background:#FFAFA1" title="accent2"></span><span class="sw" style="background:#47160D" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-claymorphism nunito">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#7C5CFF">DESIGN · WEB</div>
+    <div class="title" style="color:#3A3360;font-family:'Nunito',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#7C5CFF"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Nunito',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#7C5CFF;height:62%"></span><span class="bar" style="background:#FF8FAB;height:92%"></span><span class="bar" style="background:#C4B6FF;height:44%"></span><span class="bar" style="background:#9980FF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-claymorphism</div>
+    <div class="font">Nunito</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#7C5CFF" title="accent"></span><span class="sw" style="background:#FF8FAB" title="accent2"></span><span class="sw" style="background:#3A3360" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-couture-color-block playfair display">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#5C1F2E">DESIGN · WEB</div>
+    <div class="title" style="color:#1A1714;font-family:'Playfair Display',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#5C1F2E"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Playfair Display',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#5C1F2E;height:62%"></span><span class="bar" style="background:#1F3A2C;height:92%"></span><span class="bar" style="background:#1F3A6E;height:44%"></span><span class="bar" style="background:#B69AA1;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-couture-color-block</div>
+    <div class="font">Playfair Display</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#5C1F2E" title="accent"></span><span class="sw" style="background:#1F3A2C" title="accent2"></span><span class="sw" style="background:#1A1714" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-dark-luxury cormorant garamond">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C9A55C">DESIGN · WEB</div>
+    <div class="title" style="color:#382E1A;font-family:'Cormorant Garamond',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C9A55C"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Cormorant Garamond',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C9A55C;height:62%"></span><span class="bar" style="background:#E7D6B6;height:92%"></span><span class="bar" style="background:#D5B980;height:44%"></span><span class="bar" style="background:#F4EDDE;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-dark-luxury</div>
+    <div class="font">Cormorant Garamond</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C9A55C" title="accent"></span><span class="sw" style="background:#E7D6B6" title="accent2"></span><span class="sw" style="background:#382E1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-dark-terminal jetbrains mono">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#00E599">DESIGN · WEB</div>
+    <div class="title" style="color:#00402B;font-family:'JetBrains Mono',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#00E599"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','JetBrains Mono',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#00E599;height:62%"></span><span class="bar" style="background:#8CF3D1;height:92%"></span><span class="bar" style="background:#38EBAF;height:44%"></span><span class="bar" style="background:#CCFAEB;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-dark-terminal</div>
+    <div class="font">JetBrains Mono</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#00E599" title="accent"></span><span class="sw" style="background:#8CF3D1" title="accent2"></span><span class="sw" style="background:#00402B" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-de-stijl-neoplastic archivo black">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#E30613">DESIGN · WEB</div>
+    <div class="title" style="color:#1A1A1A;font-family:'Archivo Black',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#E30613"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Archivo Black',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#E30613;height:62%"></span><span class="bar" style="background:#FFD500;height:92%"></span><span class="bar" style="background:#0050A0;height:44%"></span><span class="bar" style="background:#F28F95;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-de-stijl-neoplastic</div>
+    <div class="font">Archivo Black</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#E30613" title="accent"></span><span class="sw" style="background:#FFD500" title="accent2"></span><span class="sw" style="background:#1A1A1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-editorial-confidence fraunces">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#1F3A2E">DESIGN · WEB</div>
+    <div class="title" style="color:#1A1A17;font-family:'Fraunces',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#1F3A2E"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Fraunces',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#1F3A2E;height:62%"></span><span class="bar" style="background:#9AA6A1;height:92%"></span><span class="bar" style="background:#50655C;height:44%"></span><span class="bar" style="background:#D2D8D5;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-editorial-confidence</div>
+    <div class="font">Fraunces</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#1F3A2E" title="accent"></span><span class="sw" style="background:#9AA6A1" title="accent2"></span><span class="sw" style="background:#1A1A17" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-editorial-longform playfair display">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#9A3324">DESIGN · WEB</div>
+    <div class="title" style="color:#1A1A1A;font-family:'Playfair Display',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#9A3324"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Playfair Display',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#9A3324;height:62%"></span><span class="bar" style="background:#D2A39C;height:92%"></span><span class="bar" style="background:#B06054;height:44%"></span><span class="bar" style="background:#EBD6D3;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-editorial-longform</div>
+    <div class="font">Playfair Display</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#9A3324" title="accent"></span><span class="sw" style="background:#D2A39C" title="accent2"></span><span class="sw" style="background:#1A1A1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-fun-illustrated fredoka">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FF6B4A">DESIGN · WEB</div>
+    <div class="title" style="color:#2D2A26;font-family:'Fredoka',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FF6B4A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Fredoka',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FF6B4A;height:62%"></span><span class="bar" style="background:#FFC24B;height:92%"></span><span class="bar" style="background:#2BB3A3;height:44%"></span><span class="bar" style="background:#7B4DDB;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-fun-illustrated</div>
+    <div class="font">Fredoka</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FF6B4A" title="accent"></span><span class="sw" style="background:#FFC24B" title="accent2"></span><span class="sw" style="background:#2D2A26" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-glassmorphism inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FFFFFF">DESIGN · WEB</div>
+    <div class="title" style="color:#474747;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FFFFFF"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FFFFFF;height:62%"></span><span class="bar" style="background:#FFFFFF;height:92%"></span><span class="bar" style="background:#FFFFFF;height:44%"></span><span class="bar" style="background:#FFFFFF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-glassmorphism</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FFFFFF" title="accent"></span><span class="sw" style="background:#FFFFFF" title="accent2"></span><span class="sw" style="background:#474747" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-grand-serif-statement playfair display">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#15130F">DESIGN · WEB</div>
+    <div class="title" style="color:#15130F;font-family:'Playfair Display',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#15130F"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Playfair Display',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#15130F;height:62%"></span><span class="bar" style="background:#969593;height:92%"></span><span class="bar" style="background:#484744;height:44%"></span><span class="bar" style="background:#D0D0CF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-grand-serif-statement</div>
+    <div class="font">Playfair Display</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#15130F" title="accent"></span><span class="sw" style="background:#969593" title="accent2"></span><span class="sw" style="background:#15130F" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-haute-jewelry-noir cormorant">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C8A96A">DESIGN · WEB</div>
+    <div class="title" style="color:#382F1E;font-family:'Cormorant',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C8A96A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Cormorant',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C8A96A;height:62%"></span><span class="bar" style="background:#E6D8BC;height:92%"></span><span class="bar" style="background:#D4BC8B;height:44%"></span><span class="bar" style="background:#F4EEE1;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-haute-jewelry-noir</div>
+    <div class="font">Cormorant</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C8A96A" title="accent"></span><span class="sw" style="background:#E6D8BC" title="accent2"></span><span class="sw" style="background:#382F1E" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-immersive-media-grid space grotesk">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#19E57D">DESIGN · WEB</div>
+    <div class="title" style="color:#074023;font-family:'Space Grotesk',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#19E57D"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Space Grotesk',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#19E57D;height:62%"></span><span class="bar" style="background:#98F3C4;height:92%"></span><span class="bar" style="background:#4CEB9A;height:44%"></span><span class="bar" style="background:#D1FAE5;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-immersive-media-grid</div>
+    <div class="font">Space Grotesk</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#19E57D" title="accent"></span><span class="sw" style="background:#98F3C4" title="accent2"></span><span class="sw" style="background:#074023" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-iridescent-marketing-flow space grotesk">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C7E86B">DESIGN · WEB</div>
+    <div class="title" style="color:#191A23;font-family:'Space Grotesk',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C7E86B"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Space Grotesk',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C7E86B;height:62%"></span><span class="bar" style="background:#FF8B6A;height:92%"></span><span class="bar" style="background:#8FC9F0;height:44%"></span><span class="bar" style="background:#E6F5BC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-iridescent-marketing-flow</div>
+    <div class="font">Space Grotesk</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C7E86B" title="accent"></span><span class="sw" style="background:#FF8B6A" title="accent2"></span><span class="sw" style="background:#191A23" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-iridescent-noir-prestige geist">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C9C9D4">DESIGN · WEB</div>
+    <div class="title" style="color:#38383B;font-family:'Geist',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C9C9D4"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Geist',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C9C9D4;height:62%"></span><span class="bar" style="background:#9B7FE8;height:92%"></span><span class="bar" style="background:#5FD4E0;height:44%"></span><span class="bar" style="background:#E7E7EC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-iridescent-noir-prestige</div>
+    <div class="font">Geist</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C9C9D4" title="accent"></span><span class="sw" style="background:#9B7FE8" title="accent2"></span><span class="sw" style="background:#38383B" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-luminous-dark-bento inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C026D3">DESIGN · WEB</div>
+    <div class="title" style="color:#360B3B;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C026D3"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C026D3;height:62%"></span><span class="bar" style="background:#6366F1;height:92%"></span><span class="bar" style="background:#E39DEB;height:44%"></span><span class="bar" style="background:#CE56DD;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-luminous-dark-bento</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C026D3" title="accent"></span><span class="sw" style="background:#6366F1" title="accent2"></span><span class="sw" style="background:#360B3B" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-material-expressive roboto flex">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#6750A4">DESIGN · WEB</div>
+    <div class="title" style="color:#1D1B1A;font-family:'Roboto Flex',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#6750A4"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Roboto Flex',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#6750A4;height:62%"></span><span class="bar" style="background:#E8732A;height:92%"></span><span class="bar" style="background:#2E9C75;height:44%"></span><span class="bar" style="background:#BBB0D6;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-material-expressive</div>
+    <div class="font">Roboto Flex</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#6750A4" title="accent"></span><span class="sw" style="background:#E8732A" title="accent2"></span><span class="sw" style="background:#1D1B1A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-memphis-postmodern poppins">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#E8412C">DESIGN · WEB</div>
+    <div class="title" style="color:#1C1C1C;font-family:'Poppins',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#E8412C"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Poppins',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#E8412C;height:62%"></span><span class="bar" style="background:#F5C518;height:92%"></span><span class="bar" style="background:#2B59C3;height:44%"></span><span class="bar" style="background:#3FBF9A;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-memphis-postmodern</div>
+    <div class="font">Poppins</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#E8412C" title="accent"></span><span class="sw" style="background:#F5C518" title="accent2"></span><span class="sw" style="background:#1C1C1C" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-minimal-luxury jost">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#1A1A18">DESIGN · WEB</div>
+    <div class="title" style="color:#1A1A18;font-family:'Jost',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#1A1A18"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Jost',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#1A1A18;height:62%"></span><span class="bar" style="background:#989897;height:92%"></span><span class="bar" style="background:#4C4C4B;height:44%"></span><span class="bar" style="background:#D1D1D1;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-minimal-luxury</div>
+    <div class="font">Jost</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#1A1A18" title="accent"></span><span class="sw" style="background:#989897" title="accent2"></span><span class="sw" style="background:#1A1A18" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-monospace-docs ibm plex mono">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#1A56DB">DESIGN · WEB</div>
+    <div class="title" style="color:#171717;font-family:'IBM Plex Mono',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#1A56DB"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','IBM Plex Mono',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#1A56DB;height:62%"></span><span class="bar" style="background:#98B3EF;height:92%"></span><span class="bar" style="background:#4C7BE3;height:44%"></span><span class="bar" style="background:#D1DDF8;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-monospace-docs</div>
+    <div class="font">IBM Plex Mono</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#1A56DB" title="accent"></span><span class="sw" style="background:#98B3EF" title="accent2"></span><span class="sw" style="background:#171717" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-monumental-hypercar-display anton">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#1A2D5A">DESIGN · WEB</div>
+    <div class="title" style="color:#070D19;font-family:'Anton',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#1A2D5A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Anton',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#1A2D5A;height:62%"></span><span class="bar" style="background:#98A0B5;height:92%"></span><span class="bar" style="background:#4C5B7E;height:44%"></span><span class="bar" style="background:#D1D5DE;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-monumental-hypercar-display</div>
+    <div class="font">Anton</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#1A2D5A" title="accent"></span><span class="sw" style="background:#98A0B5" title="accent2"></span><span class="sw" style="background:#070D19" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-neo-brutalism archivo black">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FF5A36">DESIGN · WEB</div>
+    <div class="title" style="color:#0A0A0A;font-family:'Archivo Black',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FF5A36"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Archivo Black',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FF5A36;height:62%"></span><span class="bar" style="background:#FFD400;height:92%"></span><span class="bar" style="background:#2D6CDF;height:44%"></span><span class="bar" style="background:#1EC48F;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-neo-brutalism</div>
+    <div class="font">Archivo Black</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FF5A36" title="accent"></span><span class="sw" style="background:#FFD400" title="accent2"></span><span class="sw" style="background:#0A0A0A" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-news-journal-grid playfair display">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C8102E">DESIGN · WEB</div>
+    <div class="title" style="color:#161616;font-family:'Playfair Display',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C8102E"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Playfair Display',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C8102E;height:62%"></span><span class="bar" style="background:#E693A1;height:92%"></span><span class="bar" style="background:#D4455C;height:44%"></span><span class="bar" style="background:#F4CFD5;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-news-journal-grid</div>
+    <div class="font">Playfair Display</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C8102E" title="accent"></span><span class="sw" style="background:#E693A1" title="accent2"></span><span class="sw" style="background:#161616" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-orbital-warm-editorial fraunces">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#EB7B4C">DESIGN · WEB</div>
+    <div class="title" style="color:#2B2620;font-family:'Fraunces',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#EB7B4C"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Fraunces',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#EB7B4C;height:62%"></span><span class="bar" style="background:#F3A623;height:92%"></span><span class="bar" style="background:#F6C4AE;height:44%"></span><span class="bar" style="background:#EF9873;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-orbital-warm-editorial</div>
+    <div class="font">Fraunces</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#EB7B4C" title="accent"></span><span class="sw" style="background:#F3A623" title="accent2"></span><span class="sw" style="background:#2B2620" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-poetic-hospitality-scroll cormorant garamond">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#B4623F">DESIGN · WEB</div>
+    <div class="title" style="color:#321B12;font-family:'Cormorant Garamond',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#B4623F"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Cormorant Garamond',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#B4623F;height:62%"></span><span class="bar" style="background:#DDB8A9;height:92%"></span><span class="bar" style="background:#C48569;height:44%"></span><span class="bar" style="background:#F0E0D9;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-poetic-hospitality-scroll</div>
+    <div class="font">Cormorant Garamond</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#B4623F" title="accent"></span><span class="sw" style="background:#DDB8A9" title="accent2"></span><span class="sw" style="background:#321B12" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-precision-fintech inter tight">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#4F46E5">DESIGN · WEB</div>
+    <div class="title" style="color:#1A2233;font-family:'Inter Tight',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#4F46E5"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter Tight',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#4F46E5;height:62%"></span><span class="bar" style="background:#B0ACF3;height:92%"></span><span class="bar" style="background:#766FEB;height:44%"></span><span class="bar" style="background:#DCDAFA;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-precision-fintech</div>
+    <div class="font">Inter Tight</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#4F46E5" title="accent"></span><span class="sw" style="background:#B0ACF3" title="accent2"></span><span class="sw" style="background:#1A2233" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-prestige-saas-restraint geist">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#2D3850">DESIGN · WEB</div>
+    <div class="title" style="color:#1A1D24;font-family:'Geist',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#2D3850"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Geist',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#2D3850;height:62%"></span><span class="bar" style="background:#A0A5B0;height:92%"></span><span class="bar" style="background:#5B6476;height:44%"></span><span class="bar" style="background:#D5D7DC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-prestige-saas-restraint</div>
+    <div class="font">Geist</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#2D3850" title="accent"></span><span class="sw" style="background:#A0A5B0" title="accent2"></span><span class="sw" style="background:#1A1D24" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-radical-subtraction-white inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#171A20">DESIGN · WEB</div>
+    <div class="title" style="color:#171A20;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#171A20"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#171A20;height:62%"></span><span class="bar" style="background:#97989B;height:92%"></span><span class="bar" style="background:#4A4C51;height:44%"></span><span class="bar" style="background:#D1D1D2;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-radical-subtraction-white</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#171A20" title="accent"></span><span class="sw" style="background:#97989B" title="accent2"></span><span class="sw" style="background:#171A20" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-risograph-print archivo black">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#FF4D8D">DESIGN · WEB</div>
+    <div class="title" style="color:#1A1814;font-family:'Archivo Black',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#FF4D8D"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Archivo Black',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#FF4D8D;height:62%"></span><span class="bar" style="background:#2647E0;height:92%"></span><span class="bar" style="background:#F2B417;height:44%"></span><span class="bar" style="background:#FFAFCC;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-risograph-print</div>
+    <div class="font">Archivo Black</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#FF4D8D" title="accent"></span><span class="sw" style="background:#2647E0" title="accent2"></span><span class="sw" style="background:#1A1814" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-signal-monochrome inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#1F4DFF">DESIGN · WEB</div>
+    <div class="title" style="color:#000000;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#1F4DFF"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#1F4DFF;height:62%"></span><span class="bar" style="background:#9AAFFF;height:92%"></span><span class="bar" style="background:#5074FF;height:44%"></span><span class="bar" style="background:#D2DBFF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-signal-monochrome</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#1F4DFF" title="accent"></span><span class="sw" style="background:#9AAFFF" title="accent2"></span><span class="sw" style="background:#000000" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-spatial-immersive-hero inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#5FD0D8">DESIGN · WEB</div>
+    <div class="title" style="color:#1B3A3C;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#5FD0D8"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#5FD0D8;height:62%"></span><span class="bar" style="background:#B7EAED;height:92%"></span><span class="bar" style="background:#82DAE1;height:44%"></span><span class="bar" style="background:#DFF6F7;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-spatial-immersive-hero</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#5FD0D8" title="accent"></span><span class="sw" style="background:#B7EAED" title="accent2"></span><span class="sw" style="background:#1B3A3C" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-swiss-grid inter">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#E2231A">DESIGN · WEB</div>
+    <div class="title" style="color:#111111;font-family:'Inter',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#E2231A"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Inter',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#E2231A;height:62%"></span><span class="bar" style="background:#F29C98;height:92%"></span><span class="bar" style="background:#E8534C;height:44%"></span><span class="bar" style="background:#F9D3D1;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-swiss-grid</div>
+    <div class="font">Inter</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#E2231A" title="accent"></span><span class="sw" style="background:#F29C98" title="accent2"></span><span class="sw" style="background:#111111" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-tactile-luxury-editorial spectral">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#B8862F">DESIGN · WEB</div>
+    <div class="title" style="color:#2C2620;font-family:'Spectral',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#B8862F"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Spectral',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#B8862F;height:62%"></span><span class="bar" style="background:#5F6B3C;height:92%"></span><span class="bar" style="background:#DFC9A1;height:44%"></span><span class="bar" style="background:#C8A15D;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-tactile-luxury-editorial</div>
+    <div class="font">Spectral</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#B8862F" title="accent"></span><span class="sw" style="background:#5F6B3C" title="accent2"></span><span class="sw" style="background:#2C2620" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-tactile-soft-product plus jakarta sans">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#6FAE9B">DESIGN · WEB</div>
+    <div class="title" style="color:#3A3733;font-family:'Plus Jakarta Sans',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#6FAE9B"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Plus Jakarta Sans',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#6FAE9B;height:62%"></span><span class="bar" style="background:#E08A6A;height:92%"></span><span class="bar" style="background:#BEDBD2;height:44%"></span><span class="bar" style="background:#8FC0B1;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-tactile-soft-product</div>
+    <div class="font">Plus Jakarta Sans</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#6FAE9B" title="accent"></span><span class="sw" style="background:#E08A6A" title="accent2"></span><span class="sw" style="background:#3A3733" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-technical-precision-marque ibm plex sans">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#5AA9E6">DESIGN · WEB</div>
+    <div class="title" style="color:#192F40;font-family:'IBM Plex Sans',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#5AA9E6"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','IBM Plex Sans',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#5AA9E6;height:62%"></span><span class="bar" style="background:#B5D8F4;height:92%"></span><span class="bar" style="background:#7EBCEC;height:44%"></span><span class="bar" style="background:#DEEEFA;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-technical-precision-marque</div>
+    <div class="font">IBM Plex Sans</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#5AA9E6" title="accent"></span><span class="sw" style="background:#B5D8F4" title="accent2"></span><span class="sw" style="background:#192F40" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span><span class="bg prem">PREMIUM</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-velvet-dark-boutique cormorant">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#C79A52">DESIGN · WEB</div>
+    <div class="title" style="color:#382B17;font-family:'Cormorant',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#C79A52"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Cormorant',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#C79A52;height:62%"></span><span class="bar" style="background:#A87B3E;height:92%"></span><span class="bar" style="background:#E6D2B1;height:44%"></span><span class="bar" style="background:#D3B078;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-velvet-dark-boutique</div>
+    <div class="font">Cormorant</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#C79A52" title="accent"></span><span class="sw" style="background:#A87B3E" title="accent2"></span><span class="sw" style="background:#382B17" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-warm-workspace fraunces">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#4F4DC4">DESIGN · WEB</div>
+    <div class="title" style="color:#37352F;font-family:'Fraunces',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#4F4DC4"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Fraunces',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#4F4DC4;height:62%"></span><span class="bar" style="background:#E8A87C;height:92%"></span><span class="bar" style="background:#B0AFE4;height:44%"></span><span class="bar" style="background:#7674D1;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-warm-workspace</div>
+    <div class="font">Fraunces</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#4F4DC4" title="accent"></span><span class="sw" style="background:#E8A87C" title="accent2"></span><span class="sw" style="background:#37352F" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="card" data-track="web" data-tone="light" data-q="web-y2k-chrome orbitron">
+  <div class="slide" style="background:#FFFFFF">
+    <div class="eyebrow" style="color:#0A5CFF">DESIGN · WEB</div>
+    <div class="title" style="color:#1A2238;font-family:'Orbitron',system-ui,'Pretendard',sans-serif">Aa 디자인 제목<br>Sample Headline</div>
+    <div class="accentbar" style="background:#0A5CFF"></div>
+    <div class="sub" style="color:#64748B;font-family:'Pretendard','Orbitron',system-ui,'Pretendard',sans-serif">본문 미리보기 · body preview</div>
+    <div class="bars"><span class="bar" style="background:#0A5CFF;height:62%"></span><span class="bar" style="background:#FF5EC8;height:92%"></span><span class="bar" style="background:#91B6FF;height:44%"></span><span class="bar" style="background:#4080FF;height:74%"></span></div>
+  </div>
+  <div class="meta">
+    <div class="name">web-y2k-chrome</div>
+    <div class="font">Orbitron</div>
+    <div class="row"><div class="sws"><span class="sw" style="background:#0A5CFF" title="accent"></span><span class="sw" style="background:#FF5EC8" title="accent2"></span><span class="sw" style="background:#1A2238" title="navy"></span><span class="sw" style="background:#FFFFFF" title="canvas"></span></div><div class="badges"><span class="bg t-web">WEB</span><span class="bg tone">라이트</span></div></div>
+  </div>
+</div>
+<div class="empty" id="empty" style="display:none">조건에 맞는 룩이 없습니다.</div>
+</div>
+<script>
+const cards=[...document.querySelectorAll('.card')];
+let fTrack='all',fTone='all',fQ='';
+function seg(id,set){document.querySelectorAll('#'+id+' button').forEach(b=>{
+  b.onclick=()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');set(b.dataset.v);apply();};});}
+seg('seg-track',v=>fTrack=v); seg('seg-tone',v=>fTone=v);
+document.getElementById('q').addEventListener('input',e=>{fQ=e.target.value.trim().toLowerCase();apply();});
+function apply(){let n=0;cards.forEach(c=>{
+  const ok=(fTrack==='all'||c.dataset.track===fTrack)
+    &&(fTone==='all'||c.dataset.tone===fTone)
+    &&(fQ===''||c.dataset.q.includes(fQ));
+  c.style.display=ok?'':'none'; if(ok)n++;});
+  document.getElementById('empty').style.display=n?'none':'';
+  document.getElementById('count').textContent=n+' 룩';}
+const initT=document.body.getAttribute('data-init-track');
+if(initT){document.querySelector('#seg-track button[data-v="'+initT+'"]')?.click();}
+apply();
+</script></body></html>

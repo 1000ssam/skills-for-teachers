@@ -1,0 +1,28 @@
+{
+  "title": "spec-schema 스모크 — 23 아키타입 최소 입력",
+  "slides": [
+    { "archetype": "cover", "data": { "kicker": "SMOKE", "bg": "navy", "title": "최소 입력 검수", "subtitle": "spec-schema.md", "meta": "ppt-lab-rebuild" } },
+    { "archetype": "section", "data": { "index": "01", "title": "프레임", "caption": "Frame 패밀리" } },
+    { "archetype": "agenda", "data": { "title": "목차", "items": ["프레임", "포커스", "세트", { "title": "데이터", "note": "차트" }] } },
+    { "archetype": "statement", "data": { "kicker": "주장", "title": "한 메시지", "lead": "핵심을 먼저 단언", "support": ["근거 1", "근거 2"] } },
+    { "archetype": "feature", "data": { "kicker": "사례", "title": "히어로 + 본문", "body": "bullets 없이 body 단락만으로도 동작" } },
+    { "archetype": "duo", "data": { "title": "두 항목", "items": [ { "label": "A", "heading": "항목 A", "bullets": ["요점 1", "요점 2"] }, { "label": "B", "heading": "항목 B", "body": "설명" } ] } },
+    { "archetype": "trio", "data": { "title": "세 항목", "items": [ { "heading": "하나", "body": "설명" }, { "heading": "둘", "body": "설명" }, { "heading": "셋", "body": "설명" } ] } },
+    { "archetype": "grid", "data": { "title": "4업 그리드", "items": [ { "heading": "카드 1", "body": "설명" }, { "heading": "카드 2", "body": "설명" }, { "heading": "카드 3", "body": "설명" }, { "heading": "카드 4", "body": "설명" } ] } },
+    { "archetype": "list", "data": { "title": "순차", "items": [ { "title": "단계 1", "body": "설명" }, { "title": "단계 2", "body": "설명" }, "문자열 항목도 허용" ] } },
+    { "archetype": "versus", "data": { "title": "A vs B", "left": { "label": "BEFORE", "heading": "수작업", "points": ["느림", "불일치"] }, "right": { "label": "AFTER", "heading": "자동화", "points": ["빠름", "일관"] } } },
+    { "archetype": "matrix", "data": { "title": "기준 × 옵션", "headers": ["기준", "A", "B"], "rows": [ ["속도", "높음", "낮음"], ["비용", "낮음", "높음"] ] } },
+    { "archetype": "rank", "data": { "title": "순위", "rows": [ { "rank": 1, "label": "1위", "delta": "▲2", "highlight": true }, { "rank": 2, "label": "2위", "delta": "▼1" }, { "rank": 3, "label": "3위", "delta": "—" } ] } },
+    { "archetype": "quadrant", "data": { "title": "2×2", "x_axis": "긴급도", "y_axis": "중요도", "cells": [ { "label": "Q1", "heading": "지금", "bullets": ["A"] }, { "label": "Q2", "heading": "계획", "body": "설명" }, { "label": "Q3", "heading": "위임", "body": "설명" }, { "label": "Q4", "heading": "제거", "body": "설명" } ] } },
+    { "archetype": "map", "data": { "title": "포지셔닝", "x_axis": "가격", "y_axis": "품질", "points": [ { "x": 0.7, "y": 0.8, "label": "우리", "highlight": true }, { "x": 0.3, "y": 0.4, "label": "경쟁사" } ] } },
+    { "archetype": "flow", "data": { "title": "3단계", "steps": [ { "heading": "1단계", "body": "설명" }, { "heading": "2단계", "body": "설명" }, { "heading": "3단계", "body": "설명" } ] } },
+    { "archetype": "system", "data": { "title": "구조", "core": "코어", "nodes": [ { "label": "노드 A" }, "노드 B", { "label": "노드 C" }, "노드 D" ] } },
+    { "archetype": "share", "data": { "title": "점유율", "categories": ["A", "B", "C", "D"], "values": [40, 30, 20, 10] } },
+    { "archetype": "bars", "data": { "title": "항목 비교", "categories": ["Q1", "Q2", "Q3"], "series": [ { "name": "건수", "values": [120, 240, 410] } ] } },
+    { "archetype": "trend", "data": { "title": "추이", "categories": ["1월", "2월", "3월", "4월"], "series": [ { "name": "Organic", "values": [10, 18, 27, 35] }, { "name": "Referral", "values": [5, 9, 14, 20] } ] } },
+    { "archetype": "spread", "data": { "title": "분포", "categories": ["0-10", "10-20", "20-30", "30+"], "values": [3, 12, 25, 7] } },
+    { "archetype": "correlate", "data": { "title": "산점도", "points": [ { "x": 1, "y": 2.4 }, { "x": 2, "y": 4.8 }, { "x": 3, "y": 4.2 }, { "x": 4, "y": 6.6 } ] } },
+    { "archetype": "kpi", "data": { "kicker": "지표", "title": "핵심 지표", "items": [ { "value": "-78%", "label": "제작시간", "note": "건당" }, { "value": "12K", "label": "MAU", "note": "+24%" }, { "value": "23", "label": "아키타입" } ] } },
+    { "archetype": "closing", "data": { "kicker": "NEXT", "bg": "navy", "title": "끝", "subtitle": "스모크 통과", "cta": "다음 →" } }
+  ]
+}

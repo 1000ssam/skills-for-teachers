@@ -1,0 +1,519 @@
+{
+  "_meta": {
+    "generated": "generated from grid.json — do not hand-edit; edit grid.json or gen-layouts.py",
+    "canvas": {
+      "w": 1920,
+      "h": 1080,
+      "dpi": 96,
+      "note": "16:9, px→inch는 px/96 (build-template.py)"
+    },
+    "baseline": 4,
+    "margin": {
+      "x": 96,
+      "top": 64,
+      "bottom": 64,
+      "_note": "x=96(=1인치, 의미적으로 깔끔). 좌우 96 → 콘텐츠폭 1728(=90%). 상하 64."
+    },
+    "header_band": {
+      "kicker": [
+        96,
+        64,
+        1728,
+        28
+      ],
+      "title": [
+        96,
+        100,
+        1582,
+        226
+      ],
+      "divider": [
+        96,
+        193,
+        1728,
+        2
+      ],
+      "body_top_y": 306
+    },
+    "footer_band": {
+      "caption": [
+        96,
+        983,
+        1290,
+        24
+      ],
+      "pageno": [
+        1702,
+        983,
+        122,
+        24
+      ],
+      "pageno_align": "right"
+    }
+  },
+  "grid": {
+    "columns": {
+      "count": 12,
+      "gutter": 24,
+      "col_w": 122,
+      "col_pitch": 146,
+      "origin_x": 96,
+      "content_w": 1728,
+      "_check": "12*122 + 11*24 = 1464 + 264 = 1728 ✓"
+    },
+    "rows": {
+      "count": 8,
+      "gutter": 16,
+      "row_h": 105,
+      "row_pitch": 121,
+      "origin_y": 64,
+      "content_h": 952,
+      "_check": "8*105 + 7*16 = 840 + 112 = 952 ✓"
+    },
+    "_derivation": "col_pitch=col_w+gutter, row_pitch=row_h+row_gutter. grid_box(c0,cspan,r0,rspan) → x=origin_x+c0*col_pitch; w=cspan*col_w+(cspan-1)*gutter; y=origin_y+r0*row_pitch; h=rspan*row_h+(rspan-1)*row_gutter. 모든 산출 좌표는 정수 px."
+  },
+  "archetypes": {
+    "cover": {
+      "family": "Frame",
+      "header": false,
+      "bg": "canvas",
+      "_notes": "덱 오프닝. bg/색은 룩·팔레트가 결정(canvas=룩 캔버스). 선택적 풀블리드 배경 이미지.",
+      "slots": {
+        "kicker": [
+          96,
+          185,
+          1144,
+          105
+        ],
+        "title": [
+          96,
+          306,
+          1582,
+          347
+        ],
+        "subtitle": [
+          96,
+          669,
+          1290,
+          105
+        ],
+        "meta": [
+          96,
+          911,
+          1290,
+          105
+        ]
+      }
+    },
+    "section": {
+      "family": "Frame",
+      "header": false,
+      "bg": "canvas",
+      "_notes": "섹션 전환. 선택적 사이드/풀블리드 배경 이미지.",
+      "slots": {
+        "index": [
+          96,
+          185,
+          268,
+          105
+        ],
+        "section_title": [
+          96,
+          427,
+          1436,
+          226
+        ],
+        "caption": [
+          96,
+          669,
+          1144,
+          105
+        ]
+      }
+    },
+    "agenda": {
+      "family": "Frame",
+      "header": false,
+      "_notes": "목차. items 컨테이너를 항목 수만큼 행 분배(번호/불릿).",
+      "slots": {
+        "kicker": [
+          96,
+          64,
+          852,
+          105
+        ],
+        "title": [
+          96,
+          185,
+          1436,
+          105
+        ],
+        "items": [
+          96,
+          427,
+          1728,
+          468
+        ]
+      }
+    },
+    "closing": {
+      "family": "Frame",
+      "header": false,
+      "bg": "canvas",
+      "_notes": "마무리/CTA.",
+      "slots": {
+        "kicker": [
+          96,
+          185,
+          1144,
+          105
+        ],
+        "title": [
+          96,
+          306,
+          1582,
+          226
+        ],
+        "subtitle": [
+          96,
+          548,
+          1290,
+          105
+        ],
+        "cta": [
+          96,
+          790,
+          560,
+          105
+        ]
+      }
+    },
+    "statement": {
+      "family": "Focus",
+      "header": true,
+      "_notes": "한 주장(lead=풀쿼트, 좌측 액센트 바+h1) + 근거. image 는 선택적 보조 미디어.",
+      "slots": {
+        "lead": [
+          96,
+          306,
+          1290,
+          226
+        ],
+        "support": [
+          96,
+          548,
+          1582,
+          347
+        ],
+        "image": [
+          1118,
+          548,
+          706,
+          347
+        ]
+      }
+    },
+    "feature": {
+      "family": "Focus",
+      "header": true,
+      "_notes": "히어로 비주얼 + 인사이트. media=media() 헬퍼.",
+      "slots": {
+        "body": [
+          96,
+          306,
+          852,
+          468
+        ],
+        "media": [
+          1118,
+          306,
+          706,
+          589
+        ]
+      }
+    },
+    "duo": {
+      "family": "Set",
+      "header": true,
+      "_notes": "2 동등 항목. 각 카드 상단에 선택적 이미지 밴드(이미지 카드 변종).",
+      "slots": {
+        "item_l": [
+          96,
+          306,
+          852,
+          589
+        ],
+        "item_r": [
+          972,
+          306,
+          852,
+          589
+        ]
+      }
+    },
+    "trio": {
+      "family": "Set",
+      "header": true,
+      "_notes": "3 동등 항목. 카드별 선택적 이미지 밴드.",
+      "slots": {
+        "col1": [
+          96,
+          306,
+          560,
+          589
+        ],
+        "col2": [
+          680,
+          306,
+          560,
+          589
+        ],
+        "col3": [
+          1264,
+          306,
+          560,
+          589
+        ]
+      }
+    },
+    "grid": {
+      "family": "Set",
+      "header": true,
+      "_notes": "4~6 카드(2×2 또는 2×3). cells 컨테이너를 카드 수에 맞춰 분할. 카드별 선택적 이미지.",
+      "slots": {
+        "cells": [
+          96,
+          306,
+          1728,
+          589
+        ]
+      }
+    },
+    "list": {
+      "family": "Set",
+      "header": true,
+      "_notes": "순차 리스트/메뉴. items 컨테이너 행 분배(번호/불릿).",
+      "slots": {
+        "items": [
+          96,
+          306,
+          1728,
+          589
+        ]
+      }
+    },
+    "versus": {
+      "family": "Contrast",
+      "header": true,
+      "_notes": "A vs B / Before·After. 중앙 vs 마크는 빌드 함수가 두 박스 사이에 배치.",
+      "slots": {
+        "left": [
+          96,
+          306,
+          852,
+          589
+        ],
+        "right": [
+          972,
+          306,
+          852,
+          589
+        ]
+      }
+    },
+    "matrix": {
+      "family": "Contrast",
+      "header": true,
+      "_notes": "기준×옵션 표. 헤더행 + N행은 빌드 함수가 table 박스를 분할.",
+      "slots": {
+        "table": [
+          96,
+          306,
+          1728,
+          589
+        ]
+      }
+    },
+    "rank": {
+      "family": "Contrast",
+      "header": true,
+      "_notes": "서열/변동. rows 컨테이너 행 분배(rank/label/delta).",
+      "slots": {
+        "rows": [
+          96,
+          306,
+          1436,
+          589
+        ]
+      }
+    },
+    "quadrant": {
+      "family": "Field",
+      "header": true,
+      "_notes": "범주 2×2. cells 를 2×2 분할. x_axis/y_axis 라벨은 빌드 함수가 박스 가장자리에.",
+      "slots": {
+        "cells": [
+          96,
+          306,
+          1728,
+          589
+        ]
+      }
+    },
+    "map": {
+      "family": "Field",
+      "header": true,
+      "_notes": "연속 2축 포지셔닝. points{x,y:0~1}를 plot 박스 안에 배치. 축라벨은 가장자리.",
+      "slots": {
+        "plot": [
+          96,
+          306,
+          1290,
+          589
+        ]
+      }
+    },
+    "flow": {
+      "family": "Structure",
+      "header": true,
+      "_notes": "순서/단계/타임라인. steps 컨테이너 가로 N분배 + 커넥터.",
+      "slots": {
+        "steps": [
+          96,
+          427,
+          1728,
+          347
+        ]
+      }
+    },
+    "system": {
+      "family": "Structure",
+      "header": true,
+      "_notes": "아키텍처/계층. core 중심 + nodes 영역에 코어 주위로 배치(오빗수학 폐기·그리드 파생).",
+      "slots": {
+        "core": [
+          680,
+          548,
+          560,
+          226
+        ],
+        "nodes": [
+          96,
+          306,
+          1728,
+          589
+        ]
+      }
+    },
+    "share": {
+      "family": "Data",
+      "header": true,
+      "_notes": "구성. 파이/도넛/누적. chart=chart() 헬퍼.",
+      "slots": {
+        "chart": [
+          96,
+          306,
+          998,
+          589
+        ],
+        "legend": [
+          1264,
+          306,
+          560,
+          589
+        ]
+      }
+    },
+    "bars": {
+      "family": "Data",
+      "header": true,
+      "_notes": "항목. 가로/세로 바.",
+      "slots": {
+        "chart": [
+          96,
+          306,
+          1728,
+          589
+        ]
+      }
+    },
+    "trend": {
+      "family": "Data",
+      "header": true,
+      "_notes": "시계열. 라인/세로열.",
+      "slots": {
+        "chart": [
+          96,
+          306,
+          1728,
+          589
+        ]
+      }
+    },
+    "spread": {
+      "family": "Data",
+      "header": true,
+      "_notes": "빈도. 히스토그램.",
+      "slots": {
+        "chart": [
+          96,
+          306,
+          1728,
+          589
+        ]
+      }
+    },
+    "correlate": {
+      "family": "Data",
+      "header": true,
+      "_notes": "상관. 스캐터/버블.",
+      "slots": {
+        "chart": [
+          96,
+          306,
+          1436,
+          589
+        ]
+      }
+    },
+    "kpi": {
+      "family": "Data",
+      "header": true,
+      "_notes": "다수 단일지표. cells 컨테이너 가로 N분할 빅넘버 카드.",
+      "slots": {
+        "cells": [
+          96,
+          306,
+          1728,
+          347
+        ]
+      }
+    }
+  },
+  "chart_region": {
+    "full": [
+      96,
+      306,
+      1728,
+      589
+    ],
+    "with_legend": [
+      96,
+      306,
+      998,
+      589
+    ],
+    "legend": [
+      1264,
+      306,
+      560,
+      589
+    ],
+    "kpi_row": [
+      96,
+      306,
+      1728,
+      347
+    ]
+  }
+}

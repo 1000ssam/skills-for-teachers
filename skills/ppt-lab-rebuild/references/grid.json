@@ -1,0 +1,52 @@
+{
+  "_meta": {
+    "purpose": "원본 그리드 SSOT. 모든 아키타입 좌표는 이 그리드에서 grid_box()로 파생된다(매직넘버 금지). 출처 = 이 문서(공개 캐논 기반 자작), 외부 측정 아님.",
+    "canon": [
+      "Josef Müller-Brockmann, 'Grid Systems in Graphic Design'(1961): 수학적 모듈 분할 + 타입 크기로 결정되는 베이스라인 정렬. 8~32 필드.",
+      "스위스 타이포그래피(International Typographic Style): 구조적·일관 정렬.",
+      "12컬럼 = 2·3·4·6 분할 호환(최대 유연성)."
+    ],
+    "canvas": { "w": 1920, "h": 1080, "dpi": 96, "note": "16:9, px→inch는 px/96 (build-template.py)" },
+    "baseline": 4,
+    "derivation": "col_pitch=col_w+gutter, row_pitch=row_h+row_gutter. grid_box(c0,cspan,r0,rspan) → x=origin_x+c0*col_pitch; w=cspan*col_w+(cspan-1)*gutter; y=origin_y+r0*row_pitch; h=rspan*row_h+(rspan-1)*row_gutter. 모든 산출 좌표는 정수 px."
+  },
+
+  "margin": { "x": 96, "top": 64, "bottom": 64,
+    "_note": "x=96(=1인치, 의미적으로 깔끔). 좌우 96 → 콘텐츠폭 1728(=90%). 상하 64." },
+
+  "columns": {
+    "count": 12, "gutter": 24, "col_w": 122, "col_pitch": 146,
+    "origin_x": 96, "content_w": 1728,
+    "_check": "12*122 + 11*24 = 1464 + 264 = 1728 ✓"
+  },
+
+  "rows": {
+    "count": 8, "gutter": 16, "row_h": 105, "row_pitch": 121,
+    "origin_y": 64, "content_h": 952,
+    "_check": "8*105 + 7*16 = 840 + 112 = 952 ✓"
+  },
+
+  "header_band": {
+    "_note": "content 아키타입(Frame 제외)의 상단 머리. 그리드 행0~1 영역에서 파생, 텍스트는 baseline(4) 단위 미세조정.",
+    "kicker":  { "grid": [0, 12, 0, 1], "h_override": 28, "_role": "eyebrow/overline" },
+    "title":   { "grid": [0, 11, 0, 2], "y_offset": 36, "_role": "섹션 제목(2행 span, kicker 아래)" },
+    "divider": { "grid": [0, 12, 1, 1], "y_offset": 8, "h_override": 2, "_role": "타이틀 바로 아래 룰(제목 하단에 hug — body_top 과 분리)" },
+    "body_top_row": 2,
+    "_body_top_px": "origin_y + 2*row_pitch = 64 + 242 = 306"
+  },
+
+  "footer_band": {
+    "_note": "선택적. 페이지번호·출처 캡션.",
+    "caption": { "grid": [0, 9, 7, 1], "y_offset": 72, "h_override": 24 },
+    "pageno":  { "grid": [11, 1, 7, 1], "y_offset": 72, "h_override": 24, "align": "right" }
+  },
+
+  "presets": {
+    "_note": "자주 쓰는 분할의 이름(가독). 아키타입 슬롯 명세가 참조.",
+    "full":      [0, 12],
+    "half_l":    [0, 6],  "half_r":    [6, 6],
+    "third_1":   [0, 4],  "third_2":   [4, 4],  "third_3":   [8, 4],
+    "twothird_l":[0, 8],  "third_side":[8, 4],
+    "quarter_1": [0, 3],  "quarter_2": [3, 3],  "quarter_3": [6, 3], "quarter_4": [9, 3]
+  }
+}
