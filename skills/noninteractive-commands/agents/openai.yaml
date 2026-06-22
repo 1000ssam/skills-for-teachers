@@ -1,0 +1,4 @@
+interface:
+  display_name: "Noninteractive Commands"
+  short_description: "Reduce avoidable y/n command prompts safely."
+  default_prompt: "Run this task with safe noninteractive choices; prefer explicit flags, use the bundled bounded auto-confirm script only when needed, and never blanket-confirm destructive prompts."

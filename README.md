@@ -1,6 +1,6 @@
 # skills-for-teachers
 
-한국 학교 교사를 위한 **Claude Code 스킬** 모음입니다.
+한국 학교 교사를 위한 **Claude Code / Codex 스킬** 모음입니다.
 
 공문서 정리, 수능 기출 분석, 인수인계서 작성, 교과세특 초안 작성 등 학교 행정·교육 업무를 자동화합니다.
 
@@ -18,10 +18,11 @@
 | **notion-pilot** | Notion API 통합 (DB/페이지/블록 CRUD, 파일 업로드, Upsert) | [README](skills/notion-pilot/README.md) |
 | **youtube-scraper-setup** | 유튜브 채널 RSS 스크래퍼 프로젝트 자동 세팅 (Notion DB + 자막 수집) | [README](skills/youtube-scraper-setup/README.md) |
 | **ppt-lab-rebuild** | 그리드 기반으로 수업 자료·발표 덱 PPTX 자동 생성 (110 디자인 룩) | [README](skills/ppt-lab-rebuild/README.md) |
+| **noninteractive-commands** | Codex 작업 중 y/yes 확인 프롬프트를 안전하게 비대화형 처리 | [README](skills/noninteractive-commands/README.md) |
 
 ---
 
-## 전체 설치 (모든 스킬 한 번에)
+## 전체 설치 (Claude Code 스킬 한 번에)
 
 ### macOS / Linux
 
@@ -50,6 +51,8 @@ irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.
 ## 스킬 하나만 설치하고 싶다면
 
 각 스킬의 README에서 개별 설치 명령어를 확인하세요.
+
+> `noninteractive-commands`는 Codex용 스킬이라 전체 설치 스크립트에 포함되지 않습니다. 해당 스킬의 README에서 개별 설치 명령어를 사용하세요.
 
 ---
 
