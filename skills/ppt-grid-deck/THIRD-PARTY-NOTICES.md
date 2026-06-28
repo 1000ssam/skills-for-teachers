@@ -1,10 +1,10 @@
 # Third-Party Notices
 
-ppt-lab incorporates design **specifications** and **design tokens** adapted from
+ppt-grid-deck incorporates design **specifications** and **design tokens** adapted from
 third-party open-source projects. This file records those sources and their
 licenses, as required by the MIT License.
 
-ppt-lab distributes only *specifications of visual principles* (color relationships,
+ppt-grid-deck distributes only *specifications of visual principles* (color relationships,
 type scales, grids, component rules, "do / don't" guidance) and machine-readable
 tokens. It does **not** redistribute any third party's original visual assets,
 trademarks, logos, photography, or proprietary fonts.
@@ -16,8 +16,8 @@ trademarks, logos, photography, or proprietary fonts.
 - **Project:** Design Diversity
 - **Repository:** https://github.com/epoko77-ai/design-diversity
 - **License:** MIT
-- **What ppt-lab uses:** Design-pack *specifications* (`prompt.md`) and *tokens*
-  (`tokens.json`) are translated into ppt-lab's 3-axis SSOT
+- **What ppt-grid-deck uses:** Design-pack *specifications* (`prompt.md`) and *tokens*
+  (`tokens.json`) are translated into ppt-grid-deck's 3-axis SSOT
   (style × palette × layout). The MIT License of Design Diversity covers these
   specifications, tokens, and documentation only.
 - **Scope note (from the upstream LICENSE):** the upstream MIT grant does **not**
@@ -30,21 +30,31 @@ trademarks, logos, photography, or proprietary fonts.
 
 ### Adapted looks (running log)
 
-ppt-lab preserves **all 110 design-pick looks** as self-contained presets in the
-`looks` section of `references/design-tokens.json`. Each look keeps its OWN colors,
-fonts, and card treatment, translated deterministically from that pack's
-`tokens.json` + `meta.yaml` (not from `prompt.md`, not pixel-measured). A look is
-applied as one unit with `--look <slug>`, while the LAYOUT axis stays orthogonal.
+This **share build** bundles **32 curated design-pick looks** as self-contained
+presets in the `looks` section of `references/design-tokens.json` — a finished subset
+of the larger research catalog (the catalog-growth R&D lives in the separate
+`ppt-lab-rebuild` harness). Each look keeps its OWN colors, fonts, and card treatment,
+translated deterministically from that pack's `tokens.json` + `meta.yaml` (not
+pixel-measured). A look is applied as one unit with `--look <slug>`, while the LAYOUT
+axis stays orthogonal.
+
+**Two tiers (license-honest).** (1) **Skin-tier looks** (12 of the 32) are token-only
+as described above — colors / fonts / cards from `tokens.json`. (2) **Grammar-tier
+looks** (20 of the 32 — e.g. `ppt-neo-brutalism`, `ppt-swiss-editorial-bold`, the dark
+/ glow family) additionally translate that pack's **`prompt.md` composition
+specification** into a deterministic `grammar` block (background / tilt / overlap /
+typographic hierarchy / badges). The Design Diversity MIT grant explicitly covers both
+`tokens.json` and `prompt.md` specifications, so this stays within license.
 
 - `_from` / `attribution` on every `looks.<slug>` entry records its upstream source and the MIT grant.
-- The ppt-lab style axis (styles `house`, `myeongmungo`, `consulting`, `velis`)
+- The ppt-grid-deck style axis (styles `house`, `myeongmungo`, `consulting`, `velis`)
   is unchanged; looks are additive.
 
 > Fonts named by looks (Playfair Display, Archivo Black, Space Grotesk, IBM Plex
 > Mono, Quicksand, Cormorant Garamond, etc.) are open-licensed (SIL OFL); install
 > them for faithful rendering, else PowerPoint substitutes. Hangul always falls
 > back to Pretendard. A few premium packs reference proprietary brand fonts
-> (e.g. Hyundai Sans) which are NOT redistributed and will substitute on render.
+> (e.g. Hyundai Sans) which are NOT redistributed and will substitute on render. System faces referenced by a few looks (Arial, Helvetica Neue, SF Pro Display) are likewise NOT bundled — they render if present on the OS, else PowerPoint substitutes.
 >
 > Korean serif faces used by the 12 serif looks via the `fonts.display` tier
 > (covers/headings) and Hangul body text are all open-licensed:
@@ -87,7 +97,7 @@ SOFTWARE.
 - **Project:** lrk-slides-velis (`lrk-slides-velis.potx`)
 - **Author:** Laurens R. Krol
 - **License:** CC0 1.0 Universal (public domain dedication)
-- **What ppt-lab uses:** Only the template's font (Arial) and palette
+- **What ppt-grid-deck uses:** Only the template's font (Arial) and palette
   (teal / pink) were absorbed into the `velis` style + `Velis Teal` palette.
   The template ships zero slides, so no component geometry was measured; the
   `velis` style falls back to the `house` component look (explicit copy).
@@ -110,7 +120,7 @@ Full text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
 ## Production-use guidance
 
-ppt-lab generates editable presentation/web output. When you publish material
+ppt-grid-deck generates editable presentation/web output. When you publish material
 produced with a brand-emulating look:
 
 - Use **your own** company name, wordmark, and logo — not the emulated brand's.
@@ -118,6 +128,6 @@ produced with a brand-emulating look:
   do not embed proprietary fonts you are not licensed for.
 - Supply your own photography/imagery; emulated brand photography is not included.
 
-The license obligations above apply to ppt-lab's distributed specifications and
+The license obligations above apply to ppt-grid-deck's distributed specifications and
 tokens. Responsibility for trademark-safe *output* rests with the end user, as
 is standard for design-system tooling.

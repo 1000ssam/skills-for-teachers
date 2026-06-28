@@ -232,6 +232,19 @@
         ]
       }
     },
+    "showcase": {
+      "family": "Focus",
+      "header": true,
+      "_notes": "와이드 단일 미디어 전폭 전시. 기본 fit=contain(안 잘림·원본 비율) — 가이드/UI 캡처·도표용. 캡션은 media.caption.",
+      "slots": {
+        "media": [
+          96,
+          306,
+          1728,
+          589
+        ]
+      }
+    },
     "duo": {
       "family": "Set",
       "header": true,

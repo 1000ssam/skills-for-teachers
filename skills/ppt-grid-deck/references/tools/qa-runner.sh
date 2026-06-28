@@ -7,7 +7,8 @@
 #   3) subagent prompt 생성 → fresh-eye 시각 검토용 프롬프트 파일 출력
 #
 # 사용법:
-#   bash qa-runner.sh /path/to/deck.pptx
+#   bash qa-runner.sh /path/to/deck.pptx [look-slug]
+#     · look-slug 를 주면 렌더 전에 그 룩이 쓰는 폰트를 자동 보장(없으면 다운로드·설치).
 #
 # 환경 적응:
 #   - LibreOffice(soffice) 있으면 그걸로 PDF→PNG.
@@ -15,8 +16,10 @@
 #   - 둘 다 없으면 콘텐츠 QA 만 수행하고 시각 검토는 건너뜀.
 set -uo pipefail
 
-PPTX="${1:?usage: qa-runner.sh deck.pptx}"
+PPTX="${1:?usage: qa-runner.sh deck.pptx [look-slug]}"
 [ -f "$PPTX" ] || { echo "❌ 파일 없음: $PPTX"; exit 1; }
+LOOK="${2:-}"
+TOOLS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 PPTX_ABS="$(cd "$(dirname "$PPTX")" && pwd)/$(basename "$PPTX")"
 BASE="$(basename "${PPTX%.*}")"
@@ -42,6 +45,20 @@ bad = [p for p in ["undefined", "None", "{{", "}}", "lorem", "TODO", "PLACEHOLDE
        if p.lower() in t.lower()]
 print("   ⚠ placeholder 잔여물:", bad if bad else "없음 ✅")
 PY
+
+# ── 1.5) 폰트 보장 (없으면 다운로드·설치) ──────────────
+# 렌더(COM)·PowerPoint 가 폰트를 대체하지 않도록, 이 덱이 쓰는 폰트를 미리 보장한다.
+# 룩 슬러그(2번째 인자)가 있을 때만 동작 — best-effort(실패해도 렌더는 계속). 멱등.
+# ensure-fonts.ps1 은 WSL 네이티브 위치라 powershell.exe 에는 wslpath -w(UNC) 로 넘긴다.
+if [ -n "$LOOK" ] && command -v powershell.exe >/dev/null 2>&1 && [ -f "$TOOLS_DIR/ensure-fonts.ps1" ]; then
+  echo ""; echo "▶ 1.5 폰트 보장 (ensure-fonts -Look $LOOK)"
+  EF_WIN="$(wslpath -w "$TOOLS_DIR/ensure-fonts.ps1" 2>/dev/null)"
+  if [ -n "$EF_WIN" ]; then
+    powershell.exe -ExecutionPolicy Bypass -File "$EF_WIN" -Look "$LOOK" 2>&1 \
+      | grep -aiE "installed|download|설치|받|warn|fail" | head -8 || true
+    echo "   (폰트 보장 완료 — 미해소분은 ensure-fonts.ps1 -All 또는 수동 설치)"
+  fi
+fi
 
 # ── 2) 슬라이드 → PNG 렌더 ─────────────────────────────
 echo ""; echo "▶ 2. 슬라이드 이미지 렌더"

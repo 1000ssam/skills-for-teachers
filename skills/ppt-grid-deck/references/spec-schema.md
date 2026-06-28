@@ -28,6 +28,7 @@
 | `style` | string | 스타일 프리셋(house·myeongmungo·consulting·velis). **선택** |
 | `palette` | int | 팔레트 id(유효: 1,2,3,4,5,6,8 — 7번 없음). **선택** |
 | `look` | string | design-pick 룩 슬러그(style+palette 번들). **선택** |
+| `size` | string | 글자 크기 티어 `소`/`중`/`대`(s/m/l). 룩과 직교 — 본문 위주로 키움(소=룩 본연·중≈22.5pt·대≈25pt). CLI `--size` 우선. **선택** |
 | `canvas` | string(#hex) | **덱 배경색**. 어두운 값이면 다크 모드 자동 진입 — 잉크/서피스/디바이더 역할 팔레트가 이 색조에 맞춰 자동 도출된다(라이트 룩에도 적용 가능). **선택** |
 | `dark` | bool | 다크 모드 강제 on/off(휘도 자동감지 오버라이드). 보통 불필요 — `canvas`만으로 자동 판정. **선택** |
 | `slides[]` | array | 슬라이드 배열 |
@@ -166,6 +167,22 @@
 | `body` | string | 택1 | `bullets` 없을 때 단락 본문(둘 다 없으면 빈 본문). **`body` 허용됨**(코드 확인) |
 | `media` | media obj | 선택 | 우측 큰 미디어. 없으면 플레이스홀더 |
 | `kicker`/`title` | string | 선택 | 헤더 공통 |
+
+### showcase
+```json
+{ "archetype": "showcase", "data": {
+  "kicker": "공식 1", "title": "차트 유형은 꺾은선그래프로",
+  "bullets": ["증가·감소·급변 한눈에", "곡선 토글로 선 모양 조정"],
+  "media": { "src": "screenshot.png", "caption": "선택 캡션" }
+} }
+```
+| 키 | 타입 | 필수 | 설명 |
+|---|---|---|---|
+| `media` | media obj | 권장 | **헤더와 같은 좌측 마진에 정렬·무크롭·무왜곡**(비율 보존 rect 계산) + **활성 룩의 카드 스킨(border/shadow) 자동 상속**(brutalism=검정+하드섀도 / dark-luxury=골드 헤어라인 / swiss 등 플랫=맨몸). `image` 도 alias. 없으면 플레이스홀더. `fit`는 무시(항상 비율 보존) |
+| `bullets` | string[] | 선택 | 본문 불릿. **배치는 이미지 종횡비로 자동** — 영역(넓고 낮음)보다 세로로 길면(대부분 스크린샷, ar≲2.9) 이미지 좌측·전체높이 + **불릿 우측**, 가로로 길면(울트라와이드) 이미지 상단 + **불릿 하단**. 사용자 결정 불필요 |
+| `kicker`/`title` | string | 선택 | 헤더 공통(좌측정렬) |
+
+> `feature`(우측 반쪽·cover 크롭) vs `showcase`(좌측정렬·무크롭+불릿 자동배치) — 미디어가 곧 메시지(가이드·UI 캡처·도표)면 showcase. 와이드 스크린샷은 showcase가 정답(cover로 자르면 디테일 손실).
 
 ---
 
@@ -431,11 +448,11 @@ Data 아키타입 `data` 또는 `type` 오버라이드로 접근. 공통 키:
 ## 11. 미디어 입력 스키마 (`media()` 헬퍼)
 
 ```json
-{ "src": "assets/image.png", "fit": "cover", "caption": "캡션", "focal": "center" }
+{ "src": "/mnt/c/.../image.png", "fit": "cover", "caption": "캡션", "focal": "center" }
 ```
 | 키 | 타입 | 설명 |
 |---|---|---|
-| `src` | string | 이미지 경로. 절대경로 또는 **spec.json 기준 상대경로**(권장: `assets/...`). WSL→Windows 공유 시 `/mnt/c/...` |
+| `src` | string | 이미지 경로. 절대경로 또는 **spec.json 기준 상대경로**. `/mnt/c/...` 권장 |
 | `fit` | `"cover"`\|`"contain"` | cover=크롭 채움(기본) / contain=레터박스 |
 | `caption` | string | 하단 작은 캡션(선택) |
 | `focal` | string | 크롭 초점(기본 `center`) |

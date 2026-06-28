@@ -1,19 +1,19 @@
 #!/bin/bash
-# ppt-lab-rebuild 설치 스크립트 (macOS / Linux)
+# ppt-grid-deck 설치 스크립트 (macOS / Linux)
 # 사용법: 터미널에서 아래 명령어 실행
-#   curl -fsSL https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/ppt-lab-rebuild/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/ppt-grid-deck/install.sh | bash
 
 set -e
 
 REPO="1000ssam/skills-for-teachers"
 BRANCH="main"
-SKILL="ppt-lab-rebuild"
+SKILL="ppt-grid-deck"
 ZIP_URL="https://github.com/$REPO/archive/refs/heads/$BRANCH.zip"
 TMP_DIR="$(mktemp -d)"
 SKILLS_DIR="$HOME/.claude/skills"
 
 echo ""
-echo "🎨 ppt-lab-rebuild 설치 중..."
+echo "🎨 ppt-grid-deck 설치 중..."
 echo ""
 
 mkdir -p "$SKILLS_DIR"
@@ -48,7 +48,7 @@ echo ""
 echo "🎉 설치 완료!"
 echo ""
 echo "Claude Code를 재시작한 뒤 사용하세요:"
-echo '  "ppt-lab-rebuild 로 강의 자료 만들어줘"'
+echo '  "ppt-grid-deck 로 강의 자료 만들어줘"'
 echo ""
 echo "💡 미리보기 렌더는 PowerPoint 또는 LibreOffice가 필요합니다."
 echo ""

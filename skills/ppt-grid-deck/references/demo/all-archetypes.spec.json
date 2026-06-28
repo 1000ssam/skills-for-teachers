@@ -5,10 +5,9 @@
       "archetype": "cover",
       "data": {
         "kicker": "REBUILD",
-        "bg": "navy",
         "title": "클린룸 PPT 엔진\n그리드 SSOT 데모",
-        "subtitle": "grid.json → layouts.json → 23 아키타입",
-        "meta": "2026 · ppt-lab-rebuild"
+        "subtitle": "grid.json → layouts.json → 24 아키타입",
+        "meta": "2026 · ppt-grid-deck"
       }
     },
     {
@@ -503,7 +502,6 @@
       "archetype": "closing",
       "data": {
         "kicker": "NEXT",
-        "bg": "navy",
         "title": "지금, 한 번의 요청으로",
         "subtitle": "자료 첨부 → 빌드",
         "cta": "데모 빌드 →"

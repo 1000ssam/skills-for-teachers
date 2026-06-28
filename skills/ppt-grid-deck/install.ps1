@@ -1,19 +1,19 @@
-# ppt-lab-rebuild 설치 스크립트
+# ppt-grid-deck 설치 스크립트
 # 사용법: PowerShell에서 아래 명령어 실행
-#   irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/ppt-lab-rebuild/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/ppt-grid-deck/install.ps1 | iex
 
 $ErrorActionPreference = 'Stop'
 
 $repo      = "1000ssam/skills-for-teachers"
 $branch    = "main"
-$skillName = "ppt-lab-rebuild"
+$skillName = "ppt-grid-deck"
 $zipUrl    = "https://github.com/$repo/archive/refs/heads/$branch.zip"
 $zipPath   = "$env:TEMP\skills-for-teachers.zip"
 $extPath   = "$env:TEMP\skills-for-teachers-extract"
 $skillsDir = "$env:USERPROFILE\.claude\skills"
 
 Write-Host ""
-Write-Host "🎨 ppt-lab-rebuild 설치 중..." -ForegroundColor Cyan
+Write-Host "🎨 ppt-grid-deck 설치 중..." -ForegroundColor Cyan
 Write-Host ""
 
 if (-not (Test-Path $skillsDir)) {
@@ -52,7 +52,7 @@ Write-Host ""
 Write-Host "🎉 설치 완료!" -ForegroundColor Green
 Write-Host ""
 Write-Host "Claude Code를 재시작한 뒤 사용하세요:" -ForegroundColor White
-Write-Host '  "ppt-lab-rebuild 로 강의 자료 만들어줘"'
+Write-Host '  "ppt-grid-deck 로 강의 자료 만들어줘"'
 Write-Host ""
 Write-Host "💡 미리보기 렌더는 PowerPoint 또는 LibreOffice가 필요합니다." -ForegroundColor DarkGray
 Write-Host ""

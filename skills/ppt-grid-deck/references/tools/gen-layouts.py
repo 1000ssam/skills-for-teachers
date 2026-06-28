@@ -137,6 +137,11 @@ A("feature", "Focus", {
 }, header=True,
    notes="히어로 비주얼 + 인사이트. media=media() 헬퍼.")
 
+A("showcase", "Focus", {
+    "media": [0, 12, 2, 5],    # 풀폭 와이드 미디어(스크린샷/UI/도표) — 12컬럼 전폭
+}, header=True,
+   notes="와이드 단일 미디어 전폭 전시. 기본 fit=contain(안 잘림·원본 비율) — 가이드/UI 캡처·도표용. 캡션은 media.caption.")
+
 # ---- Family 3: Set (헤더밴드 사용 / 동등 카드) ----------------------------
 A("duo", "Set", {
     "item_l": [0, 6, 2, 5],

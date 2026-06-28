@@ -1,0 +1,2341 @@
+{
+  "_meta": {
+    "purpose": "SSOT for colors, fonts, typography, styles, looks, palettes. 좌표는 grid.json/layouts.json 이 담당.",
+    "coordinate_system": "All sizes in px on a 1920x1080 canvas. Builder converts px->inch (px/96) and px->pt (px*0.75).",
+    "source": "ppt-lab clean-room rebuild — colors/typography 자작(CANON.md). looks=design-pick(MIT), velis(CC0). 외부 측정 아님.",
+    "build": "share (ppt-grid-deck)",
+    "looks_note": "공유본: 완성본 32룩(grammar 흡수 20 + 스킨완성 12). 연구본=ppt-lab-rebuild"
+  },
+  "slide": {
+    "width_px": 1920,
+    "height_px": 1080,
+    "width_in": 20.0,
+    "height_in": 11.25,
+    "margin_px": 80,
+    "px_to_in": 0.0104166667,
+    "px_to_pt": 0.75
+  },
+  "colors": {
+    "blue": "#2563EB",
+    "blue-2": "#3B82F6",
+    "blue-light": "#93C5FD",
+    "blue-pale": "#DBEAFE",
+    "blue-faint": "#EFF6FF",
+    "navy": "#0F172A",
+    "navy-2": "#0F1B3D",
+    "slate-700": "#334155",
+    "slate-600": "#475569",
+    "slate-500": "#64748B",
+    "slate-400": "#94A3B8",
+    "slate-300": "#CBD5E1",
+    "slate-200": "#E2E8F0",
+    "slate-100": "#F1F5F9",
+    "slate-50": "#F8FAFC",
+    "white": "#FFFFFF",
+    "green": "#10B981",
+    "red": "#EF4444",
+    "orange": "#FF7333",
+    "_role_comment": "Semantic role tokens (aliases). Builders reference these instead of raw navy/slate/white so a dark look can flip the whole surface by overriding the role in its palette. In light mode each role aliases its original token => byte-identical, zero regression.",
+    "ink": "navy",
+    "ink-2": "slate-700",
+    "body": "slate-600",
+    "muted": "slate-500",
+    "subtle": "slate-400",
+    "hairline": "slate-300",
+    "divider": "slate-200",
+    "band": "slate-100",
+    "surface": "white",
+    "surface-2": "slate-50",
+    "surface-3": "blue-faint",
+    "canvas": "white",
+    "slab": "navy",
+    "on-slab": "white",
+    "on-ink": "white",
+    "on-accent": "white"
+  },
+  "palettes": [
+    {
+      "id": 1,
+      "name": "Vibrant Blue",
+      "use": "IT · SaaS · 테크",
+      "overrides": {
+        "blue": "#007AFF",
+        "blue-2": "#339BFF",
+        "blue-light": "#99CDFF",
+        "blue-pale": "#CCE7FF",
+        "blue-faint": "#EBF5FF",
+        "navy": "#0A2540",
+        "orange": "#FF7333"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Indigo Royal",
+      "use": "B2B · 엔터프라이즈 · 금융",
+      "overrides": {
+        "blue": "#4F46E5",
+        "blue-2": "#6D66EA",
+        "blue-light": "#B7B3F5",
+        "blue-pale": "#E0DEFB",
+        "blue-faint": "#F1F0FE",
+        "navy": "#1E1B4B",
+        "orange": "#F59E0B"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Emerald Pro",
+      "use": "헬스케어 · 친환경 · 성장",
+      "overrides": {
+        "blue": "#059669",
+        "blue-2": "#10B981",
+        "blue-light": "#6EE7B7",
+        "blue-pale": "#D1FAE5",
+        "blue-faint": "#ECFDF5",
+        "navy": "#064E3B",
+        "orange": "#F97316"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Sunset Coral",
+      "use": "라이프스타일 · 커머스 · 소비재",
+      "overrides": {
+        "blue": "#EF4444",
+        "blue-2": "#F87171",
+        "blue-light": "#FCA5A5",
+        "blue-pale": "#FEE2E2",
+        "blue-faint": "#FEF2F2",
+        "navy": "#450A0A",
+        "orange": "#2563EB"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Glacial Cyan",
+      "use": "웰니스 · 프리미엄 · 차분한 톤",
+      "overrides": {
+        "blue": "#333C77",
+        "blue-2": "#4D5699",
+        "blue-light": "#A5ABD0",
+        "blue-pale": "#DADDF0",
+        "blue-faint": "#F0F1F9",
+        "navy": "#1A1F3D",
+        "orange": "#06B6D4"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Velis Teal",
+      "use": "딥 틸 + 핑크 팝 · 차분/전문 (흡수: lrk-slides-velis, CC0)",
+      "_from": "velis-lrk theme: accent1 #005C69(teal) · accent2 #89B0AE · accent3 #D73371(pink). 램프(blue-2/pale/faint·navy)는 캔버스 향해 결정론 보간.",
+      "overrides": {
+        "blue": "#005C69",
+        "blue-2": "#3E8794",
+        "blue-light": "#89B0AE",
+        "blue-pale": "#BBD3D1",
+        "blue-faint": "#EAF2F1",
+        "navy": "#08323B",
+        "orange": "#D73371"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Cobalt Mono",
+      "use": "컨설팅 · 단일 강조 · 무채색+코발트 1색 (흡수: design-pick ppt-consulting-precision-grid)",
+      "_from": "design-pick 'ppt-consulting-precision-grid' 명세: 강조 1색 #0B5FFF(코발트), 본문 잉크 #1A1A1A, 표면 #F4F5F7, 헤어라인 #D1D5DB. 단일 강조 — accents=[blue] + orange를 blue로 강제해 어떤 빌더에서도 2번째 색이 새지 않게(mono 보장).",
+      "accents": [
+        "blue"
+      ],
+      "overrides": {
+        "blue": "#0B5FFF",
+        "blue-2": "#3D7DFF",
+        "blue-light": "#9DBEFF",
+        "blue-pale": "#D6E3FF",
+        "blue-faint": "#EEF3FF",
+        "navy": "#15181E",
+        "orange": "#0B5FFF"
+      }
+    }
+  ],
+  "fonts": {
+    "primary": "Pretendard",
+    "fallback": [
+      "Apple SD Gothic Neo",
+      "Malgun Gothic",
+      "맑은 고딕"
+    ],
+    "english": "Inter",
+    "mono": "JetBrains Mono"
+  },
+  "styles": {
+    "_meta": {
+      "purpose": "흡수한 레퍼런스의 정체성(폰트 + 컴포넌트 룩). 덱(스타일)을 고르면 결정론적으로 따라온다. extract-style.py 의 _style.json 에서 도출.",
+      "fonts": "latin=서구 글리프(폴백 Inter) / ea=한글(폴백 Pretendard). run 레벨로 분리 적용되어 영문은 latin 폰트, 한글은 ea 폰트로 렌더 → 서구 폰트 스타일에서도 한글 안 깨짐.",
+      "font_install_rule": "🚩 결정론 필수: 스타일이 지정하는 폰트(latin·ea·Inter 폴백 포함)는 렌더 머신(Windows PowerPoint)에 반드시 설치돼 있어야 한다. 미설치 시 PowerPoint가 임의 대체 → 비결정론. 레퍼런스 흡수 시 측정된 폰트를 styles 에 넣기 전에 '이 폰트를 설치했는가'를 사용자에게 확인하고, 없으면 설치를 요청할 것.",
+      "components": "card 등 컴포넌트별 {radius, fill, border, shadow} 묶음. radius는 토큰명(sm/md/lg) 또는 px. shadow null=flat."
+    },
+    "house": {
+      "_from": "ppt-deck 기본 룩 + Inter/Pretendard 분리 폰트 (디폴트 스타일)",
+      "attribution": {
+        "source": "ppt-deck (자체 하우스 스타일)",
+        "license": "자체",
+        "required": false,
+        "caption": null
+      },
+      "fonts": {
+        "latin": "Inter",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": "lg",
+          "fill": "slate-50",
+          "border": null,
+          "shadow": null
+        }
+      }
+    },
+    "myeongmungo": {
+      "_from": "myeongmungo_notion_first_step (자작) _style.json · 측정폰트 'Droid Sans Fallback'은 추출 시 대체 아티팩트라 폴백(Inter/Pretendard)로 둠",
+      "attribution": {
+        "source": "자작 (myeongmungo_notion_first_step)",
+        "license": "자체",
+        "required": false,
+        "caption": null
+      },
+      "fonts": {
+        "latin": "Inter",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "blue-faint",
+          "border": {
+            "width_pt": 1,
+            "color": "slate-300"
+          },
+          "shadow": null
+        }
+      }
+    },
+    "velis": {
+      "_from": "lrk-slides-velis.potx (Laurens R. Krol, CC0) · 템플릿이라 슬라이드 0 → 폰트(Arial)+팔레트(틸/핑크)만 흡수. 컴포넌트 측정 불가 → house 룩 폴백(명시 복제).",
+      "attribution": {
+        "source": "lrk-slides-velis (Laurens R. Krol)",
+        "license": "CC0 1.0",
+        "required": false,
+        "caption": "CC0 · 퍼블릭도메인 (표기 불필요)"
+      },
+      "palette": 6,
+      "fonts": {
+        "latin": "Arial",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": "lg",
+          "fill": "slate-50",
+          "border": null,
+          "shadow": null
+        }
+      }
+    },
+    "consulting": {
+      "_from": "design-pick 'ppt-consulting-precision-grid' 명세 직접 번역(렌더 측정 아님): 직각(radius 0)·1px 헤어라인 테두리·무그림자·표면 채움 + 좌측 4px 강조 엣지. 폰트 latin=Arial(맥킨지식 그로테스크)/ea=Pretendard. 짝 팔레트=Cobalt Mono(id 8)이나 어떤 팔레트와도 조립 가능.",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·문서)",
+        "required": false,
+        "caption": "design language absorbed from design-pick spec (MIT)"
+      },
+      "palette": 8,
+      "fonts": {
+        "latin": "Arial",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "slate-50",
+          "border": {
+            "width_pt": 0.75,
+            "color": "slate-300"
+          },
+          "shadow": null,
+          "accent_edge": {
+            "side": "left",
+            "width_px": 4
+          }
+        }
+      }
+    }
+  },
+  "looks": {
+    "ppt-blueprint-schematic-deck": {
+      "cover_bg": "#0E1B3D",
+      "_from": "design-pick ppt-blueprint-schematic-deck (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Inter",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "slate-50",
+          "border": {
+            "width_pt": 0.75,
+            "color": "#4FC8E8"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "canvas": "#0E1B3D",
+        "blue": "#4FC8E8",
+        "blue-2": "#76D4ED",
+        "blue-light": "#B0E6F5",
+        "blue-pale": "#DCF4FA",
+        "blue-faint": "#F3FBFD",
+        "navy": "#163841",
+        "orange": "#4FC8E8",
+        "accents": [
+          "blue"
+        ]
+      },
+      "grammar": {
+        "_note": "블루프린트 스키매틱(prompt.md 흡수): 심야 네이비 캔버스 위 ① *희미한 청사진 그리드*(graph paper 미세 블루 격자) + ② 모든 슬라이드에 깔리는 *큰 인셋 사각형 시트 패널*(bg_panel — 가장자리에서 인셋된 큰 라운드 사각형, 살짝 밝은 시트 + 얇은 청 테두리, 그 위에 그리드 = '도면 시트' 프레임). 기존 grid_bg + 신규 bg_panel 프리미티브 재사용(다크 게이트류, 무선언 무회귀). 시안 accent는 팔레트에 이미 있음. 후속(미착수): mono_meta 기술 라벨(SHEET 01), 스키매틱 커넥터+원형 노드.",
+        "bg_panel": {
+          "inset": 34,
+          "radius": 16,
+          "fill": "#13254C",
+          "border": "#2E5089",
+          "border_pt": 1.0
+        },
+        "grid_bg": {
+          "pitch": 56,
+          "color": "#213D6B",
+          "width": 0.5
+        }
+      }
+    },
+    "ppt-bold-block-infographic": {
+      "_from": "design-pick ppt-bold-block-infographic-deck (ppt) — clean-room 흡수(색·폰트 자작, grammar=block_fill 재사용 + 200pt 섹션 워터마크)",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Archivo",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 2,
+          "fill": "#FFFFFF",
+          "border": {
+            "width_pt": 0,
+            "color": "#FFFFFF"
+          }
+        }
+      },
+      "grammar": {
+        "block_fill": true,
+        "flow_field_primary": true,
+        "badge": "square",
+        "cover": "color_block",
+        "meta_color": "teal",
+        "section_watermark": {
+          "size": 200,
+          "color": "#EFE7D6"
+        }
+      },
+      "palette": {
+        "navy": "#2A2D34",
+        "teal": "#1F8A82",
+        "amber": "#E8A317",
+        "ink": "#2A2D34",
+        "muted": "#6B6F76",
+        "canvas": "#FFFFFF",
+        "surface": "#FFFFFF",
+        "line": "#E2E2E3",
+        "accents": [
+          "navy",
+          "teal",
+          "amber"
+        ]
+      }
+    },
+    "ppt-confident-color-block": {
+      "_from": "design-pick ppt-confident-color-block-deck (ppt) — clean-room 흡수(색·폰트 자작, grammar=block_fill 재사용 + color_block 표지)",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Archivo",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "#FFFFFF",
+          "border": {
+            "width_pt": 0.75,
+            "color": "#E0E0E0"
+          }
+        }
+      },
+      "grammar": {
+        "block_fill": true,
+        "badge": "square",
+        "cover": "color_block"
+      },
+      "palette": {
+        "orange": "#F0531C",
+        "blue": "#1D4ED8",
+        "green": "#1B6E4A",
+        "ink": "#141414",
+        "muted": "#6E6E6E",
+        "line": "#E0E0E0",
+        "canvas": "#FFFFFF",
+        "surface": "#FFFFFF",
+        "accents": [
+          "orange",
+          "blue",
+          "green"
+        ]
+      }
+    },
+    "ppt-dark-luxury-keynote": {
+      "_from": "design-pick ppt-dark-luxury-keynote (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": true,
+      "grammar": {
+        "_note": "다크 럭셔리 키노트(prompt.md 흡수): near-black 무대 + 샴페인 골드 단일 스팟(0.5pt 헤어라인·라벨·차트 핵심에만, 면 금지) + 가는 디스플레이 세리프 + 넓은 자간 대문자 라벨. swiss와 같은 절제 문법(mono_accent·rule_field·header_rule·upper_tiers)을 다크 캔버스에서 재사용 — 다크 가독성은 resolve_dark()가 캔버스 휘도로 자동 도출. 신규는 chart_style:luxe(헤어라인 아웃라인 차트) 1개뿐.",
+        "mono_accent": true,
+        "upper_tiers": [
+          "caption",
+          "label",
+          "eyebrow"
+        ],
+        "header_rule": {
+          "color": "blue",
+          "width_pt": 0.75
+        },
+        "rule_field": true,
+        "chart_style": "luxe",
+        "type": {
+          "_note": "가는 세리프 디스플레이: 큰 헤드(자간 +0.12em)·넓은 행간 본문(1.5)·넓은 자간 대문자 라벨(+0.16em).",
+          "scale": {
+            "display": 1.5,
+            "h1": 1.2,
+            "h2": 1.05,
+            "kpi": 1.1
+          },
+          "line": {
+            "display": 1.1,
+            "h1": 1.15,
+            "h2": 1.2,
+            "body": 1.5,
+            "body-lg": 1.5,
+            "body-md": 1.4
+          },
+          "tracking": {
+            "display": 0.12,
+            "h1": 0.08,
+            "h2": 0.06,
+            "caption": 0.16,
+            "label": 0.16,
+            "eyebrow": 0.16
+          }
+        }
+      },
+      "fonts": {
+        "latin": "Cormorant Garamond",
+        "ea": "MaruBuri",
+        "display": {
+          "ea": "Song Myung",
+          "latin": "Cormorant Garamond"
+        }
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "surface-2",
+          "border": {
+            "width_pt": 0.5,
+            "color": "divider"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#C9A36A",
+        "blue-2": "#D5B78B",
+        "blue-light": "#E7D6BC",
+        "blue-pale": "#F4EDE1",
+        "blue-faint": "#FBF9F5",
+        "navy": "#382E1E",
+        "orange": "#C9A36A",
+        "accents": [
+          "blue"
+        ],
+        "_canvas_note": "Dark canvas added 2026-06-08 — is_dark() auto-detects; derive_dark_roles() builds the ink/surface/divider ladder from this hue.",
+        "canvas": "#17130C"
+      }
+    },
+    "ppt-dark-tech": {
+      "_from": "design-pick ppt-dark-tech (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "grammar": {
+        "_note": "다크 테크 딥 흡수(grammar-darktech-deep): 모노 메타 라벨 레이어 + 미세 격자 배경 + 거대 모노 섹션 워터마크 + 발광 막대/라인 차트 + 재튜닝 글로우. 한눈에 '터미널/사이버'로 읽히게 prompt.md 구성 문법을 인코딩. 모든 씨임은 mono_meta/grid_bg/section_watermark/chart_style/glow 키 없으면 무동작(무회귀), grid/watermark/glow 는 다크 캔버스 전용.",
+        "mono_meta": {
+          "prefix": "// ",
+          "index_fmt": "// {n}",
+          "color": "blue"
+        },
+        "grid_bg": {
+          "pitch": 48,
+          "color": "surface-2",
+          "width": 0.5
+        },
+        "section_watermark": {
+          "size": 120,
+          "color": "divider"
+        },
+        "chart_style": "tech",
+        "kpi_value_accent": true,
+        "glow": {
+          "rad": 18,
+          "alpha": 75,
+          "cards": true,
+          "badges": true,
+          "lines": true,
+          "chart": true
+        }
+      },
+      "fonts": {
+        "latin": "Space Grotesk",
+        "ea": "Pretendard",
+        "mono": "JetBrains Mono"
+      },
+      "components": {
+        "card": {
+          "radius": 4,
+          "fill": "surface-2",
+          "border": {
+            "width_pt": 1.0,
+            "color": "divider"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#3DF5E0",
+        "blue-2": "#68F7E7",
+        "blue-light": "#A8FAF1",
+        "blue-pale": "#D8FDF9",
+        "blue-faint": "#1A2B29",
+        "navy": "#16181D",
+        "orange": "#9D7BFF",
+        "_canvas_note": "원본 dark-tech 정체성 = 중립 차콜(#0C0D10), 코드블록 표면(#16181D), dim 보더(#2A2D35). is_dark()가 다크 감지 + derive_dark_roles()가 잉크/표면 사다리를 자동 생성하되, 코드블록 fidelity 를 위해 surface/surface-2/surface-3/divider/body/muted 를 스펙값으로 고정한다.",
+        "canvas": "#0C0D10",
+        "surface": "#101216",
+        "surface-2": "#16181D",
+        "surface-3": "#1C1F25",
+        "divider": "#2A2D35",
+        "hairline": "#363A44",
+        "body": "#E4E6EB",
+        "ink-2": "#E4E6EB",
+        "muted": "#8A8F9A",
+        "subtle": "#6A6F7A",
+        "accents": [
+          "blue",
+          "orange"
+        ]
+      }
+    },
+    "ppt-data-infographic-heavy": {
+      "_from": "design-pick ppt-data-infographic-heavy (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Inter",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 6,
+          "fill": "#FFFFFF",
+          "border": {
+            "width_pt": 0.75,
+            "color": "#E2E5EA"
+          },
+          "shadow": {
+            "blur_pt": 2.2,
+            "dist_pt": 0.8,
+            "dir_deg": 90,
+            "color": "#1D1B20",
+            "alpha": 80
+          }
+        }
+      },
+      "grammar": {
+        "kpi_value_accent": true
+      },
+      "palette": {
+        "blue": "#2563EB",
+        "blue-2": "#5585EF",
+        "blue-light": "#9DB9F6",
+        "blue-pale": "#D3E0FB",
+        "blue-faint": "#F0F4FE",
+        "navy": "#1E2229",
+        "orange": "#0EA5A4",
+        "canvas": "#F7F8FA",
+        "surface": "#FFFFFF",
+        "muted": "#6E7480",
+        "line": "#E2E5EA",
+        "accents": [
+          "blue",
+          "orange",
+          "#F59E0B",
+          "#EF4444"
+        ]
+      }
+    },
+    "ppt-engineered-dark-deck": {
+      "_from": "design-pick ppt-engineered-dark-deck (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "grammar": {
+        "_note": "엔지니어드 다크 딥 흡수(grammar-glow-deep): 정밀·계측 톤의 다크 SaaS. dark-tech(터미널/사이버, 듀얼 네온, 비대칭, 격자, 코드블록 채움)와 정반대로 차별화 — (1) 격자 대신 코너 라디얼 글로우 1점(보라#8B7BF0→청록#3FB8C4), (2) 강조 단색 소프트 바이올렛 #8B7BF0 하나(청록은 차트 보조계열에만), (3) 헤어라인 1px 카드·면채움 거의 없음, (4) 키커는 //-브래킷없는 대문자 +8% 자간(모노 아님), (5) 글로우 절제(rad 9·alpha 30). 모노는 수치/값/캡션라벨에만(JetBrains Mono). 모든 씨임은 radial_glow/mono_meta/section_watermark/chart_style키 없으면 무동작(무회귀), radial_glow/watermark/glow 는 다크 캔버스 전용. grid_bg 미선언.",
+        "radial_glow": {
+          "from": "blue",
+          "to": "teal",
+          "alpha": 18,
+          "size": 780
+        },
+        "mono_meta": {
+          "prefix": "",
+          "index_fmt": "{n}",
+          "tiers": [
+            "label",
+            "caption"
+          ],
+          "color": "blue"
+        },
+        "section_watermark": {
+          "size": 120,
+          "color": "divider"
+        },
+        "chart_style": "tech",
+        "kpi_value_accent": true,
+        "quiet_compare": true,
+        "glow": {
+          "rad": 9,
+          "alpha": 30,
+          "cards": false,
+          "badges": true,
+          "lines": true,
+          "chart": true
+        },
+        "type": {
+          "tracking": {
+            "eyebrow": 0.08
+          }
+        }
+      },
+      "fonts": {
+        "latin": "Inter",
+        "ea": "Pretendard",
+        "mono": "JetBrains Mono"
+      },
+      "components": {
+        "card": {
+          "radius": 6,
+          "fill": "surface",
+          "border": {
+            "width_pt": 0.75,
+            "color": "divider"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#8B7BF0",
+        "blue-2": "#A598F3",
+        "blue-light": "#CBC4F8",
+        "blue-pale": "#E8E5FC",
+        "blue-faint": "#1B1830",
+        "teal": "#3FB8C4",
+        "navy": "#16161A",
+        "orange": "#8B7BF0",
+        "accents": [
+          "blue"
+        ],
+        "_canvas_note": "엔지니어드 다크 정체성 = 거의 검정 차콜(#0E0E11), 표면 #16161A(KPI 등 최소 면채움), 헤어라인 #26262C(1px). is_dark()=다크 + derive_dark_roles() 자동 사다리 위에 surface/divider/body/muted/ink 를 스펙값으로 고정해 헤어라인 fidelity 확보. dark-tech 와 달리 코드블록 채움 표면이 아니라 헤어라인 구획이 기본.",
+        "canvas": "#0E0E11",
+        "surface": "#131316",
+        "surface-2": "#16161A",
+        "surface-3": "#1C1C21",
+        "divider": "#26262C",
+        "hairline": "#33333A",
+        "body": "#9CA3AF",
+        "ink-2": "#F4F4F5",
+        "muted": "#9CA3AF",
+        "subtle": "#6B7280"
+      }
+    },
+    "ppt-glassmorphism": {
+      "_from": "design-pick ppt-glassmorphism (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "grammar": {
+        "_note": "글래스모피즘(prompt.md 흡수): 4정점 메시 그라디언트 배경 위 반투명(55%) 라이트 글래스 패널 + 흰 하이라이트 보더 + 큰 라운드(24px). ⚠ PPTX엔 backdrop-blur가 없어 '프로스티드 블러'는 구현 불가 — 반투명 채움 + 그라디언트 비침 + 하이라이트 보더까지가 정직한 한계(고문테스트로 경계 확인). 신규 씨임 2개: bg_gradient(슬라이드 배경 그라디언트) + glass(card 채움 알파). 텍스트는 솔리드 ink 유지(가독 사수 — 알파로 흐리게 금지). 강조색은 흰색 하나(그라디언트가 색을 담당).",
+        "bg_gradient": [
+          "#7B5BFF",
+          "#3FA9FF",
+          "#FF6FB5",
+          "#48E1C8"
+        ],
+        "bg_mesh": true,
+        "glass": true,
+        "glass_alpha": 52,
+        "cover": "glass_card",
+        "header_rule": {
+          "color": "navy",
+          "width_pt": 1
+        },
+        "type": {
+          "scale": {
+            "h1": 1.05
+          },
+          "line": {
+            "body": 1.4,
+            "body-lg": 1.4
+          },
+          "tracking": {
+            "label": 0.04,
+            "eyebrow": 0.04
+          }
+        }
+      },
+      "fonts": {
+        "latin": "SF Pro Display",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 24,
+          "fill": "#FFFFFF",
+          "border": {
+            "width_pt": 1.5,
+            "color": "#FFFFFF"
+          },
+          "shadow": {
+            "blur_pt": 24.0,
+            "dist_pt": 6.0,
+            "dir_deg": 90,
+            "color": "#1D1B20",
+            "alpha": 80
+          }
+        }
+      },
+      "palette": {
+        "canvas": "#F4F2FE",
+        "_canvas_note": "라이트 모드 기준색(lum>0.30). 실제 배경은 bg_mesh가 칠하므로 canvas 솔리드는 화면에 안 나옴 — canvas는 역할(ink=navy·surface=white) 도출용. 과거 #7B5BFF(violet, lum0.19)는 엔진을 다크모드로 뒤집어 흰 글래스 패널을 어두운 surface로 리맵 → 레퍼런스의 '라이트 프로스트 패널'과 반대였음(QA 패널 지적). 이제 라이트 모드 → 흰@80% 프로스트 패널 + 네이비 잉크.",
+        "blue": "#7C6FF0",
+        "blue-2": "#9B90F4",
+        "blue-light": "#C3BCF8",
+        "blue-pale": "#E8E5FC",
+        "blue-faint": "#F4F2FE",
+        "navy": "#1A1A2E",
+        "orange": "#7C6FF0",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-hand-drawn-sketch": {
+      "_from": "design-pick ppt-hand-drawn-sketch (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Caveat",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 6,
+          "fill": "#F4ECDC",
+          "border": {
+            "width_pt": 1.88,
+            "color": "navy"
+          },
+          "shadow": {
+            "blur_pt": 9,
+            "dist_pt": 3,
+            "dir_deg": 90,
+            "color": "#1D1B20",
+            "alpha": 82
+          }
+        }
+      },
+      "grammar": {
+        "wobble_path": true
+      },
+      "palette": {
+        "blue": "#E8654A",
+        "blue-2": "#ED8772",
+        "blue-light": "#F5BAAE",
+        "blue-pale": "#FAE0DB",
+        "blue-faint": "#FDF4F2",
+        "navy": "#2B2724",
+        "canvas": "#F4ECDC",
+        "surface": "#F4ECDC",
+        "ink": "#2B2724",
+        "orange": "#E0A92E",
+        "accents": [
+          "blue",
+          "orange"
+        ]
+      }
+    },
+    "ppt-hyundai-cinematic-investor-day": {
+      "_from": "design-pick ppt-hyundai-cinematic-investor-day (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": true,
+      "grammar": {
+        "_note": "딥 재흡수(2026-06-13): 현대차 2024 CEO Investor Day IR 덱. 정체성=다크 네이비 무대(#101030) 위 단일 사이안-블루 패밀리(#66FFFF) 규율 + chevron 모티프(중첩 우향 >, 안쪽 V-vertex 흰-사이안 eye 글로우)가 추진력/시그니처. 타 다크룩과 차별: 모노스페이스·격자·dim 워터마크 전무(prompt.md '모노스페이스 절대 금지'). chevron(cover/closing 좌5스택+eye, section 우4스택+starburst, 본문 헤더 미니마크, 차트/표 위 chevron-tab stage band) + 거대 흰 KPI + 카드 거대 사이안 SOLID enumerator + 사이안 단톤 차트. glow 재사용(eye-core), 신규 chevron·chart_style:cinematic.",
+        "chevron": {
+          "header_mark": true,
+          "eye_glow": true,
+          "stage_band": true
+        },
+        "chart_style": "cinematic",
+        "card_enumerator": true,
+        "radial_glow": {
+          "from": "blue",
+          "to": "blue-faint",
+          "alpha": 10,
+          "size": 900
+        },
+        "glow": {
+          "rad": 16,
+          "alpha": 70,
+          "cards": false,
+          "badges": true,
+          "lines": true,
+          "chart": true,
+          "color": "#66FFFF"
+        }
+      },
+      "fonts": {
+        "latin": "Hyundai Sans Head",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 7,
+          "fill": "surface-2",
+          "border": {
+            "width_pt": 1.0,
+            "color": "divider"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#66FFFF",
+        "blue-2": "#00D3FD",
+        "blue-light": "#9DFAFF",
+        "blue-pale": "#00B0F0",
+        "blue-faint": "#0060A8",
+        "navy": "#0E1329",
+        "surface-2": "#14274A",
+        "divider": "#1E2A52",
+        "muted": "#A8B4C8",
+        "orange": "#00D3FD",
+        "accents": [
+          "blue",
+          "#00D3FD",
+          "#00B0F0",
+          "#0060A8"
+        ],
+        "canvas": "#101030"
+      }
+    },
+    "ppt-luxury-editorial-serif": {
+      "_from": "design-pick ppt-luxury-editorial-serif (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "grammar": {
+        "_note": "럭셔리 에디토리얼 세리프(prompt.md 흡수): 가는 디드로 세리프(절대 굵게 X)·광활한 여백·무채색+골드 단일 스팟·무박스(룰라인과 활자 정렬로만 구조 암시). swiss와 같은 절제(mono_accent·rule_field·넓은 자간 대문자 캡션)지만 헤비 산세리프 대신 가는 세리프 정체성. 차트는 캔버스-인지 luxe 헤어라인 라인 재사용(라이트에서 골드+무채색). 신규는 badge:bare(칩 없는 세리프 숫자) 1개. 헤드라인은 문장형 유지(대문자 변환 안 함).",
+        "mono_accent": true,
+        "upper_tiers": [
+          "caption",
+          "label",
+          "eyebrow"
+        ],
+        "header_rule": {
+          "color": "blue",
+          "width_pt": 0.5
+        },
+        "rule_field": true,
+        "badge": "bare",
+        "chart_style": "luxe",
+        "type": {
+          "_note": "에디토리얼 에어: 가는 큰 세리프 헤드(자간 살짝 +)·넓은 행간 본문(1.6)·넓은 자간 대문자 캡션(+0.22em). 압축 금지 — swiss/brutal과 반대.",
+          "scale": {
+            "display": 1.45,
+            "h1": 1.15,
+            "kpi": 1.15
+          },
+          "line": {
+            "display": 1.15,
+            "h1": 1.2,
+            "h2": 1.25,
+            "body": 1.6,
+            "body-lg": 1.6,
+            "body-md": 1.5
+          },
+          "tracking": {
+            "display": 0.02,
+            "caption": 0.22,
+            "label": 0.22,
+            "eyebrow": 0.22
+          }
+        }
+      },
+      "fonts": {
+        "latin": "Playfair Display",
+        "ea": "MaruBuri",
+        "display": {
+          "ea": "Song Myung",
+          "latin": "Playfair Display"
+        }
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "#FAF8F3",
+          "border": null,
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#A8884E",
+        "blue-2": "#BBA275",
+        "blue-light": "#D8C9AF",
+        "blue-pale": "#EEE7DC",
+        "blue-faint": "#F9F7F3",
+        "navy": "#1A1814",
+        "orange": "#A8884E",
+        "canvas": "#FAF8F3",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-memphis-retro-90s": {
+      "_from": "design-pick ppt-memphis-retro-90s (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "grammar": {
+        "_note": "90s 멤피스(prompt.md 흡수): 크림 캔버스 위 5원색 충돌·검정 3pt 외곽선·하드 오프셋 섀도·의도적 틸트·가장자리 장식 도형 부유. brutalism과 같은 맥시멀 어휘(accent_repeat 원색반복·block_fill 셀마다 다른 원색·chart_style:brutal·두꺼운 header_rule·대문자 캡션) 대거 재사용. 배지는 원형 원색이라 square 미사용(기본 oval). 신규는 decor:memphis(장식 레이어 프리미티브) 1개.",
+        "accent_repeat": true,
+        "block_fill": true,
+        "chart_style": "brutal",
+        "upper_tiers": [
+          "caption",
+          "label",
+          "eyebrow"
+        ],
+        "header_rule": {
+          "color": "navy",
+          "width_pt": 4
+        },
+        "decor": "memphis",
+        "type": {
+          "_note": "Archivo Black 청키: 본문/라벨 키워 헤드 대비 축소, 행간 타이트, 헤드 자간 -0.01em.",
+          "scale": {
+            "body": 1.2,
+            "body-md": 1.2,
+            "label": 1.3
+          },
+          "line": {
+            "display": 1.0,
+            "h1": 1.0,
+            "h2": 1.05,
+            "body": 1.3,
+            "body-lg": 1.3,
+            "body-md": 1.3
+          },
+          "tracking": {
+            "display": -0.01,
+            "h1": -0.01,
+            "caption": 0.08,
+            "label": 0.08,
+            "eyebrow": 0.08
+          }
+        }
+      },
+      "fonts": {
+        "latin": "Archivo Black",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "slate-50",
+          "tilt_deg": -2,
+          "border": {
+            "width_pt": 3.0,
+            "color": "#1A1A1A"
+          },
+          "shadow": {
+            "blur_pt": 0.0,
+            "dist_pt": 4.5,
+            "dir_deg": 135,
+            "color": "#1A1A1A",
+            "alpha": 0
+          }
+        }
+      },
+      "palette": {
+        "blue": "#FF3B7F",
+        "blue-2": "#FF669B",
+        "blue-light": "#FFA7C5",
+        "blue-pale": "#FFD8E5",
+        "blue-faint": "#FFF1F6",
+        "navy": "#1A1A1A",
+        "orange": "#00B5C9",
+        "canvas": "#F4ECD8",
+        "accents": [
+          "blue",
+          "orange",
+          "#FFC400",
+          "#7C4DFF",
+          "#FF5722"
+        ]
+      }
+    },
+    "ppt-monochrome-risk": {
+      "_from": "design-pick ppt-monochrome-risk (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Helvetica Neue",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "#E6E6E6",
+          "border": {
+            "width_pt": 1.5,
+            "color": "#0A0A0A"
+          },
+          "shadow": null
+        }
+      },
+      "grammar": {
+        "_note": "모노크롬 리스크: 무채색 베이스 + 굵은 검정 룰 + 핵심 블록 검정 반전. 신규 엔진 코드 0 — 기존 씨임(header_rule·block_fill·body_bold·badge:square·upper_tiers·chart_style:swiss)만 조합. block_fill은 무채색 팔레트(blue==navy==검정)라 quadrant/KPI/flow 블록이 검정으로 채워지고 _ink_on이 흰 글자로 플립 = '검정 반전 블록'. rule_field는 일부러 미사용 — 엔진상 quadrant/map에서 rule_field가 block_fill을 덮어써(if not rule) 검정 반전 블록이 사라지므로, 이 룩의 핵심인 반전 블록을 살리려 block_fill 채택. 차트는 swiss 렌더(무채색 막대+1색 룰).",
+        "body_bold": true,
+        "upper_tiers": [
+          "caption",
+          "label",
+          "eyebrow"
+        ],
+        "header_rule": {
+          "color": "navy",
+          "width_pt": 4
+        },
+        "badge": "square",
+        "block_fill": true,
+        "chart_style": "swiss",
+        "type": {
+          "tracking": {
+            "caption": 0.06,
+            "label": 0.06,
+            "eyebrow": 0.06
+          }
+        }
+      },
+      "palette": {
+        "blue": "#0A0A0A",
+        "blue-2": "#404040",
+        "blue-light": "#919191",
+        "blue-pale": "#CECECE",
+        "blue-faint": "#EEEEEE",
+        "navy": "#0A0A0A",
+        "orange": "#0A0A0A",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-msit-ai-three-powers": {
+      "_from": "design-pick ppt-msit-ai-three-powers (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": true,
+      "fonts": {
+        "latin": "Inter",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 6,
+          "fill": "#FFFFFF",
+          "border": {
+            "width_pt": 0.5,
+            "color": "#D3DAE6"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#002060",
+        "blue-2": "#385183",
+        "blue-light": "#8C9BB7",
+        "blue-pale": "#CCD2DF",
+        "blue-faint": "#EDEFF4",
+        "navy": "#1C2848",
+        "orange": "#0F41BD",
+        "accents": [
+          "blue",
+          "orange",
+          "#1A4BC6"
+        ]
+      },
+      "grammar": {
+        "_note": "과기정통부 AI 3대 강국(prompt.md 흡수): 정체성 = ① 화이트→연블루 라이트 그라디언트 캔버스(좌상 밝음→우하 연블루) ② 우측에 떠 있는 소프트 3D 구 3개(반투명 연블루 프로스트 볼, 좌상 하이라이트=빛 3D감) — 표지/섹션 데코. 신규 씨임: bg_gradient(라이트 필드) + orb_decor(소프트 3D 구). 콘텐츠 슬라이드는 깨끗(구는 프레임 전용). 라이트 캔버스라 카드/잉크 무회귀.",
+        "bg_gradient": [
+          "#FFFFFF",
+          "#E6EFFA",
+          "#C9DDF4"
+        ],
+        "orb_decor": {
+          "spheres": [
+            {
+              "at": [
+                0.85,
+                0.3
+              ],
+              "r": 132,
+              "color": "#B7D2F0",
+              "highlight": "#FFFFFF",
+              "alpha": 60,
+              "edge": 0.45
+            },
+            {
+              "at": [
+                0.94,
+                0.63
+              ],
+              "r": 178,
+              "color": "#A6C6EC",
+              "highlight": "#FFFFFF",
+              "alpha": 58,
+              "edge": 0.42
+            },
+            {
+              "at": [
+                0.77,
+                0.74
+              ],
+              "r": 96,
+              "color": "#CBDDF5",
+              "highlight": "#FFFFFF",
+              "alpha": 52,
+              "edge": 0.45
+            }
+          ]
+        }
+      }
+    },
+    "ppt-neo-brutalism": {
+      "_from": "design-pick ppt-neo-brutalism (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Archivo Black",
+        "ea": "Pretendard",
+        "display": {
+          "ea": "Pretendard Black"
+        }
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "tilt_deg": 2,
+          "fill": "#FFFFFF",
+          "border": {
+            "width_pt": 4.0,
+            "color": "#0A0A0A"
+          },
+          "shadow": {
+            "blur_pt": 0.0,
+            "dist_pt": 6.0,
+            "dir_deg": 135,
+            "color": "#0A0A0A",
+            "alpha": 0
+          }
+        }
+      },
+      "grammar": {
+        "_note": "composition language (prompt.md) — beyond skin. Generalizes to ALL archetypes via the shared engine.",
+        "upper_tiers": [
+          "display",
+          "h1",
+          "h2",
+          "h3",
+          "h4",
+          "label",
+          "eyebrow"
+        ],
+        "body_bold": true,
+        "cover": "title_card",
+        "badge": "square",
+        "block_fill": true,
+        "accent_repeat": true,
+        "header_rule": {
+          "color": "navy",
+          "width_pt": 4
+        },
+        "chart_style": "brutal",
+        "type": {
+          "_note": "압축·청키 스케일: 본문/라벨을 키워 헤드와의 대비를 줄이고, 행간 타이트, 헤드라인 자간 -2%(em).",
+          "scale": {
+            "body": 1.2,
+            "body-md": 1.2,
+            "label": 1.35
+          },
+          "line": {
+            "display": 1.0,
+            "h1": 1.0,
+            "h2": 1.05,
+            "h3": 1.1,
+            "h4": 1.15,
+            "body": 1.25,
+            "body-lg": 1.3,
+            "body-md": 1.25
+          },
+          "tracking": {
+            "display": -0.02,
+            "h1": -0.02,
+            "h2": -0.02
+          }
+        }
+      },
+      "palette": {
+        "blue": "#FF5A36",
+        "blue-2": "#FF7E62",
+        "blue-light": "#FFB5A5",
+        "blue-pale": "#FFDED7",
+        "blue-faint": "#FFF3F1",
+        "navy": "#0A0A0A",
+        "orange": "#FFE14D",
+        "canvas": "#FFE14D",
+        "accents": [
+          "blue",
+          "orange",
+          "#2D5BFF"
+        ]
+      }
+    },
+    "ppt-neumorphic-soft": {
+      "_from": "neumorphism / soft-UI 사조 — engine-gaps G1 (clean-room: 그림자 레시피만 측정, 색·폰트는 자작)",
+      "attribution": {
+        "source": "neumorphism / soft-UI design trend (clean-room re-creation)",
+        "license": "자작 토큰 (그림자 수치는 공개 사조 컨벤션; Showeet 에셋 미포함)",
+        "required": false,
+        "caption": "neumorphic elevation primitive (engine-gaps G1)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Poppins",
+        "ea": "Pretendard",
+        "display": {
+          "latin": "Poppins",
+          "ea": "Pretendard"
+        }
+      },
+      "components": {
+        "card": {
+          "radius": 32,
+          "fill": "canvas",
+          "elevation": "neumorphic"
+        }
+      },
+      "grammar": {
+        "_note": "neumorphism/soft-UI: 입체를 색이 아니라 그림자로. 기본 카드 = 무경계 오목(테두리·outer 그림자 없이 배경과 한 표면, 대각선 상반 inner: 어둠 NW + 밝음 SE). 활성칸(spec item.active:true) = accent 볼록 돌출(outer 쌍, 흰 텍스트). 그림자 색/깊이/blur/dist는 캔버스에서 결정론 도출(derive_neumorphic) — 매직넘버 없음·캔버스 종속(밝을수록 깊게). 특정 덱을 흡수하면 extract-style가 grammar.neumorphic={blur,dist,dark_alpha}로 측정값을 실어 이 도출을 오버라이드. 도형 스택(effectDag는 COM fill 소실·투명+어둠inner 미렌더 → 어둠=채움도형/빛=투명도형). engine-gaps G1.",
+        "neumorphic": true
+      },
+      "palette": {
+        "blue": "#FF7552",
+        "blue-2": "#FF8E72",
+        "blue-light": "#FFB59F",
+        "blue-pale": "#FFD9CC",
+        "blue-faint": "#FFEDE6",
+        "navy": "#2C3144",
+        "orange": "#FF7552",
+        "canvas": "#E6E7EE",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-prismatic-dark-deck": {
+      "_from": "design-pick ppt-prismatic-dark-deck (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "grammar": {
+        "_note": "프리즈매틱 다크 딥 흡수(grammar-prism-deep): 프리즘 그라디언트 스트로크 노드(거의 투명 채움+시안→마젠타→앰버 1px 윤곽) + 그라디언트 텍스트(KPI 빅넘버·섹션 워터마크) + 모노 메타 라벨 + 미세 격자 + 그라디언트 발광 차트. 모든 씨임은 prism/mono_meta/grid_bg/section_watermark/chart_style/glow 키 없으면 무동작(무회귀), prism/grid/watermark/glow 는 다크 캔버스 전용. 프리즘은 시안·마젠타·앰버 3스톱 1세트뿐.",
+        "prism": {
+          "node_alpha": 20,
+          "stroke_pt": 1.4
+        },
+        "mono_meta": {
+          "prefix": "// ",
+          "index_fmt": "// {n}",
+          "color": "blue"
+        },
+        "grid_bg": {
+          "pitch": 64,
+          "color": "surface-2",
+          "width": 0.5
+        },
+        "section_watermark": {
+          "size": 120,
+          "gradient": true
+        },
+        "chart_style": "prism",
+        "kpi_value_accent": true,
+        "glow": {
+          "rad": 9,
+          "alpha": 48,
+          "cards": true,
+          "badges": true,
+          "lines": true,
+          "chart": true
+        }
+      },
+      "fonts": {
+        "latin": "Inter",
+        "ea": "Pretendard",
+        "mono": "JetBrains Mono"
+      },
+      "components": {
+        "card": {
+          "radius": 8,
+          "fill": "surface-2",
+          "border": {
+            "width_pt": 0.75,
+            "color": "divider"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#22D3EE",
+        "blue-2": "#53DDF2",
+        "blue-light": "#9CEBF7",
+        "blue-pale": "#D3F6FC",
+        "blue-faint": "#F0FCFE",
+        "navy": "#0B0E1A",
+        "orange": "#D946EF",
+        "accents": [
+          "blue",
+          "orange",
+          "#FBBF24"
+        ],
+        "_canvas_note": "프리즘 딥: 캔버스 잉크 네이비-블랙 #0B0E1A(스펙). surface/divider 를 스펙값(#141A2E 노드면·#1E2336 헤어라인)으로 고정해 프리즘 노드 채움·격자 색 정합. is_dark()=다크, derive_dark_roles()=나머지 잉크 사다리 자동.",
+        "canvas": "#0B0E1A",
+        "surface": "#11142A",
+        "surface-2": "#141A2E",
+        "surface-3": "#1A2138",
+        "divider": "#1E2336",
+        "hairline": "#2A3150",
+        "body": "#E8EAF0",
+        "ink-2": "#E8EAF0",
+        "muted": "#8A90A6",
+        "subtle": "#6A7090"
+      }
+    },
+    "ppt-swiss-editorial-bold": {
+      "_from": "design-pick ppt-swiss-editorial-bold (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Archivo Black",
+        "ea": "Pretendard",
+        "display": {
+          "ea": "Pretendard ExtraBold"
+        }
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": null,
+          "border": null,
+          "shadow": null,
+          "accent_edge": {
+            "side": "top",
+            "width_px": 4
+          }
+        }
+      },
+      "grammar": {
+        "_note": "스위스 에디토리얼: 무채색+스팟1색, 거대 crop 활자, 상단 3pt 룰라인(박스 아님), 12열 그리드 엄정, 무틸트·무섀도, 필드(quadrant/map)=십자 룰만(박스 없음). 브루탈리즘과 정반대 문법.",
+        "mono_accent": true,
+        "upper_tiers": [
+          "caption",
+          "label",
+          "eyebrow"
+        ],
+        "header_rule": {
+          "color": "navy",
+          "width_pt": 3
+        },
+        "badge": "square",
+        "chart_style": "swiss",
+        "type": {
+          "scale": {
+            "display": 1.6,
+            "h1": 1.2,
+            "h2": 1.05,
+            "body": 1.2,
+            "body-md": 1.2,
+            "caption": 1.15,
+            "label": 1.1
+          },
+          "line": {
+            "body": 1.35,
+            "body-lg": 1.35
+          },
+          "tracking": {
+            "display": -0.03,
+            "h1": -0.02,
+            "h2": -0.02,
+            "caption": 0.08,
+            "label": 0.08,
+            "eyebrow": 0.08
+          }
+        },
+        "rule_field": true
+      },
+      "palette": {
+        "blue": "#FF4A1C",
+        "blue-2": "#FF724E",
+        "blue-light": "#FFAE99",
+        "blue-pale": "#FFDBD2",
+        "blue-faint": "#FFF2EF",
+        "navy": "#111111",
+        "orange": "#0047FF",
+        "canvas": "#F2F0EB",
+        "accents": [
+          "blue",
+          "orange"
+        ]
+      }
+    },
+    "ppt-unikorea-peace-coexistence": {
+      "_from": "design-pick ppt-unikorea-peace-coexistence (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": true,
+      "fonts": {
+        "latin": "Inter",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 6,
+          "fill": "slate-50",
+          "border": {
+            "width_pt": 0.75,
+            "color": "#C5D2E3"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "canvas": "#050829",
+        "blue": "#105FD2",
+        "blue-2": "#4582DC",
+        "blue-light": "#93B7EB",
+        "blue-pale": "#CFDFF6",
+        "blue-faint": "#EEF4FC",
+        "navy": "#041B3B",
+        "orange": "#F59751",
+        "accents": [
+          "blue",
+          "orange",
+          "#A41729",
+          "#5794C3"
+        ]
+      },
+      "grammar": {
+        "_note": "통일부 평화·공존(prompt.md 흡수): 심야 네이비 캔버스 위에 두 개의 거대한 소프트 글로우 오브 — 적(赤, top-right)과 청(靑, bottom-left)이 화면 중앙에서 부드럽게 겹쳐 보라빛 공존 영역을 만든다(남북=적청, 평화=블렌드). 신규 엔진 코드 0 — bg_mesh 프리미티브(다크 substrate verts + 정점 발광 블룸) 재사용. busy 메시(적·청 대조 hue)라 카드는 자동 다크 프로스트로 떠 보인다.",
+        "bg_mesh": {
+          "verts": [
+            "#050829",
+            "#081033",
+            "#06102C",
+            "#050A26"
+          ],
+          "blooms": [
+            {
+              "at": [
+                0.83,
+                0.2
+              ],
+              "color": "#C0303F",
+              "intensity": 0.82,
+              "radius": 0.52
+            },
+            {
+              "at": [
+                0.2,
+                0.82
+              ],
+              "color": "#2A6FE0",
+              "intensity": 0.82,
+              "radius": 0.52
+            },
+            {
+              "at": [
+                0.52,
+                0.52
+              ],
+              "color": "#7A4AA8",
+              "intensity": 0.2,
+              "radius": 0.34
+            }
+          ]
+        }
+      }
+    },
+    "ppt-vivid-gradient-future": {
+      "_from": "design-pick ppt-vivid-gradient-future (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "grammar": {
+        "_note": "비비드 그라디언트 퓨처 딥 흡수(grammar-glow-deep): 정체성 = ① 풀블리드 4정점 채도 메시 그라디언트(딥바이올렛→마젠타→일렉트릭블루→시안, 스펙 정점 hex) — 배경 자체가 식별 단서다(프리즘의 평면 잉크-블랙과 정반대). ② frosted glass 면 카드(반투명 흰색 12~16% + 1px 흰 보더 + 정점색 글로우 섀도) — 프리즘의 거의-투명 *윤곽선* 노드와 정반대로 '채워진 빛 패널'. ③ 거대 glow-cyan 키 메트릭(kpi_value_accent=#7DF9FF). ④ 정점색 발광 데이터 마크(chart_style=prism 재사용하되 팔레트가 마젠타·블루·시안이라 자동으로 비비드 메시 — 프리즘의 시안·마젠타·앰버와 색이 다름). prism 노드 grammar·grid_bg·mono_meta·section_watermark 는 *선언 안 함* → 프리즘/다크테크와 확연히 구별(윤곽선·격자·모노라벨 없음, 채워진 글래스+채도 배경). 모든 씨임 다크 캔버스 전용, 무선언 110룩 무회귀.",
+        "bg_gradient": [
+          "#3A1C71",
+          "#D11D8E",
+          "#2563EB",
+          "#06B6D4"
+        ],
+        "bg_mesh": {
+          "_note": "다크 인디고 기층(verts) 위에 정점색 발광 블룸 — 레퍼런스의 '깊이 있는 채도 메시 + 글로우 오브'를 재현. 평면 선형 스윕(과거 _gradient_bg)이 아니라 어두운 substrate에 빛이 떠 있는 2D 필드. 시안 오브(top-right 큰 블룸+밝은 코어)는 표지 글로우 오브를 매 슬라이드에 은은히 깐다(표지의 크리스프 오브는 glow_orb 프리미티브가 별도).",
+          "verts": [
+            "#1C0E38",
+            "#3A1340",
+            "#10183A",
+            "#0A1E33"
+          ],
+          "blooms": [
+            {
+              "at": [
+                0.8,
+                0.22
+              ],
+              "color": "#06B6D4",
+              "intensity": 0.62,
+              "radius": 0.44
+            },
+            {
+              "at": [
+                0.81,
+                0.26
+              ],
+              "color": "#7DF9FF",
+              "intensity": 0.34,
+              "radius": 0.15
+            },
+            {
+              "at": [
+                0.14,
+                0.14
+              ],
+              "color": "#7A3CC4",
+              "intensity": 0.3,
+              "radius": 0.52
+            },
+            {
+              "at": [
+                0.26,
+                0.9
+              ],
+              "color": "#D11D8E",
+              "intensity": 0.27,
+              "radius": 0.52
+            },
+            {
+              "at": [
+                0.97,
+                0.94
+              ],
+              "color": "#2563EB",
+              "intensity": 0.24,
+              "radius": 0.44
+            }
+          ]
+        },
+        "orb_decor": {
+          "_note": "표지/섹션의 크리스프 발광 시안 오브 — 메시의 소프트 블룸 위에 정의된 밝은 구 코어를 얹어 레퍼런스의 글로우 스피어를 재현.",
+          "spheres": [
+            {
+              "at": [
+                0.8,
+                0.23
+              ],
+              "r": 92,
+              "color": "#06B6D4",
+              "highlight": "#D6FBFF",
+              "alpha": 90,
+              "edge": 0.4,
+              "focal": [
+                30,
+                28
+              ]
+            }
+          ]
+        },
+        "glass": true,
+        "glass_alpha": 22,
+        "chart_style": "prism",
+        "kpi_value_accent": "#7DF9FF",
+        "glow": {
+          "rad": 14,
+          "alpha": 66,
+          "cards": true,
+          "badges": true,
+          "lines": true,
+          "chart": true
+        }
+      },
+      "fonts": {
+        "latin": "Space Grotesk",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 20,
+          "fill": "navy",
+          "border": {
+            "width_pt": 1.0,
+            "color": "hairline"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#D11D8E",
+        "blue-2": "#DB4FA7",
+        "blue-light": "#7DF9FF",
+        "blue-pale": "#F6D2E8",
+        "blue-faint": "#FCEFF7",
+        "navy": "#1A0B2E",
+        "orange": "#2563EB",
+        "accents": [
+          "blue",
+          "orange",
+          "#06B6D4"
+        ],
+        "canvas": "#0B0414",
+        "_canvas_note": "비비드 딥: 풀블리드 채도 메시(bg_gradient)가 실제 보이는 배경. canvas/surface 는 *역할 도출용 어두운 기준*만 — frosted glass 카드가 배경 위에서 반투명 흰빛 패널로 읽히도록 surface 들을 흰빛 틴트로 핀(_mix dark→white 가 아니라 명시값). glass_alpha 16% → rgba(255,255,255,0.16) 근사. ink=흰색, 보더=hairline(밝은 흰빛) = 1px 흰 보더 스펙. navy=딥바이올렛(cover/section bg 토큰, 메시와 톤 정합).",
+        "surface": "#C9B8E8",
+        "surface-2": "#D6C9EE",
+        "surface-3": "#E2D8F2",
+        "hairline": "#FFFFFF",
+        "divider": "#E8E0F5",
+        "slab": "#3A1C71",
+        "on-slab": "#FFFFFF"
+      }
+    },
+    "ppt-mckinsey-ghost-deck": {
+      "_from": "design-pick ppt-mckinsey-ghost-deck (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Inter",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "#FFFFFF",
+          "border": {
+            "width_pt": 0.75,
+            "color": "#C9CDD3"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#1F3A5F",
+        "blue-2": "#506582",
+        "blue-light": "#9AA6B7",
+        "blue-pale": "#D2D8DF",
+        "blue-faint": "#EFF1F4",
+        "navy": "#1A1A1A",
+        "orange": "#1F3A5F",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-bcg-exhibit-deck": {
+      "_from": "design-pick ppt-bcg-exhibit-deck (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": true,
+      "fonts": {
+        "latin": "IBM Plex Mono",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "#F2F4F3",
+          "border": {
+            "width_pt": 0.75,
+            "color": "#D6DAD8"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#177B57",
+        "blue-2": "#4A987C",
+        "blue-light": "#97C4B3",
+        "blue-pale": "#D1E5DD",
+        "blue-faint": "#EFF6F3",
+        "navy": "#1A1A1A",
+        "orange": "#177B57",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-consulting-precision-grid": {
+      "_from": "design-pick ppt-consulting-precision-grid (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Arial",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "#F4F5F7",
+          "border": {
+            "width_pt": 0.75,
+            "color": "#D1D5DB"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#0B5FFF",
+        "blue-2": "#4182FF",
+        "blue-light": "#91B7FF",
+        "blue-pale": "#CEDFFF",
+        "blue-faint": "#EEF4FF",
+        "navy": "#1A1A1A",
+        "orange": "#0B5FFF",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-strategy-navy-deck": {
+      "_from": "design-pick ppt-strategy-navy-deck (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "PT Serif",
+        "ea": "Pretendard",
+        "display": {
+          "ea": "Song Myung",
+          "latin": "PT Serif"
+        }
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "#F1F4F9",
+          "border": {
+            "width_pt": 0.75,
+            "color": "#C7D0DD"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#2563EB",
+        "blue-2": "#5585EF",
+        "blue-light": "#9DB9F6",
+        "blue-pale": "#D3E0FB",
+        "blue-faint": "#F0F4FE",
+        "navy": "#14213D",
+        "orange": "#2563EB",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-samsung-ir-restrained": {
+      "_from": "design-pick ppt-samsung-ir-restrained (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": true,
+      "fonts": {
+        "latin": "Manrope",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "#F6F8FA",
+          "border": {
+            "width_pt": 0.75,
+            "color": "#D8DBE2"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#0028A8",
+        "blue-2": "#3857BB",
+        "blue-light": "#8C9ED8",
+        "blue-pale": "#CCD4EE",
+        "blue-faint": "#EDF0F9",
+        "navy": "#030414",
+        "orange": "#0028A8",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-korea-policy-navy": {
+      "cover_bg": "#0B2C5C",
+      "_from": "design-pick ppt-korea-policy-navy (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Inter",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 2,
+          "fill": "#E8F1FB",
+          "border": {
+            "width_pt": 0.75,
+            "color": "#C5D2E3"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#1B66C9",
+        "blue-2": "#4D88D5",
+        "blue-light": "#98BAE7",
+        "blue-pale": "#D1E0F4",
+        "blue-faint": "#EFF4FB",
+        "navy": "#1A1A1A",
+        "orange": "#E03B3B",
+        "accents": [
+          "blue",
+          "orange",
+          "#1F9D57"
+        ]
+      }
+    },
+    "ppt-minimal-mono-note": {
+      "_from": "design-pick ppt-minimal-mono-note (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "JetBrains Mono",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "#FFFFFF",
+          "border": null,
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#111111",
+        "blue-2": "#454545",
+        "blue-light": "#949494",
+        "blue-pale": "#CFCFCF",
+        "blue-faint": "#EEEEEE",
+        "navy": "#111111",
+        "orange": "#111111",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-monochrome-infrastructure-deck": {
+      "_from": "design-pick ppt-monochrome-infrastructure-deck (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Geist",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "#F2F2F2",
+          "border": {
+            "width_pt": 0.75,
+            "color": "#000000"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#000000",
+        "blue-2": "#383838",
+        "blue-light": "#8C8C8C",
+        "blue-pale": "#CCCCCC",
+        "blue-faint": "#EDEDED",
+        "navy": "#000000",
+        "orange": "#000000",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-precision-fintech-deck": {
+      "_from": "design-pick ppt-precision-fintech-deck (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Inter",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 8,
+          "fill": "#F6F9FC",
+          "border": null,
+          "shadow": {
+            "blur_pt": 6.0,
+            "dist_pt": 1.5,
+            "dir_deg": 90,
+            "color": "#1D1B20",
+            "alpha": 80
+          }
+        }
+      },
+      "palette": {
+        "blue": "#5A55E0",
+        "blue-2": "#7E7AE7",
+        "blue-light": "#B5B2F1",
+        "blue-pale": "#DEDDF9",
+        "blue-faint": "#F3F3FD",
+        "navy": "#0A2540",
+        "orange": "#5A55E0",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-soft-pastel-system-deck": {
+      "_from": "design-pick ppt-soft-pastel-system-deck (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Quicksand",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 16,
+          "fill": "#FFFFFF",
+          "border": null,
+          "shadow": {
+            "blur_pt": 4.5,
+            "dist_pt": 1.5,
+            "dir_deg": 90,
+            "color": "#1D1B20",
+            "alpha": 80
+          }
+        }
+      },
+      "palette": {
+        "blue": "#C9BEEB",
+        "blue-2": "#D5CCEF",
+        "blue-light": "#E7E2F6",
+        "blue-pale": "#F4F2FB",
+        "blue-faint": "#FBFAFE",
+        "navy": "#3A3640",
+        "orange": "#A6DAC9",
+        "accents": [
+          "blue",
+          "orange",
+          "#F2C9AE",
+          "#8B72D9",
+          "#3FA98C"
+        ]
+      }
+    },
+    "ppt-warm-hospitality-deck": {
+      "_from": "design-pick ppt-warm-hospitality-deck (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": false,
+      "fonts": {
+        "latin": "Poppins",
+        "ea": "Pretendard"
+      },
+      "components": {
+        "card": {
+          "radius": 20,
+          "fill": "#FBF7F4",
+          "border": null,
+          "shadow": {
+            "blur_pt": 18.0,
+            "dist_pt": 6.0,
+            "dir_deg": 90,
+            "color": "#1D1B20",
+            "alpha": 80
+          }
+        }
+      },
+      "palette": {
+        "blue": "#F4625F",
+        "blue-2": "#F68582",
+        "blue-light": "#FAB8B7",
+        "blue-pale": "#FDE0DF",
+        "blue-faint": "#FEF4F4",
+        "navy": "#2B2B2E",
+        "orange": "#F4625F",
+        "accents": [
+          "blue"
+        ]
+      }
+    },
+    "ppt-goldman-ir-deck": {
+      "_from": "design-pick ppt-goldman-ir-deck (ppt) — tokens.json 직접 추출 보존",
+      "attribution": {
+        "source": "design-pick / design-diversity (epoko77-ai)",
+        "license": "MIT (명세·토큰)",
+        "required": false,
+        "caption": "look absorbed from design-pick spec (MIT)"
+      },
+      "track": "ppt",
+      "premium": true,
+      "fonts": {
+        "latin": "Source Serif 4",
+        "ea": "Pretendard",
+        "display": {
+          "ea": "Song Myung",
+          "latin": "Source Serif 4"
+        }
+      },
+      "components": {
+        "card": {
+          "radius": 0,
+          "fill": "surface-2",
+          "border": {
+            "width_pt": 0.5,
+            "color": "divider"
+          },
+          "shadow": null
+        }
+      },
+      "palette": {
+        "blue": "#C8A24B",
+        "blue-2": "#D4B673",
+        "blue-light": "#E6D5AE",
+        "blue-pale": "#F4ECDB",
+        "blue-faint": "#FBF8F2",
+        "navy": "#16223A",
+        "orange": "#C8A24B",
+        "canvas": "#0B1220",
+        "accents": [
+          "blue"
+        ]
+      }
+    }
+  },
+  "typography": {
+    "_note": "size in px (Figma 1920x1080 native). Builder applies pt = px * 0.75.",
+    "display": {
+      "size_px": 80,
+      "bold": true,
+      "line": 1.05,
+      "role": "표지 거대 제목"
+    },
+    "h1": {
+      "size_px": 64,
+      "bold": true,
+      "line": 1.1,
+      "role": "메인 제목"
+    },
+    "h2": {
+      "size_px": 48,
+      "bold": true,
+      "line": 1.15,
+      "role": "섹션 제목"
+    },
+    "h3": {
+      "size_px": 36,
+      "bold": true,
+      "line": 1.2,
+      "role": "카드 제목"
+    },
+    "h4": {
+      "size_px": 28,
+      "bold": true,
+      "line": 1.25,
+      "role": "서브 제목"
+    },
+    "eyebrow": {
+      "size_px": 20,
+      "bold": true,
+      "line": 1.2,
+      "role": "섹션 라벨",
+      "tracking": 2,
+      "upper": true
+    },
+    "body-lg": {
+      "size_px": 24,
+      "bold": false,
+      "line": 1.5,
+      "role": "큰 본문"
+    },
+    "body": {
+      "size_px": 20,
+      "bold": false,
+      "line": 1.55,
+      "role": "기본 본문"
+    },
+    "body-md": {
+      "size_px": 20,
+      "medium": true,
+      "line": 1.55,
+      "role": "강조 본문"
+    },
+    "caption": {
+      "size_px": 16,
+      "bold": false,
+      "line": 1.4,
+      "role": "캡션 · 메타"
+    },
+    "label": {
+      "size_px": 14,
+      "medium": true,
+      "line": 1.2,
+      "role": "카테고리 라벨",
+      "tracking": 1,
+      "upper": true
+    }
+  },
+  "spacing": {
+    "xs": 8,
+    "sm": 16,
+    "md": 24,
+    "lg": 40,
+    "xl": 64,
+    "xxl": 96
+  },
+  "radius": {
+    "sm": 4,
+    "md": 8,
+    "lg": 16,
+    "pill": 999
+  }
+}

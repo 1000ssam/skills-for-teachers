@@ -17,7 +17,7 @@
 | **learn-claude-code** | Claude Code 사용법 단계별 학습 튜터 | [README](skills/learn-claude-code/README.md) |
 | **notion-pilot** | Notion API 통합 (DB/페이지/블록 CRUD, 파일 업로드, Upsert) | [README](skills/notion-pilot/README.md) |
 | **youtube-scraper-setup** | 유튜브 채널 RSS 스크래퍼 프로젝트 자동 세팅 (Notion DB + 자막 수집) | [README](skills/youtube-scraper-setup/README.md) |
-| **ppt-lab-rebuild** | 그리드 기반으로 수업 자료·발표 덱 PPTX 자동 생성 (110 디자인 룩) | [README](skills/ppt-lab-rebuild/README.md) |
+| **ppt-grid-deck** | 그리드 기반으로 수업 자료·발표 덱 PPTX 자동 생성 (32 완성본 디자인 룩) | [README](skills/ppt-grid-deck/README.md) |
 
 ---
 
