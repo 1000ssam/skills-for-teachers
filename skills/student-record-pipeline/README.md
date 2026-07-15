@@ -17,26 +17,51 @@
 
 ---
 
-## 설치
+## 설치 (이 스킬만)
 
-### 방법 1. 전체 스킬 한 번에 (추천)
+아래 명령어는 **`student-record-pipeline` 하나만** `~/.claude/skills/`에 설치합니다. 다른 스킬은 건드리지 않습니다.
+
+### 방법 1. 명령어 한 줄 (추천)
+
+- **Windows** — PowerShell에 붙여넣고 Enter:
+  ```powershell
+  irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/student-record-pipeline/install.ps1 | iex
+  ```
+  > **PowerShell 여는 방법:** `Win + R` → `powershell` 입력 → Enter
 
 - **macOS / Linux** — 터미널에 붙여넣고 Enter:
   ```bash
-  curl -fsSL https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/skills/student-record-pipeline/install.sh | bash
   ```
-- **Windows** — PowerShell에 붙여넣고 Enter:
-  ```powershell
-  irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.ps1 | iex
-  ```
+  > **터미널 여는 방법 (Mac):** `Cmd + Space` → `터미널` 입력 → Enter
+
+설치 후 **Claude Code를 재시작**하면 됩니다.
 
 ### 방법 2. 파일 직접 다운로드
 
 1. [메인 리포](https://github.com/1000ssam/skills-for-teachers)에서 초록색 **`<> Code` → `Download ZIP`**.
-2. 압축을 풀고 `skills/student-record-pipeline` 폴더를 아래 경로에 복사:
+   > ⚠️ 이 페이지(개별 스킬 폴더)가 아닌 **메인 리포 첫 화면**에서 받아야 합니다.
+2. 압축을 풀고 `skills/student-record-pipeline` 폴더 **하나만** 아래 경로에 복사:
    - Windows: `C:\Users\{내 사용자 이름}\.claude\skills\`
    - macOS/Linux: `~/.claude/skills/`
+   > `.claude` 폴더가 안 보이면: 파일 탐색기 → **보기** → **숨긴 항목** 체크
 3. **Claude Code 재시작.**
+
+### 방법 3. 리포를 이미 클론했다면 (로컬에서 복사)
+
+```bash
+# macOS / Linux
+mkdir -p ~/.claude/skills
+cp -rf skills/student-record-pipeline ~/.claude/skills/
+```
+
+```powershell
+# Windows (PowerShell) — 클론한 리포 폴더에서 실행
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills" | Out-Null
+Copy-Item -Recurse -Force .\skills\student-record-pipeline "$env:USERPROFILE\.claude\skills\"
+```
+
+> 다른 스킬까지 전부 설치하려면 [메인 리포 README](https://github.com/1000ssam/skills-for-teachers#전체-설치-모든-스킬-한-번에)의 전체 설치 명령어를 쓰세요.
 
 ---
 
@@ -107,6 +132,7 @@ student-record-pipeline/
 ├── README.md                         ← 이 문서
 ├── PROVENANCE.md                     ← 모든 규칙의 근거 지도(5원천 → 6단계 → 파일)
 ├── DESIGN-DECISIONS.md               ← 설계 원칙·한계·향후 과제
+├── install.ps1 / install.sh          ← 이 스킬만 설치하는 스크립트(위 "설치")
 └── references/
     ├── eval-context-spec.template.md ← 평가 맥락 스펙 빈 템플릿
     ├── giwan-2026-grounding.md       ← 2026 기재요령 발췌(페이지 인용)
