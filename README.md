@@ -14,6 +14,7 @@
 | **exam-analyzer** | 교과서 단원 × 수능 기출 매칭 → 분석표 + 문항 스크린샷 | [README](skills/exam-analyzer/README.md) |
 | **handover-generator** | 공문 파일명 분석 → 업무 인수인계서 자동 생성 | [README](skills/handover-generator/README.md) |
 | **student-record-writer** | 학생 산출물·관찰 메모 → 교과세특 초안 작성 | [README](skills/student-record-writer/README.md) |
+| **student-record-pipeline** | 반 전체 산출물(스캔·사진·디지털) → 교과세특 초안 배치 (인테이크 QA → 3중대조 매핑 → 검증 → NEIS 이관) | [README](skills/student-record-pipeline/README.md) |
 | **learn-claude-code** | Claude Code 사용법 단계별 학습 튜터 | [README](skills/learn-claude-code/README.md) |
 | **notion-pilot** | Notion API 통합 (DB/페이지/블록 CRUD, 파일 업로드, Upsert) | [README](skills/notion-pilot/README.md) |
 | **youtube-scraper-setup** | 유튜브 채널 RSS 스크래퍼 프로젝트 자동 세팅 (Notion DB + 자막 수집) | [README](skills/youtube-scraper-setup/README.md) |
@@ -61,6 +62,10 @@ irm https://raw.githubusercontent.com/1000ssam/skills-for-teachers/main/install.
 ---
 
 ## 변경 로그
+
+### 2026-07-15 — student-record-pipeline 스킬 추가
+
+학생 산출물 → 교과세특 초안 배치까지의 엔드투엔드 파이프라인 스킬을 추가했습니다. 교사 인터뷰(인테이크 QA)로 평가 맥락을 먼저 수집하고, 입력 인제스천(디지털 직결 / 임의 OCR / 비전 축자전사) → 명렬표 3중 대조 매핑 → 맥락 보정 → 성취수준 앵커 작성 → 결정론 검증 → (NEIS 서식 확보 시) write-back 이관까지 수행합니다. 모든 규칙을 2026 기재요령·2022 개정 교육과정·KICE 예시집에 정박했습니다.
 
 ### 2026-03-26 — notion-pilot `notion-api.mjs` 주요 수정
 
