@@ -29,7 +29,7 @@ def count_neis_bytes(text: str) -> int:
     ascii_chars = sum(1 for c in text if ord(c) < 128 and c != "\n")
     newline = text.count("\n")
     other = len(text) - hangul - ascii_chars - newline
-    return hangul * 3 + ascii_chars + other * 3 + newline * 2
+    return hangul * 3 + ascii_chars + other * 3 + newline
 
 
 def extract_name(path: str) -> str:

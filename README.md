@@ -15,9 +15,7 @@
 | **handover-generator** | 공문 파일명 분석 → 업무 인수인계서 자동 생성 | [README](skills/handover-generator/README.md) |
 | **student-record-writer** | 학생 산출물·관찰 메모 → 교과세특 초안 작성 | [README](skills/student-record-writer/README.md) |
 | **student-record-pipeline** | 한 반 활동지(스캔·사진·파일) → 교과세특 초안 한꺼번에 만들기 (학생별 짝짓기 → 형광펜 → 문장 만들기 → 점검 → NEIS에 넣기) | [README](skills/student-record-pipeline/README.md) |
-| **learn-claude-code** | Claude Code 사용법 단계별 학습 튜터 | [README](skills/learn-claude-code/README.md) |
 | **notion-pilot** | Notion API 통합 (DB/페이지/블록 CRUD, 파일 업로드, Upsert) | [README](skills/notion-pilot/README.md) |
-| **notion-to-docs** | Notion 페이지 → Google Docs 변환 (단건·DB 하위 페이지 일괄) | [README](skills/notion-to-docs/README.md) |
 | **youtube-scraper-setup** | 유튜브 채널 RSS 스크래퍼 프로젝트 자동 세팅 (Notion DB + 자막 수집) | [README](skills/youtube-scraper-setup/README.md) |
 | **ppt-grid-deck** | 그리드 기반으로 수업 자료·발표 덱 PPTX 자동 생성 (32 완성본 디자인 룩) | [README](skills/ppt-grid-deck/README.md) |
 

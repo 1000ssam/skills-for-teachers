@@ -6,7 +6,7 @@ NEIS 생기부 바이트 카운터.
   - 한글 1자 = 3 byte
   - 영문/숫자/공백/일반 문장부호 = 1 byte
   - 그 외 (한자·일본어·이모지·특수기호 등) = 3 byte
-  - 줄바꿈(\n) = 2 byte
+  - 줄바꿈(\n) = 1 byte
 
 사용법:
   python3 byte_count.py "측정할 문자열"
@@ -36,7 +36,7 @@ def count_bytes(text: str) -> dict:
         else:  # 한자·이모지·특수기호 등
             other += 1
 
-    neis = hangul * 3 + ascii_chars * 1 + other * 3 + newline * 2
+    neis = hangul * 3 + ascii_chars * 1 + other * 3 + newline * 1
     return {
         "char_total": len(text),
         "hangul": hangul,

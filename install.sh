@@ -34,7 +34,7 @@ unzip -qo "$TMP_DIR/skills.zip" -d "$TMP_DIR"
 
 # 4. 스킬 복사
 SOURCE_SKILLS="$TMP_DIR/skills-for-teachers-$BRANCH/skills"
-SKILLS=("document-organizer" "exam-analyzer" "handover-generator" "student-record-writer" "student-record-pipeline" "learn-claude-code" "notion-pilot" "notion-to-docs" "youtube-scraper-setup" "ppt-grid-deck")
+SKILLS=("document-organizer" "exam-analyzer" "handover-generator" "student-record-writer" "student-record-pipeline" "notion-pilot" "youtube-scraper-setup" "ppt-grid-deck")
 
 echo ""
 for skill in "${SKILLS[@]}"; do
@@ -58,9 +58,7 @@ echo '  "인수인계서 작성해줘"       → handover-generator'
 echo '  "기출 분석해줘"            → exam-analyzer'
 echo '  "생기부 써줘"              → student-record-writer'
 echo '  "반 전체 세특 초안"         → student-record-pipeline'
-echo '  "Claude Code 배우고 싶어"  → learn-claude-code'
 echo '  "노션에 페이지 만들어줘"  → notion-pilot'
-echo '  "노션 구글독스로 변환"     → notion-to-docs'
 echo '  "유튜브 스크래퍼 세팅해줘" → youtube-scraper-setup'
 echo '  "그리드 기반 덱 만들어줘"  → ppt-grid-deck'
 echo ""

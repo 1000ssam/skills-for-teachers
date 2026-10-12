@@ -186,7 +186,7 @@ python3 scripts/byte_count.py --limit <한도> "<초안 본문>"
 - 단일 모드: 한 번에 하나의 학생 텍스트만 처리한다. 여러 학생의 텍스트가 입력되면 N에 따라 단일 모드 반복 또는 Batch Mode로 진입한다.
 - 출력 분량은 **바이트 한도가 있으면 그것을 우선**, 없으면 입력 내용에 비례하여 자연스럽게 조절한다.
 - 동일한 텍스트에 대해 수정을 요청받으면, 이전 출력을 참고하여 개선한다.
-- `scripts/byte_count.py`는 NEIS 기재요령(한글 3byte, ASCII 1byte, 줄바꿈 2byte) 규칙을 따른다.
+- `scripts/byte_count.py`는 NEIS 기재요령(한글 3byte, ASCII 1byte, 줄바꿈 1byte) 규칙을 따른다.
 - **단일 모드에서 압축이나 보강이 발생할 때는 반드시 사용자 승인을 받은 뒤 최종 출력**한다 (Step 6). 자동 통과 금지.
 
 ## Batch Mode (다수 학생 일괄 처리)
