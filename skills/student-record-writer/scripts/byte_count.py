@@ -53,7 +53,7 @@ def format_report(stats: dict, limit: int | None = None) -> str:
         f"한글           : {stats['hangul']}자  ({stats['hangul'] * 3} byte)",
         f"ASCII          : {stats['ascii']}자  ({stats['ascii']} byte)",
         f"기타(한자/특수): {stats['other']}자  ({stats['other'] * 3} byte)",
-        f"줄바꿈         : {stats['newline']}개  ({stats['newline'] * 2} byte)",
+        f"줄바꿈         : {stats['newline']}개  ({stats['newline']} byte)",
         f"NEIS 합계      : {stats['neis_bytes']} byte",
     ]
     if limit is not None:

@@ -5054,18 +5054,25 @@ def build_matrix(prs, d):
     rows = d.get("rows", [])
     ncol = max(1, len(cols))
     cw = w / ncol
-    head_h = 60
-    # Row height adapts to the active body size: small text keeps compact 72px
-    # rows; large text (e.g. lecture looks) gets a row tall enough to hold a
-    # WRAPPED 2-line cell cleanly. Capped by the slot so the table never spills.
+    # Header bar AND row heights both scale with the active body size: small text
+    # keeps the compact 60/72px bar+rows; large text (e.g. lecture looks) gets a
+    # bar/row tall enough to hold the (possibly WRAPPED 2-line) cell cleanly.
+    # Capped by the slot so the table never spills. At '소' both formulas resolve
+    # back to 60/72 → no regression.
     _bpx = _size_px("body")
     _blh = (_type_override().get("line") or {}).get("body", TYPO["body"].get("line", 1.2))
+    _hpx = _size_px("body-md")
+    _hlh = (_type_override().get("line") or {}).get("body-md", TYPO["body-md"].get("line", 1.2))
+    head_h = max(60, _hpx * _hlh + 24)
     two_line = _bpx * _blh * 2 + 24
     rh = min((h - head_h) / max(1, len(rows)), max(72, two_line))
     rect(s, [x, y, w, head_h], fill="slab")
     for i, c in enumerate(cols):
-        text(s, [x + i * cw + 24, y + 16, cw - 32, 32], str(c), "body-md",
-             color="on-slab", align="left" if i == 0 else "center")
+        # Full-bar-height box + middle anchor keeps the header label vertically
+        # centered at ANY type size. (Was a 32px box at y+16, top-anchored, which
+        # pushed large header text past the bar's bottom edge → clipped.)
+        text(s, [x + i * cw + 24, y, cw - 32, head_h], str(c), "body-md",
+             color="on-slab", align="left" if i == 0 else "center", anchor="middle")
     for r, row in enumerate(rows):
         ry = y + head_h + r * rh
         if r % 2 == 1:

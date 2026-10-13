@@ -171,7 +171,8 @@ def parse_key(hb):
 
 GIWAN_PATHS = [
     os.path.join(os.path.dirname(os.path.abspath(__file__)), "forbidden-terms.txt"),
-    "/home/user/.claude/skills/student-record-pipeline/references/forbidden-terms.txt",
+    os.path.join(os.path.expanduser("~/.claude/skills/student-record-pipeline"),
+                 "references", "forbidden-terms.txt"),
 ]
 
 

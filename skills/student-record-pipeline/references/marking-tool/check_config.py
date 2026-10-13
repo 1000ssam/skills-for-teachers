@@ -93,7 +93,8 @@ def check_rules():
         bad("draft-rules.json → byte_max", "비어 있습니다", "길이 상한(바이트)을 적어 주세요.")
     # forbidden 이 비는 건 **정상**이다 — 기재요령 금지어는 gate.py 가 따로 항상 읽는다.
     gp = [os.path.join(TOOL, "forbidden-terms.txt"),
-          "/home/user/.claude/skills/student-record-pipeline/references/forbidden-terms.txt"]
+          os.path.join(os.path.expanduser("~/.claude/skills/student-record-pipeline"),
+                       "references", "forbidden-terms.txt")]
     if not any(os.path.exists(x) for x in gp):
         bad("forbidden-terms.txt", "기재요령 금지어 목록을 못 찾습니다",
             "이게 없으면 '수상·TOEIC' 같은 말이 검사를 그냥 통과합니다.")

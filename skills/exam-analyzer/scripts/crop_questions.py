@@ -62,7 +62,11 @@ def detect_right_label_x(page):
                     and any(c in label_chars for c in text)
                 ):
                     min_x = min(min_x, s["bbox"][0])
-    return min_x - 5 if min_x < pw else pw - 55
+    result = min_x - 5 if min_x < pw else pw - 55
+    # 라벨이 페이지 우측 80px 밖에 있으면 오탐 → 기본값 사용
+    if result < pw - 80:
+        return pw - 55
+    return result
 
 
 def _raw_search_q(page, q_num):
@@ -139,6 +143,62 @@ def find_q_on_page(page, q_num, baselines=None):
     return None
 
 
+def _is_noise_text(span_text, span_bbox, page_height):
+    """페이지 번호 등 크롭에 포함하면 안 되는 노이즈 텍스트 판별."""
+    text = span_text.strip()
+    y1 = span_bbox[3]
+    # 페이지 하단 150px 이내의 1-2자리 숫자 → 페이지 번호
+    if y1 > page_height - 150 and re.fullmatch(r"\d{1,2}", text):
+        return True
+    return False
+
+
+def _tighten_bottom(page, clip_rect, page_height):
+    """clip_rect 내 실제 콘텐츠의 최하단 y를 찾아 +12px 마진으로 조인다."""
+    blocks = page.get_text("dict", clip=clip_rect)
+
+    # 1단계: "확인 사항" 시작 y좌표를 찾아서 그 아래는 전부 무시
+    noise_cutoff = clip_rect.y1  # 기본값: 제한 없음
+    for b in blocks.get("blocks", []):
+        if b.get("type") == 1:
+            continue
+        block_text = ""
+        for ln in b.get("lines", []):
+            for s in ln.get("spans", []):
+                block_text += s["text"]
+        if "확인 사항" in block_text and b["bbox"][1] > page_height - 300:
+            noise_cutoff = min(noise_cutoff, b["bbox"][1])
+
+    # 2단계: noise_cutoff 위의 콘텐츠에서 최하단 y 탐색
+    max_y = None
+    for b in blocks.get("blocks", []):
+        # 이미지 블록 (퇴화 bbox 및 극소 이미지 제외)
+        if b.get("type") == 1:
+            bx = b["bbox"]
+            img_w = bx[2] - bx[0]
+            img_h = bx[3] - bx[1]
+            if img_w <= 5 or img_h <= 5:
+                continue
+            if bx[1] >= noise_cutoff:
+                continue
+            y1 = bx[3]
+            if max_y is None or y1 > max_y:
+                max_y = y1
+        else:
+            for ln in b.get("lines", []):
+                for s in ln.get("spans", []):
+                    if s["bbox"][1] >= noise_cutoff:
+                        continue
+                    if _is_noise_text(s["text"], s["bbox"], page_height):
+                        continue
+                    y1 = s["bbox"][3]
+                    if max_y is None or y1 > max_y:
+                        max_y = y1
+    if max_y is None:
+        return clip_rect.y1  # 콘텐츠 없으면 원본 유지
+    return max_y + 12
+
+
 def find_last_choice_y(page, is_right, mid_x, y_start):
     """⑤~① 역순으로 마지막 선지의 하단 y를 찾는다.
     선지 텍스트(여러 줄) 및 이미지(그래프/지도) 모두 고려."""
@@ -159,7 +219,7 @@ def find_last_choice_y(page, is_right, mid_x, y_start):
         col_x0 = mid_x - 5 if is_right else 0
         col_x1 = page.rect.width if is_right else mid_x + 5
         # 텍스트 + 이미지 블록 모두 스캔하여 실제 콘텐츠 하단을 찾음
-        scan_rect = fitz.Rect(col_x0, best.y0, col_x1, best.y0 + 120)
+        scan_rect = fitz.Rect(col_x0, best.y0, col_x1, best.y0 + 250)
         blocks = page.get_text("dict", clip=scan_rect)
         last_y1 = best.y1
         for b in blocks.get("blocks", []):
@@ -214,6 +274,18 @@ def find_q_clip(page, q_num, label_x, baselines=None):
     if y_end is None:
         last_y = find_last_choice_y(page, is_right, mid_x, y_start)
         y_end = last_y if last_y else ph - 60
+
+    # 콘텐츠 기반 하단 여백 조임 (노이즈 제외)
+    if is_right:
+        pre_x0 = mid_x - 3
+        pre_x1 = label_x
+    else:
+        pre_x0 = q_rect.x0 - 15
+        pre_x1 = mid_x + 3
+    pre_rect = fitz.Rect(pre_x0, y_start, pre_x1, y_end)
+    tight_y = _tighten_bottom(page, pre_rect, ph)
+    if tight_y < y_end:
+        y_end = tight_y
 
     # x 범위: 넉넉하게 잡되 세로 라벨만 제외
     if is_right:

@@ -24,7 +24,7 @@ DRAFTS = os.path.join(ROOT, "out", "drafts_v3b")
 sys.path.insert(0, TOOL)
 from pending import material_ms          # 단일 출처: 재료 최신성 판정
 
-SK = "/home/user/.claude/skills/student-record-pipeline/references"
+SK = os.path.join(os.path.expanduser("~/.claude/skills/student-record-pipeline"), "references")
 if os.path.isdir(SK):
     sys.path.insert(0, SK)
 try:

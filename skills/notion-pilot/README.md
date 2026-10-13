@@ -136,18 +136,18 @@ Claude Code에서 이렇게 말하면 됩니다:
 | **DB** | 생성, 조회 (DS 자동 변환), 수정, 쿼리, 전체 조회 (자동 페이지네이션) |
 | **페이지** | 생성 (DB ID/DS ID 모두 허용), 조회, 수정, 삭제, 이동 |
 | **마크다운** | 페이지 본문 읽기/쓰기 (블록 API 대비 읽기 20배, 쓰기 6배 토큰 절약) |
-| **블록** | 조회, 추가, 삭제 (마크다운으로 불가능한 세밀한 조작 시) |
-| **파일** | 로컬 파일 업로드, URL 다운로드→업로드, 커버 설정, 이미지 블록 추가 |
+| **블록** | 조회, 전체 조회 (자동 페이지네이션), 추가, 삭제 (마크다운으로 불가능한 세밀한 조작 시) |
+| **파일** | 로컬 파일 업로드 (완료 확인 포함), URL 다운로드→업로드, 커버 설정, 이미지 블록 추가, 파일 속성 첨부 + 첨부 재확인 (첨부가 나중에 사라지는 문제 방지) |
 | **Upsert** | 단건 (10건 미만), 벌크 (10건 이상, queryAll 캐시 + 동시성 15) |
 | **코멘트** | 생성, 목록 조회, 단건 조회 |
-| **헬퍼** | 속성 빌더 13종 (title, richText, number, select, multiSelect, status, checkbox, date, url, email, phone, people, relation), 블록 빌더 15종 (paragraph, heading1/2/3, bullet, numbered, toDo, quote, toggle, callout, code, bookmark, equation, divider, tableOfContents) |
+| **헬퍼** | 속성 빌더 13종 (title, richText, number, select, multiSelect, status, checkbox, date, url, email, phone, people, relation), 블록 빌더 16종 (paragraph, heading1/2/3/4, bullet, numbered, toDo, quote, toggle, callout, code, bookmark, equation, divider, tableOfContents) |
 
 ### 마크다운 쓰기 시 지원되는 특수 블록
 
 | 문법 | 노션 블록 |
 |------|----------|
-| `<callout icon="📌">내용</callout>` | 콜아웃 |
-| `<details><summary>제목</summary>내용</details>` | 토글 |
+| `<callout icon="📌">내용</callout>` (여러 줄이면 태그와 내용을 줄로 나누고 내용은 탭 들여쓰기) | 콜아웃 |
+| `<details>` + 줄바꿈 + `<summary>제목</summary>` + 탭 들여쓴 내용 + `</details>` (한 줄로 쓰면 인식 안 됨) | 토글 |
 | `> 인용문` | 인용 |
 | `---` | 구분선 |
 | `- [ ]` / `- [x]` | 체크박스 |
@@ -174,6 +174,6 @@ notion-pilot/
 ├── install.ps1           ← 설치 스크립트 (Windows)
 ├── config.json           ← (설치 후 자동 생성) Notion 토큰 저장
 └── scripts/
-    └── notion-api.mjs    ← Notion API 모듈 (~600줄)
+    └── notion-api.mjs    ← Notion API 모듈 (~900줄)
                              CRUD + 마크다운 + 파일 업로드 + Upsert + 코멘트
 ```

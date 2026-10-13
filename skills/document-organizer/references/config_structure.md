@@ -53,6 +53,7 @@
 | `default_profile` | string | 기본 프로필 이름 |
 | `profiles.<name>.name` | string | 프로필 표시명 (한글 가능) |
 | `profiles.<name>.path` | string | 공문서 디렉토리 Windows 절대경로 |
+| `profiles.<name>.destination` | string (선택) | 정리한 폴더를 모을 다른 위치. 없으면 `path`에 정리 |
 | `profiles.<name>.last_used` | string\|null | 마지막 사용 시간 (ISO 8601) |
 
 ## 경로 규칙
